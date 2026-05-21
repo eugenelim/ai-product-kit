@@ -33,6 +33,10 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 ONTOLOGY_PATH = REPO_ROOT / "context" / "frameworks" / "ontology.md"
 
+# Make scripts.lib importable (kit has no pyproject.toml).
+sys.path.insert(0, str(REPO_ROOT))
+from scripts.lib.frontmatter import parse_file as _fm_parse_file  # noqa: E402
+
 # Lifecycle states from CONVENTIONS.md
 LIFECYCLE_STATES = {
     "Draft", "In Review", "Validated", "Approved",
@@ -71,46 +75,18 @@ def load_ontology_types() -> set[str]:
 
 
 def parse_frontmatter(path: Path) -> dict | None:
-    """Return the frontmatter dict or None if no frontmatter present."""
-    text = path.read_text()
-    if not text.startswith("---\n"):
-        return None
-    end = text.find("\n---\n", 4)
-    if end == -1:
-        return None
-    block = text[4:end]
-    # Very small YAML subset parser — enough for what the kit declares.
-    # Handles: scalars, lists (- item), nested mappings to one level.
-    return _parse_yaml_subset(block)
+    """Return the frontmatter dict or None if no frontmatter present.
 
-
-def _parse_yaml_subset(block: str) -> dict:
-    out: dict = {}
-    current_key = None
-    current_list: list | None = None
-    for raw in block.splitlines():
-        if not raw.strip() or raw.lstrip().startswith("#"):
-            continue
-        if raw.startswith("  - ") and current_list is not None:
-            current_list.append(raw[4:].strip().strip('"').strip("'"))
-            continue
-        if raw.startswith("  ") and current_key is not None:
-            # nested map — not parsed, just record presence
-            continue
-        if ":" in raw:
-            key, _, val = raw.partition(":")
-            key = key.strip()
-            val = val.strip()
-            if val == "":
-                # Either a list or a nested map
-                current_key = key
-                current_list = []
-                out[key] = current_list
-            else:
-                out[key] = val.strip('"').strip("'")
-                current_key = key
-                current_list = None
-    return out
+    Delegates to scripts.lib.frontmatter (F1.2). Returns None when the file
+    has no frontmatter. Returns the parsed dict otherwise; if the frontmatter
+    is malformed (e.g. unclosed delimiter), returns the empty dict the lib
+    produced — callers can inspect via the lib's `parse_errors` if they want
+    the rich object.
+    """
+    fm = _fm_parse_file(path)
+    if fm is None:
+        return None
+    return fm.data
 
 
 def lint_file(path: Path, ontology_types: set[str]) -> list[str]:
@@ -141,7 +117,7 @@ def lint_file(path: Path, ontology_types: set[str]) -> list[str]:
                 f"{path}: status '{fm['status']}' not a canonical lifecycle state"
             )
 
-    if fm.get("human_approval_required") == "true":
+    if fm.get("human_approval_required") is True:
         hod = fm.get("human_owned_decisions")
         if not hod or (isinstance(hod, list) and len(hod) == 0):
             errors.append(

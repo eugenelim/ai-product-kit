@@ -40,9 +40,9 @@ These shipped before the roadmap formally existed, in the same session that prod
 
 The v3 kit ships three audit commands (`/audit-completeness`, `/audit-traceability`, `/audit-portfolio-coherence`) that document procedures Claude can follow, but they want shared Python utilities to do the heavy walks repeatably and testably. These come first because every other audit and many slash commands will reuse them.
 
-- [ ] **F1.1** `audit-graph-walker` — Python library (`scripts/lib/graph.py`) that builds the typed-object graph from a kit's artifacts. Reads `parent_*`/`related_*` frontmatter, returns an in-memory graph the audits walk. **Slug:** `audit-graph-walker`.
+- [x] **F1.1** `audit-graph-walker` — Python library (`scripts/lib/graph.py`) that builds the typed-object graph from a kit's artifacts. Reads `parent_*`/`related_*` frontmatter, returns an in-memory graph the audits walk. **Slug:** `audit-graph-walker`. **Shipped:** 2026-05-21.
 
-- [ ] **F1.2** `frontmatter-parser` — Robust YAML-subset parser for kit frontmatter (`scripts/lib/frontmatter.py`). Extracted from the rough version inside `lint-frontmatter.py`. Handles lists, nested maps to one level, comments, multi-line strings. **Slug:** `frontmatter-parser`.
+- [x] **F1.2** `frontmatter-parser` — Robust YAML-subset parser for kit frontmatter (`scripts/lib/frontmatter.py`). Extracted from the rough version inside `lint-frontmatter.py`. Handles lists, nested maps to one level, comments, multi-line strings. **Slug:** `frontmatter-parser`. **Shipped:** 2026-05-21.
 
 - [ ] **F1.3** `ontology-classifier` skill — Extracts typed objects from unstructured input (interview transcripts, Slack threads, customer emails) and surfaces missing required fields. Used by every audit and by humans when classifying inbound material. **Slug:** `ontology-classifier-skill`. **Depends on:** F1.2.
 

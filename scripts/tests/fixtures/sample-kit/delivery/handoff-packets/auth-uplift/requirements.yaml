@@ -1,0 +1,15 @@
+---
+id: REQ-001
+slug: passwordless-login-via-magic-link
+object_type: Requirement
+status: Ready for Engineering
+last_updated: 2026-05-21
+parent_initiative: INIT-001
+related_capabilities: [CAP-001]
+risk_level: Medium
+owner: eng-lead
+---
+
+# Passwordless login via magic link
+
+Traces to CAP-001 (Rule 1).
