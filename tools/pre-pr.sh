@@ -37,6 +37,7 @@ done
 # Agents
 for agent in .claude/agents/*.md; do
     [[ -f "$agent" ]] || continue
+    [[ "$(basename "$agent")" == "README.md" ]] && continue
     run_linter "lint-agent $agent" tools/lint-agent.sh "$agent"
 done
 

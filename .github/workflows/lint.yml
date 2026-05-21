@@ -32,6 +32,7 @@ jobs:
           set -e
           for f in .claude/agents/*.md; do
             [ -f "$f" ] || continue
+            [ "$(basename "$f")" = "README.md" ] && continue
             echo "::group::$f"
             bash tools/lint-agent.sh "$f"
             echo "::endgroup::"
