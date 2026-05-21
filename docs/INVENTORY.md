@@ -1,0 +1,235 @@
+# Inventory at a glance
+
+Every artifact in the kit, classified by **phase** (rows) and **practice area** (columns), with the ontology object types it produces and which agent invokes it.
+
+## Legend
+
+- **Block:** SC = slash command, AG = agent, SK = skill, HK = hook, SCH = scheduled agent, REF = reference context, IDX = index README
+- **Invocation:** YOU = you type it, CLAUDE = Claude auto-invokes, EVENT = triggered by hook, CRON = OS scheduler
+- **Type:** the primary ontology object type the artifact produces (per `context/frameworks/ontology.md`)
+- **Status:** `shipped` (built and usable today) or `planned (Fx.y)` / `planned (Px.y)` (forward-looking design intent; build queue row in [`ROADMAP.md`](../ROADMAP.md))
+
+## Indexes (kit-meta)
+
+| Artifact | Block | Inv | Purpose | Status |
+|---|---|---|---|---|
+| `.claude/skills/README.md` | IDX | (pulled) | On-disk index of skills (shipped + planned) — discharges AGENTS.md "full index" reference | shipped (created 2026-05-21) |
+| `.claude/agents/README.md` | IDX | (pulled) | On-disk index of agents (shipped + planned + scheduled) — discharges AGENTS.md "full catalog" reference | shipped (created 2026-05-21) |
+
+> **Reading this inventory:** rows marked `planned` are NOT currently shippable. Their presence here documents the kit's design surface, not its current capability. Use the `Status` column to filter to what works today.
+
+---
+
+## Phase 1 — Strategy
+
+| Artifact | Block | Mode | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|---|
+| `/market-scan` | SC | greenfield | YOU | Market, Market Segment | Analogical industry scan | planned (P7.11) |
+| `/competitive-research` | SC | greenfield | YOU | Competitor, Differentiator | Parallel fan-out across competitors | shipped |
+| `/jtbd-analogues` | SC | greenfield | YOU | Job to Be Done | Jobs from adjacent markets | planned (P7.12) |
+| `/wardley-map` | SC | enterprise | YOU | Value chain, Evolution stage | Map current value chain | planned (P7.7) |
+| `/internal-jtbd-interview` | SC | enterprise | YOU | Job to Be Done, Insight | Captive user-base interview | planned (P7.9) |
+| `/value-chain-evolution` | SC | enterprise | YOU | Trend | Quarter-over-quarter diff | planned (P7.10) |
+| `/strategy-refresh` | SC | both | YOU (quarterly) | Strategic Diagnosis | Rumelt-style one-page diagnosis | planned (P7.1) |
+| `/strategic-intent` | SC | both | YOU | Strategic Intent | One-pager: central challenge + policy + actions | planned (P7.2) |
+| `/audit-portfolio-coherence` | SC | both | YOU (weekly) | Coherence Audit | Rumelt coherence across portfolio | shipped |
+| `/cadence-check` | SC | both | YOU (monthly) | Cadence Drift Report | Detect rhythm decay | planned (P7.5) |
+| `/exec-strategy-narrative` | SC | both | YOU | Exec Narrative | 6-pager for leadership | planned (P7.4) |
+| `competitor-research` | AG | greenfield | CLAUDE (fan-out) | Competitor record | One competitor end to end | shipped |
+| `strategy-skeptic` | AG | both | CLAUDE (dispatch) | Review | Rumelt's failure modes | planned (P7.3) |
+| `strategy-coherence` | SK | both | CLAUDE | Coherence rule library | Pairwise audit rules | shipped |
+| `wardley-evolution` | SK | enterprise | CLAUDE | Evolution placement | Place components on the axis | planned (P7.8) |
+| Rumelt failure modes | REF | both | (pulled) | — | `context/frameworks/rumelt.md` | planned (F4.7) |
+| Wardley primer | REF | enterprise | (pulled) | — | `context/frameworks/wardley.md` | planned (F4.8) |
+| Strategic coherence | REF | both | (pulled) | — | `context/frameworks/strategic-coherence.md` | planned (F4.10) |
+
+## Phase 2 — Discovery
+
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/interview-snapshot` | SC | YOU | Insight, Pain Point, Use Case | Transcript → snapshot | planned (P2.1) |
+| `/extract-opportunities` | SC | YOU | Opportunity | Snapshots → candidates | planned (P2.4) |
+| `/cluster-opportunities` | SC | YOU | Theme | Theme raw opportunities | planned (P2.6) |
+| `/generate-ost` | SC | YOU | OST, Outcome, Opportunity | First-pass tree | planned (P2.7) |
+| `/update-ost` | SC | YOU | OST change set | Integrate new interviews; emits change set + tree | planned (P2.9) |
+| `/opportunity-narrative` | SC | YOU | Opportunity narrative | Write up chosen opp for validation | planned (P2.12) |
+| `/discovery-update` | SC | YOU (weekly) | Stakeholder Update | Weekly digest | planned (P2.14) |
+| `/audit-discovery-coherence` | SC | YOU | Audit Report | Flag OSTs without parent intent | planned (P2.11) |
+| `interview-coder` | AG | CLAUDE (fan-out) | Insight set | One transcript | planned (P2.3) |
+| `opportunity-merger` | AG | CLAUDE (fan-out) | Merge decision | One OST node on `/update-ost` | planned (P2.10) |
+| `discovery-coach` | AG | CLAUDE (dispatch) | Coaching | Continuous Discovery coaching | planned (P2.13) |
+| `interview-snapshot` | SK | CLAUDE | Speakers + quotes | Speaker detection + time alignment | planned (P2.2) |
+| `opportunity-clustering` | SK | CLAUDE | Cluster set | Theme raw opportunities | planned (P2.5) |
+| `ost-validator` | SK | CLAUDE | Validation verdict | Validate-then-repair loop (prose procedure shipped; runnable script + reference files planned P2.8) | shipped (prose) |
+| Continuous Discovery | REF | (pulled) | — | `context/frameworks/continuous-discovery.md` | planned (F4.1) |
+| OST schema | REF | (pulled) | — | `context/frameworks/opportunity-solution-tree.md` | planned (F4.2) |
+
+## Phase 3 — Validation
+
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/assumption-test` (design) | SC | YOU | Assumption Map | Five-lens design | planned (P3.1) |
+| `/design-experiment` | SC | YOU | Experiment | Runnable experiment with predeclared threshold | planned (P3.4) |
+| `/test-cost-vs-evidence` | SC | YOU | Test Prioritization | Cost vs evidence-needed | planned (P3.6) |
+| `/run-assumption-test` | SC | YOU | Experiment Result | Capture results; computes pass/fail | planned (P3.7) |
+| `/falsify-or-confirm` | SC | YOU | Learning Memo | Write memo; flip status; propagate | planned (P3.8) |
+| `/kill-or-survive` | SC | YOU | Opportunity Disposition | Formal disposition | planned (P3.9) |
+| `/learning-memo` | SC | YOU | Learning Memo | Synthesize learning | planned (P3.10) |
+| `/validation-update` | SC | YOU (weekly) | Stakeholder Update | Weekly digest | planned (P3.13) |
+| `/audit-assumption-coverage` | SC | YOU | Audit Report | Flag chosen opps without assumption map | planned (P3.11) |
+| `/audit-vision-evidence` | SC | YOU | Audit Report | Flag visions citing untested assumptions | planned (P3.12) |
+| `assumption-skeptic` | AG | CLAUDE (dispatch) | Review | "Would you pull the work?" check | planned (P3.2) |
+| `experiment-designer` | AG | CLAUDE (dispatch) | Test proposal | Cheapest valid test | planned (P3.5) |
+| `experiment-template` | SK | CLAUDE | Scaffold | Experiment folder structure | planned (P3.3) |
+| Assumption taxonomy | REF | (pulled) | — | `context/frameworks/assumption-tests.md` | planned (F4.4) |
+| Falsification | REF | (pulled) | — | `context/frameworks/falsification.md` | planned (F4.5) |
+| Validation theatre | REF | (pulled) | — | `context/frameworks/validation-theatre.md` | planned (F4.6) |
+
+## Phase 4 — Delivery (Vision → Initiative → Spec → Handoff Packet)
+
+### Vision (4A)
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/draft-vision` | SC | YOU | Vision, Value Prop, Differentiator | From learning + persona + product | planned (P4.1) |
+| `/vision-shape-check` | SC | YOU | Shape Decision | Crosses teams? Initiative or single spec? | planned (P4.2) |
+
+### Initiative (4B)
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/draft-initiative` | SC | YOU | Initiative, Capability list | Build initiative folder | planned (P4.3) |
+| `/context-map` | SC | YOU | Bounded Contexts, Evolution Check | Interactive context map | planned (P4.4) |
+| `/end-to-end-flow` | SC | YOU | Business Workflow | Cross-team flow (Mermaid) | planned (P4.5) |
+| `/sequence-initiative` | SC | YOU | Dependency Sequence | Delivery sequence | planned (P4.6) |
+
+### Spec (4C)
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/draft-spec` | SC | YOU | Requirement, Acceptance Criteria, Business Rule | From initiative + context-map row + EARS | planned (P4.8) |
+| `/spec-impact-analysis` | SC | YOU | Impact Report | What changes if this spec changes? | planned (P4.9) |
+| `/audit-spec-linkage` | SC | YOU | Audit Report | Every spec needs `parent_initiative:` | planned (P4.10) |
+
+### Engineering handoff (4D — NEW in v3)
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/handoff-packet` | SC | YOU | Handoff Packet | Assemble the ontology-defined 23-section deliverable | planned (P4.11) |
+| `/audit-completeness` | SC | YOU | Audit Report | 25-item pre-handoff checklist | shipped |
+| `/audit-traceability` | SC | YOU | Audit Report | Walk the seven traceability rules | shipped |
+| `adversarial-reviewer` | AG | CLAUDE (dispatch) | Review | Default reviewer; artifact-vs-contract drift | shipped |
+| `compliance-reviewer` | AG | CLAUDE (dispatch) | Review | Regulatory / legal / privacy / ethics lens | planned (P6.1) |
+| `quality-engineer` | AG | CLAUDE (dispatch) | Review | Testability / observability / reliability lens | shipped |
+| `voice-check` | SK | CLAUDE | Voice rubric | For customer-facing drafts | planned (P8.4) |
+| `ears-lint` | SK | CLAUDE | EARS check | Spec sentence pattern | planned (P4.7) |
+| `ontology-classifier` | SK | CLAUDE | Object types + links | Extract typed objects from input | planned (F1.3) |
+| `work-loop` | SK | CLAUDE | Standard pattern | Plan → execute → verify → review | shipped |
+
+### Across delivery
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/release-notes` | SC | YOU | Customer Communication | Customer-facing notes | planned (P4.12) |
+| `/launch-comms` | SC | YOU | Customer Communication | Internal + external launch messaging | planned (P4.13) |
+| `/launch-checklist` | SC | YOU | Launch Plan | Change-type checklist | planned (P4.14) |
+| `/retro` | SC | YOU | Retro | Facilitated retro | planned (P4.15) |
+| `roadmap-skeptic` | AG | CLAUDE (dispatch) | Review | Bets vs commitments lens | planned (P4.16) |
+| `section-fact-checker` | AG | CLAUDE (fan-out) | Fact check | One section at a time | planned (P8.9) |
+
+## Phase 5 — Landings
+
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/landing-report` | SC | YOU | Landing Report | Actuals vs predictions vs counter-metrics | planned (P5.1) |
+| `/adoption-readout` | SC | YOU | Adoption Curve | Adoption only | planned (P5.2) |
+| `/outcome-vs-prediction` | SC | YOU | KPI Diff | Mechanical comparison | planned (P5.3) |
+| `/cohort-analysis` | SC | YOU | Cohort breakdown | Slice by segment / surface / cohort | planned (P5.4) |
+| `/landing-interview` | SC | YOU | Insight | Qualitative follow-up | planned (P5.6) |
+| `/landings-update` | SC | YOU | Stakeholder Update | Stakeholder digest | planned (P5.8) |
+| `/audit-landings-debt` | SC | YOU | Audit Report | Flag shipped initiatives without landing report after 30 days | planned (P5.9) |
+| `cohort-analyst` | AG | CLAUDE (fan-out) | Cohort report | One cohort at a time | planned (P5.5) |
+| `landing-skeptic` | AG | CLAUDE (dispatch) | Review | "What would have to be true to revert?" | planned (P5.7) |
+| `landings-manager` | SCH | CRON (Wed 7am) | Debt scan | Mid-week landings-debt scan | planned (P5.10) |
+
+## Cross-cutting
+
+### Communication
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/stakeholder-update` | SC | YOU (weekly/monthly) | Stakeholder Update | Auto-compose from current state | planned (P8.1) |
+| `/exec-narrative` | SC | YOU | Exec Narrative | 6-pager on a strategic question | planned (P8.2) |
+| `/battlecard` | SC | YOU | Sales Enablement | One-competitor battlecard | planned (P8.3) |
+| `/headlines` | SC | YOU | Headline candidates | 3–5 × 7 categories | planned (P8.5) |
+| `/seo` | SC | YOU | SEO Analysis | Content + keyword + volume | planned (P8.6) |
+| `/critique` | SC | YOU | Review | Direct feedback on a draft | planned (P8.7) |
+| `writing-critic` | AG | CLAUDE (dispatch) | Voice-aware review | (in writing surfaces) | planned (P8.8) |
+
+### Research
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/research-digest` | SC | YOU (daily) | Research Digest | Academic + industry | planned (P8.10) |
+| `/summarize-paper` | SC | YOU | Paper Summary | Structured summary of one PDF | planned (P8.11) |
+| `paper-summarizer` | AG | CLAUDE (fan-out) | Summary | One paper in parallel | planned (P8.12) |
+
+### Personal OS
+| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+|---|---|---|---|---|---|
+| `/today` | SC | YOU (morning) | Daily Plan | Tasks + AI-helpable surfacing | planned (P9.2) |
+| `/inbox` | SC | YOU | Triage | Triage and file inbox | planned (P9.3) |
+| `/meeting-prep` | SC | YOU | Meeting Brief | Prep for next event | planned (P9.4) |
+| `/weekly-retro` | SC | YOU (Friday) | Retro | Session patterns | planned (P9.5) |
+| `/phase-guide` | SC | YOU (when stuck) | Phase Diagnosis | "What do you have right now?" | shipped |
+| `dates` | SK | CLAUDE | Date facts | today/tomorrow/this-week/next-week | planned (P9.1) |
+| Personal OS scheduled agents (`podcast-manager`, `sales-admin`, `coding-manager`, `discovery-manager`, `validation-manager`) | SCH | CRON (various) | Tasks / Retro | Daily 6am + Mon 7-8am rhythm agents; depend on `personal-os/agents/` runtime dir (also planned) | planned (P9.6 — `sched-personal-os-agents`, single atomic ROADMAP item covering all five) |
+| `cadence-manager` | SCH | CRON (1st Mon monthly) | Cadence Report | Monthly cadence-drift report | planned (P7.6) |
+
+---
+
+## Global hooks (phase guards)
+
+> All SCH (scheduled agent) entries depend on the `personal-os/agents/` runtime directory, which ships empty. The directory must be populated before any scheduled agent can run. See ROADMAP P9.6.
+>
+> `.claude/settings.json` (the hook-wiring file) is planned per ROADMAP F2.6; until shipped, the hooks below are documented but not registered with Claude Code's tool-use lifecycle.
+
+| Hook | Event | Action | Status |
+|---|---|---|---|
+| `pin-date` | SessionStart | Run dates script | planned (F2.9) |
+| `mode-guard` | SessionStart | Refuse greenfield commands in enterprise project (and vice versa) | planned (F2.4) |
+| `phase-link-check` | PreToolUse(Write on `delivery/{visions,initiatives,specs,handoff-packets}/**`) | Require parent frontmatter link | planned (F2.1, slug `check-handover-link`) |
+| `assumption-threshold-lock` | PreToolUse(Write on `validation/experiments/**/results.md`) | Require predeclared falsification threshold filed BEFORE results | shipped (doc only; enforcement script + settings.json wiring planned F2.2 + F2.6) |
+| `validate-ost` | PostToolUse(Write on `discovery/trees/**`) | Run OST validator; abort on failure | planned (F2.7; depends on P2.8 script-ost-validator) |
+| `ontology-type-check` | PreToolUse(Write on artifact paths) | Require `object_type:` in frontmatter (warn if missing) | planned (F2.3) |
+| `guard-credentials` | PreToolUse(Bash) | Block touches to `~/.ssh`, `.env*`, credential paths | planned (F2.8) |
+| `cadence-nudge` | SessionStart | Surface if strategy >90d, OST >35d, or no kill in 14d | planned (F2.5) |
+
+---
+
+## Read-the-source map
+
+| Kit concept | Source |
+|---|---|
+| Four-phase operating model (Strategy / Discovery / Validation / Delivery) | `product-operating-model.md` + Rumelt/Perri/Torres/Cagan |
+| Five-phase model (kit adds Landings) | Operating model + 2026 industry consensus "landings not launches" |
+| Handovers as artifacts | `product-operating-model.md` |
+| Phase-guard hooks | Operating model made mechanical |
+| Greenfield vs enterprise mode | Both source docs |
+| Cadence rhythms + drift detector | Operating model's "cadence collapse" failure mode |
+| Strategic coherence audit | Rumelt + 2025/26 incoherence research |
+| Validation theatre detector | Operating model failure #4 + Bland & Osterwalder |
+| Landings phase + audit-landings-debt | Google's "landings not launches" reframe |
+| **Product/business ontology (8 domains + kit-composite Domain I, 82 documented types)** | **`product_business_knowledge_ontology_agent_handoff.md`** (source: 74 atomic; kit-composite Domain I adds 8 — see `context/frameworks/ontology.md`) |
+| **Universal metadata schema** | **Ontology section 13** |
+| **Traceability rules + `/audit-traceability`** | **Ontology section 32** |
+| **`/audit-completeness` (25-item checklist)** | **Ontology section 41** |
+| **Engineering Handoff Packet (Domain H)** | **Ontology section 28** |
+| **Human-vs-AI ownership model** | **Ontology sections 23–26** |
+| **`ontology-classifier` skill** | **Ontology section 2 (agent guidance)** |
+| **`AGENTS.md` as canonical context** | **agent-ready-repo template** |
+| **Source-of-truth table** | **agent-ready-repo AGENTS.md** |
+| **Charter / ADR / RFC structure** | **agent-ready-repo docs/ layout** |
+| **`work-loop` skill (plan→execute→verify→review)** | **agent-ready-repo work-loop, reshaped for PM work** |
+| **`adversarial-reviewer` / `compliance-reviewer` / `quality-engineer`** | **agent-ready-repo specialist subagents, reshaped** |
+| **"When this file is wrong, flag drift" discipline** | **agent-ready-repo AGENTS.md** |
+| Files-as-memory; markdown over uploads | Torres, *Claude Code: What It Is* |
+| /competitive-research parallel fan-out | Torres, same article |
+| Three-layer memory (Global / Project / Reference) | Torres, *Stop Repeating Yourself* |
+| Slash commands vs agents vs skills vs hooks vs plug-ins | Torres, *How to Use Claude Code (Features)* |
+| Context-rot meter + /compact + /clear | Torres, *Context Rot* |
+| Scheduled team-of-agents | Torres, *My Team of Agents* |
+| Show-the-model's-work + agent repair loop | Torres, *Behind the Scenes: AI-OSTs* |

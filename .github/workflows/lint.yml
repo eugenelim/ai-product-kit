@@ -1,0 +1,83 @@
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  artifacts:
+    name: artifact linters
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: lint-skill
+        run: |
+          set -e
+          for f in .claude/skills/*/SKILL.md; do
+            [ -f "$f" ] || continue
+            echo "::group::$f"
+            bash tools/lint-skill.sh "$f"
+            echo "::endgroup::"
+          done
+
+      - name: lint-agent
+        run: |
+          set -e
+          for f in .claude/agents/*.md; do
+            [ -f "$f" ] || continue
+            echo "::group::$f"
+            bash tools/lint-agent.sh "$f"
+            echo "::endgroup::"
+          done
+
+      - name: lint-command
+        run: |
+          set -e
+          for f in .claude/commands/*.md; do
+            [ -f "$f" ] || continue
+            echo "::group::$f"
+            bash tools/lint-command.sh "$f"
+            echo "::endgroup::"
+          done
+
+      - name: lint-frontmatter
+        run: |
+          # Only lint product artifacts if any exist (avoids noise on a fresh kit)
+          if find strategy discovery validation delivery -name '*.md' -print -quit 2>/dev/null | grep -q .; then
+            python3 tools/lint-frontmatter.py --all
+          else
+            echo "No product artifacts yet — skipping --all sweep"
+          fi
+
+  pre-pr:
+    name: aggregate (pre-pr.sh)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: bash tools/pre-pr.sh
+
+  check-done-smoke:
+    name: check-done.py smoke test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: refuses with no state
+        run: |
+          if python3 tools/check-done.py --phase plan --feature nonexistent 2>&1; then
+            echo "ERROR: check-done.py succeeded with no state — should have failed"
+            exit 1
+          fi
+          echo "OK: correctly refused"

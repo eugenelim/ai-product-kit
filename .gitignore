@@ -1,0 +1,38 @@
+# Work-loop session scratch — per-spec state.json files are gitignored.
+# A new session deserves a fresh budget.
+docs/specs/**/state.json
+docs/specs/**/notes/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node (for any JS-based tooling added later)
+node_modules/
+*.log
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Local-only Claude state (the projet-scoped .claude/CLAUDE.md is tracked;
+# any local override of settings.json with secrets is not)
+.claude/settings.local.json
+
+# Tmp output from kit commands
+/tmp/
+*.tmp
+
+# Worktrees (if supervisor mode is ever wired up — currently out of scope)
+.worktrees/
