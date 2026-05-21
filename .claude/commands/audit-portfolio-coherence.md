@@ -5,6 +5,16 @@ argument-hint: "[optional: 'verbose' for the full reasoning trace]"
 
 # /audit-portfolio-coherence
 
+**Canonical implementation:** `scripts/audit-portfolio-coherence.py` (F1.6 — shipped 2026-05-21). When the script is available:
+
+```bash
+python3 scripts/audit-portfolio-coherence.py --root . --format markdown
+```
+
+Exit codes: 0 clean, 1 drift, 2 incoherent, 3 no-portfolio. Add `--write` to persist to `strategy/diagnoses/<date>-coherence-audit.md` and append to `COHERENCE-LOG.md`. The prose procedure below is the fallback when reviewing the contract.
+
+---
+
 **Phase:** Strategy (1), cross-portfolio
 **Ontology types audited:** Strategic Intent, Initiative, Vision
 

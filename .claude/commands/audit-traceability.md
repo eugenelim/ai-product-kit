@@ -7,6 +7,14 @@ argument-hint: "[optional: scope — 'all' | <initiative-slug> | <intent-slug>]"
 
 Run the ontology's seven traceability rules across the kit. Without this, requirements can drift away from problems, capabilities can drift away from objectives, and the kit silently accumulates engineering work disconnected from business value.
 
+**Canonical implementation:** `scripts/audit-traceability.py` (F1.4 — shipped 2026-05-21). When the script is available, invoke it directly:
+
+```bash
+python3 scripts/audit-traceability.py --root . --scope all --format markdown
+```
+
+Exit codes: 0 clean, 1 drift, 2 broken, 3 insufficient-data. Add `--write` to persist the report to `docs/audits/traceability-<date>.md` and append a log entry. The procedure below remains the prose fallback when reviewing the contract or when the script is unavailable.
+
 ## When to run
 
 - Weekly as part of the trio cadence review

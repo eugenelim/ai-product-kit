@@ -59,7 +59,7 @@ The eight domains, all atomic object types from the source ontology, the univers
 5. **`delivery/handoff-packets/`** — new top-level folder for engineering-handoff packets; each is a folder of 23 files mapping to the ontology's §28 content. The §41 25-item checklist runs against that content (the file-vs-item count distinction is documented in `docs/HANDOVERS.md` Handover 6)
 6. **`/audit-completeness`** — runs the ontology's 25-item pre-engineering-handoff checklist (shipped as prose procedure; runnable script planned ROADMAP F1.5)
 7. **`/audit-traceability`** — enforces the seven traceability rules (shipped as prose; runnable script planned ROADMAP F1.4)
-8. **`ontology-classifier` skill** *(planned — ROADMAP F1.3)* — extracts typed objects from unstructured input and surfaces missing fields. Until shipped, classification is done by hand against `context/frameworks/ontology.md`.
+8. **`ontology-classifier` skill** *(shipped 2026-05-21 per F1.3)* — extracts typed objects from unstructured input and surfaces missing fields.
 
 ### What's explicitly not adopted
 

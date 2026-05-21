@@ -9,12 +9,12 @@ For the canonical list referenced from `AGENTS.md`, see the [Skills available to
 - **[`work-loop`](work-loop/SKILL.md)** — the kit's standard pattern: plan → execute → verify → review → capture. Start here for any non-trivial kit component (skill, agent, command, hook, script, framework ref, template).
 - **[`ost-validator`](ost-validator/SKILL.md)** — validate-then-repair loop on Opportunity Solution Tree change sets. Detects orphans, double-deletes, data loss; returns structured pass/fail with specific repair instructions.
 - **[`strategy-coherence`](strategy-coherence/SKILL.md)** — bundles the Rumelt-style coherence-audit rule library. Used by `/audit-portfolio-coherence` and when reviewing a proposed initiative against the existing portfolio.
+- **[`ontology-classifier`](ontology-classifier/SKILL.md)** — extracts typed objects from unstructured input (transcripts, threads, emails, notes) and proposes classifications against the 74 atomic + 8 composite ontology types. Surfaces missing required fields and confidence labels; never persists.
 
 ## Planned
 
 Listed for completeness; not currently shippable. Build queue in [`ROADMAP.md`](../../ROADMAP.md).
 
-- `ontology-classifier` *(planned — [ROADMAP F1.3](../../ROADMAP.md#foundation-1--make-the-existing-audits-run))* — extract typed objects from unstructured input (transcripts, threads, emails) and surface missing required fields. Used by every audit and when classifying inbound material.
 - `interview-snapshot` *(planned — [ROADMAP P2.2](../../ROADMAP.md#phase-2--discovery-commands))* — speaker detection + time-aligned quotes for `/interview-snapshot`.
 - `opportunity-clustering` *(planned — [ROADMAP P2.5](../../ROADMAP.md#phase-2--discovery-commands))* — theme raw opportunities into clusters.
 - `experiment-template` *(planned — [ROADMAP P3.3](../../ROADMAP.md#phase-3--validation-commands))* — scaffold the experiment folder per the assumption-test contract.

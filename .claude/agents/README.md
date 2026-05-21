@@ -9,6 +9,7 @@ For the canonical narrative referenced from `AGENTS.md`, see the [Specialist sub
 - **[`adversarial-reviewer`](adversarial-reviewer.md)** — the default reviewer for any non-trivial kit artifact. Looks for drift between the artifact and its handover contract, missing edge cases, scope creep, hidden assumptions, vague language, and fluff. Runs after audit gates pass and before declaring an artifact complete. Verdicts: `pass` / `needs-fixes` / `block`.
 - **[`competitor-research`](competitor-research.md)** — fan-out worker that researches one named competitor end-to-end (positioning, features, pricing, recent moves). Writes findings to `market/competitors/<slug>.md`. Greenfield mode only; consumed by `/competitive-research`.
 - **[`quality-engineer`](quality-engineer.md)** — testability, observability, reliability, maintainability lens for specs and handoff packets. Asks whether engineering could operationalize the artifact without re-deriving the test plan, observability requirements, SLA, failure-mode coverage, or rollback. Runs after `/audit-completeness` and `adversarial-reviewer`; complements both, replaces neither.
+- **[`traceability-walker`](traceability-walker.md)** — fan-out worker dispatched by `/audit-traceability` on large scopes. Runs `scripts/audit-traceability.py` against one upstream subtree at a time and returns a structured per-subtree findings block the orchestrator can aggregate. Never reimplements rules — always shells out to F1.4.
 
 ## Planned — reviewers
 

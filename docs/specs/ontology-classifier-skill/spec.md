@@ -1,6 +1,6 @@
 # Spec: ontology-classifier-skill
 
-- **Status:** Draft
+- **Status:** Shipped
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored)
 - **Component type:** skill

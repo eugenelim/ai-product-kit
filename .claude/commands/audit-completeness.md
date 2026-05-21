@@ -5,6 +5,16 @@ argument-hint: "<initiative-slug> | <handoff-packet-slug>"
 
 # /audit-completeness
 
+**Canonical implementation:** `scripts/audit-completeness.py` (F1.5 — shipped 2026-05-21). When the script is available:
+
+```bash
+python3 scripts/audit-completeness.py --target <slug> --root . --format markdown
+```
+
+Exit codes: 0 pass, 1 needs-fixes, 2 block. Add `--write` to persist the report under `delivery/handoff-packets/<slug>/completeness-audit-<date>.md` and append to `AUDIT-LOG.md`. The prose procedure below is the fallback when reviewing the contract.
+
+---
+
 Run the canonical pre-engineering-handoff checklist (ontology section 41) against a named initiative or handoff packet. This is the single command that determines whether engineering should accept the work.
 
 The audit is mechanical. The decision to *override* a flagged item is human-only.

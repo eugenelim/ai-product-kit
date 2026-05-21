@@ -37,7 +37,7 @@ Handover contracts: `docs/HANDOVERS.md`. Phase-guard hooks enforce them.
 
 ## Object types (ontology)
 
-Every artifact declares its `object_type:` per `context/frameworks/ontology.md`. Eight domains (A–H) plus a kit-composite Domain I, for 82 documented types total (74 atomic + 8 composite handover artifacts). When uncertain, run the `ontology-classifier` skill *(planned — [ROADMAP F1.3](../ROADMAP.md#foundation-1--make-the-existing-audits-run); until it ships, classify by hand against `context/frameworks/ontology.md`)* — it surfaces missing fields and proposes the type.
+Every artifact declares its `object_type:` per `context/frameworks/ontology.md`. Eight domains (A–H) plus a kit-composite Domain I, for 82 documented types total (74 atomic + 8 composite handover artifacts). When uncertain, run the `ontology-classifier` skill — it surfaces missing fields and proposes the type.
 
 ## Human-vs-AI ownership
 

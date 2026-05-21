@@ -44,13 +44,13 @@ The v3 kit ships three audit commands (`/audit-completeness`, `/audit-traceabili
 
 - [x] **F1.2** `frontmatter-parser` — Robust YAML-subset parser for kit frontmatter (`scripts/lib/frontmatter.py`). Extracted from the rough version inside `lint-frontmatter.py`. Handles lists, nested maps to one level, comments, multi-line strings. **Slug:** `frontmatter-parser`. **Shipped:** 2026-05-21.
 
-- [ ] **F1.3** `ontology-classifier` skill — Extracts typed objects from unstructured input (interview transcripts, Slack threads, customer emails) and surfaces missing required fields. Used by every audit and by humans when classifying inbound material. **Slug:** `ontology-classifier-skill`. **Depends on:** F1.2.
+- [x] **F1.3** `ontology-classifier` skill — Extracts typed objects from unstructured input (interview transcripts, Slack threads, customer emails) and surfaces missing required fields. Used by every audit and by humans when classifying inbound material. **Slug:** `ontology-classifier-skill`. **Depends on:** F1.2. **Shipped:** 2026-05-21.
 
-- [ ] **F1.4** `audit-traceability` script — Promotes the prose procedure in `.claude/commands/audit-traceability.md` to a runnable `scripts/audit-traceability.py` that the slash command shells out to. Walks the seven traceability rules across the typed graph. **Slug:** `audit-traceability-script`. **Depends on:** F1.1, F1.2.
+- [x] **F1.4** `audit-traceability` script — Promotes the prose procedure in `.claude/commands/audit-traceability.md` to a runnable `scripts/audit-traceability.py` that the slash command shells out to. Walks the seven traceability rules across the typed graph. **Slug:** `audit-traceability-script`. **Depends on:** F1.1, F1.2. **Shipped:** 2026-05-21.
 
-- [ ] **F1.5** `audit-completeness` script — `scripts/audit-completeness.py` running the ontology's 25-item pre-engineering-handoff checklist against a named initiative or handoff packet. **Slug:** `audit-completeness-script`. **Depends on:** F1.1, F1.2.
+- [x] **F1.5** `audit-completeness` script — `scripts/audit-completeness.py` running the ontology's 25-item pre-engineering-handoff checklist against a named initiative or handoff packet. **Slug:** `audit-completeness-script`. **Depends on:** F1.1, F1.2. **Shipped:** 2026-05-21.
 
-- [ ] **F1.6** `audit-portfolio-coherence` script — `scripts/audit-portfolio-coherence.py` performing the pairwise Rumelt coherence check. **Slug:** `audit-portfolio-coherence-script`. **Depends on:** F1.1, F1.2.
+- [x] **F1.6** `audit-portfolio-coherence` script — `scripts/audit-portfolio-coherence.py` performing the pairwise Rumelt coherence check. **Slug:** `audit-portfolio-coherence-script`. **Depends on:** F1.1, F1.2. **Shipped:** 2026-05-21.
 
 ---
 
@@ -90,7 +90,7 @@ Items appended after Foundation 0 was marked complete. Same Foundation-0 charact
 
 - [ ] **F0.13** `INVENTORY.md` "Produces (ontology)" column refactor — Approximately 40% of current entries use prose labels (e.g., `Coherence Audit`, `Stakeholder Update`, `Tasks`) that are not ontology types. Decide per row: either rename the value to a real ontology type, mark it `(internal)` to distinguish, or rename the column to "Produces (output)". **Slug:** `inventory-produces-column-refactor`. **Source:** D10 (INVENTORY reviewer finding).
 
-- [ ] **F1.7** `traceability-walker` agent — Fan-out worker dispatched by `/audit-traceability` per upstream subtree. Currently `audit-traceability.md` references this agent inline but it doesn't exist; the command falls back to inline walking. **Slug:** `agent-traceability-walker`. **Source:** D3 (audit-traceability reviewer finding).
+- [x] **F1.7** `traceability-walker` agent — Fan-out worker dispatched by `/audit-traceability` per upstream subtree. **Slug:** `agent-traceability-walker`. **Source:** D3 (audit-traceability reviewer finding). **Shipped:** 2026-05-21.
 
 ---
 

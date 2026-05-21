@@ -6,7 +6,7 @@ last_updated: 2026-05-21
 
 # Spec: agent-traceability-walker
 
-- **Status:** Draft
+- **Status:** Shipped
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored)
 - **Component type:** agent (fan-out worker)

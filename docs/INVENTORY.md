@@ -32,7 +32,7 @@ Every artifact in the kit, classified by **phase** (rows) and **practice area** 
 | `/value-chain-evolution` | SC | enterprise | YOU | Trend | Quarter-over-quarter diff | planned (P7.10) |
 | `/strategy-refresh` | SC | both | YOU (quarterly) | Strategic Diagnosis | Rumelt-style one-page diagnosis | planned (P7.1) |
 | `/strategic-intent` | SC | both | YOU | Strategic Intent | One-pager: central challenge + policy + actions | planned (P7.2) |
-| `/audit-portfolio-coherence` | SC | both | YOU (weekly) | Coherence Audit | Rumelt coherence across portfolio | shipped |
+| `/audit-portfolio-coherence` | SC | both | YOU (weekly) | Audit Report | Rumelt coherence across portfolio | shipped (script + prose fallback) |
 | `/cadence-check` | SC | both | YOU (monthly) | Cadence Drift Report | Detect rhythm decay | planned (P7.5) |
 | `/exec-strategy-narrative` | SC | both | YOU | Exec Narrative | 6-pager for leadership | planned (P7.4) |
 | `competitor-research` | AG | greenfield | CLAUDE (fan-out) | Competitor record | One competitor end to end | shipped |
@@ -112,14 +112,15 @@ Every artifact in the kit, classified by **phase** (rows) and **practice area** 
 | Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/handoff-packet` | SC | YOU | Handoff Packet | Assemble the ontology-defined 23-section deliverable | planned (P4.11) |
-| `/audit-completeness` | SC | YOU | Audit Report | 25-item pre-handoff checklist | shipped |
-| `/audit-traceability` | SC | YOU | Audit Report | Walk the seven traceability rules | shipped |
+| `/audit-completeness` | SC | YOU | Audit Report | 25-item pre-handoff checklist | shipped (script + prose fallback) |
+| `/audit-traceability` | SC | YOU | Audit Report | Walk the seven traceability rules | shipped (script + prose fallback) |
 | `adversarial-reviewer` | AG | CLAUDE (dispatch) | Review | Default reviewer; artifact-vs-contract drift | shipped |
 | `compliance-reviewer` | AG | CLAUDE (dispatch) | Review | Regulatory / legal / privacy / ethics lens | planned (P6.1) |
 | `quality-engineer` | AG | CLAUDE (dispatch) | Review | Testability / observability / reliability lens | shipped |
+| `traceability-walker` | AG | CLAUDE (fan-out) | Audit Report | Per-subtree traceability shell-out (wraps F1.4) | shipped |
 | `voice-check` | SK | CLAUDE | Voice rubric | For customer-facing drafts | planned (P8.4) |
 | `ears-lint` | SK | CLAUDE | EARS check | Spec sentence pattern | planned (P4.7) |
-| `ontology-classifier` | SK | CLAUDE | Object types + links | Extract typed objects from input | planned (F1.3) |
+| `ontology-classifier` | SK | CLAUDE | Object types + links | Extract typed objects from input | shipped |
 | `work-loop` | SK | CLAUDE | Standard pattern | Plan → execute → verify → review | shipped |
 
 ### Across delivery

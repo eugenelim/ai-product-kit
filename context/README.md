@@ -51,7 +51,7 @@ Pull when drafting customer-facing or in-your-name content. Files: `guide.md`, `
 The PM-craft schemas the kit operates on. Pull when working with the corresponding artifact.
 
 ### Universal type system
-- **`ontology.md`** *(shipped)* — the canonical product/business ontology: eight domains plus a kit-composite Domain I, 82 documented typed objects (74 atomic + 8 composite), traceability rules, lifecycle states. Pull for any work that produces a typed artifact (which is nearly everything). The `ontology-classifier` skill *(planned — [ROADMAP F1.3](../ROADMAP.md#foundation-1--make-the-existing-audits-run))* will load this.
+- **`ontology.md`** *(shipped)* — the canonical product/business ontology: eight domains plus a kit-composite Domain I, 82 documented typed objects (74 atomic + 8 composite), traceability rules, lifecycle states. Pull for any work that produces a typed artifact (which is nearly everything). The `ontology-classifier` skill loads this.
 
 ### Strategy phase *(all planned)*
 - `rumelt.md` *(planned — F4.7)* — diagnosis / guiding policy / coherent actions; failure modes
