@@ -72,7 +72,7 @@ The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards 
 
 - [ ] **F2.7** `validate-ost.py` — PostToolUse hook on `discovery/trees/**` writes that runs the OST validator and aborts on failure. **Slug:** `hook-validate-ost`. **Depends on:** P2.8 (script-ost-validator).
 
-- [ ] **F2.8** `guard-credentials.py` — PreToolUse(Bash) hook that blocks touches to `~/.ssh`, `.env*`, and credential paths. **Slug:** `hook-guard-credentials`.
+- [x] **F2.8** `guard-credentials.py` — PreToolUse(Bash) hook that blocks touches to `~/.ssh`, `.env*`, and credential paths. **Slug:** `hook-guard-credentials`. **Shipped:** 2026-05-21.
 
 - [ ] **F2.9** `pin-date.sh` — SessionStart hook that runs the dates skill and pins today's date into the session context so Claude doesn't drift to its training-data year. **Slug:** `hook-pin-date`. **Depends on:** P9.1 (skill-dates).
 

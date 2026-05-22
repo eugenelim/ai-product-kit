@@ -1,6 +1,6 @@
 # Spec: hook-guard-credentials
 
-- **Status:** Draft
+- **Status:** Shipped
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** hook (PreToolUse — Bash, Write, Edit, MultiEdit, Read)

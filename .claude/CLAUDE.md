@@ -48,4 +48,4 @@ Every artifact declares `human_owned_decisions:`, `ai_assistance_used:`, `ai_ass
 - Default model: `sonnet`. `haiku` for cheap fan-out (per-competitor, per-paper, per-cohort). `opus` for hardest synthesis (full OST regeneration, exec narratives, portfolio-coherence audits, completeness audits on large initiatives).
 - Default file format: markdown with YAML frontmatter using the universal metadata schema (`docs/CONVENTIONS.md`).
 - Default filenames: kebab-case, dated when temporal.
-- Never touch `~/.ssh`, `.env*`, credential paths. Hooks will block; don't propose.
+- Never touch `~/.ssh`, `.env*`, credential paths. `scripts/guard-credentials.py` (the `guard-credentials` PreToolUse hook) hard-blocks these with no model-side override; don't propose.

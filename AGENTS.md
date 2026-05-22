@@ -152,7 +152,7 @@ Plus the phase-skeptic agents (`strategy-skeptic` *(planned — ROADMAP P7.3)*, 
 - **Don't make commitments on behalf of the human.** Pricing, roadmap, customer-facing claims, legal/compliance approvals — surface as a `human_owned_decisions` entry; do not resolve them yourself.
 - **Don't fabricate evidence.** If a number, study, or customer quote isn't sourced, say so. Mark it `Assumption` until evidence exists.
 - **Don't create new top-level folders.** The phase structure is intentional. If you think a new one is needed, open an RFC in `docs/rfc/`.
-- **Don't touch** `~/.ssh`, credential stores, `.env*`, or push to protected branches. Hooks block these; don't even propose them.
+- **Don't touch** `~/.ssh`, credential stores, `.env*`, or push to protected branches. `scripts/guard-credentials.py` (the `guard-credentials` PreToolUse hook) blocks these on Bash, Write, Edit, MultiEdit, and Read with no model-side override; don't even propose them.
 
 ## When this file is wrong
 
