@@ -1,6 +1,6 @@
 # Spec: hook-mode-guard
 
-- **Status:** Draft
+- **Status:** Shipped
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** hook (SessionStart + UserPromptExpansion + PreToolUse on `Skill` tool)
