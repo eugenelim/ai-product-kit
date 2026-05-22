@@ -54,7 +54,7 @@ Before any non-trivial work, identify what **phase** you're at:
 
 If a prior phase's handover artifact is missing, **surface that before doing the work**. The right next step is almost always producing the missing artifact, not skipping ahead.
 
-Phase-skipping is the kit's #1 failure mode, and it's silent. The phase-guard hooks *(planned — see [ROADMAP F2](ROADMAP.md#foundation-2--hook-scripts); only `assumption-threshold-lock` ships today)* catch it at write time; phase-awareness in this file catches it at think time.
+Phase-skipping is the kit's #1 failure mode, and it's silent. The phase-guard hooks *(six wired in `.claude/settings.json` as of F2.6, 2026-05-21 — see [ROADMAP F2](ROADMAP.md#foundation-2--hook-scripts))* catch it at write time; phase-awareness in this file catches it at think time.
 
 ## Workflow: the PM work-loop
 

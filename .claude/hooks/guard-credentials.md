@@ -112,9 +112,7 @@ In `.claude/settings.json`:
 }
 ```
 
-F2.6 (`hooks-wired-in-settings`) will consolidate this entry alongside the
-other PreToolUse matchers. Until then, the snippet above is the standalone
-wiring for manual validation.
+Wired in `.claude/settings.json` as of F2.6 (2026-05-21).
 
 ## Related
 

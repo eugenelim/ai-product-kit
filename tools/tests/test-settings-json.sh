@@ -51,9 +51,11 @@ test_has_pre_tool_use_array() {
 test_every_entry_uses_canonical_hooks_shape() {
     # Every event entry must have a `hooks` array; each element must be
     # {type: "command", command: <string>}. No shorthand `{matcher, command}` siblings.
+    # Also: each event array must be non-empty (vacuous all() on empty arrays
+    # would otherwise pass with zero hooks wired).
     expect_jq "test_every_entry_uses_canonical_hooks_shape" '
-        .hooks | to_entries | all(.value | type == "array" and all(
-            .hooks | type == "array" and all(
+        .hooks | to_entries | all(.value | type == "array" and length > 0 and all(
+            .hooks | type == "array" and length > 0 and all(
                 .type == "command" and (.command | type == "string")
             )
         ))
@@ -67,8 +69,11 @@ test_no_matchPaths_field() {
 
 test_every_command_script_exists() {
     # Extract every command string, derive scripts/<name>.py paths, assert each exists.
-    local missing=0
+    # Also: assert at least one command was extracted — zero commands would
+    # otherwise pass vacuously and mask an empty settings.json.
+    local missing=0 checked=0
     while IFS= read -r cmd; do
+        checked=$((checked + 1))
         # Pull the scripts/<name>.py token from the command.
         local script
         script=$(echo "$cmd" | grep -oE 'scripts/[a-z_-]+\.py' | head -1)
@@ -82,7 +87,11 @@ test_every_command_script_exists() {
             missing=$((missing + 1))
         fi
     done < <(jq -r '[.. | .command? // empty] | .[]' "$SETTINGS")
-    if [[ "$missing" -eq 0 ]]; then pass "test_every_command_script_exists"; fi
+    if [[ "$checked" -eq 0 ]]; then
+        fail "test_every_command_script_exists" "no command strings found in $SETTINGS"
+    elif [[ "$missing" -eq 0 ]]; then
+        pass "test_every_command_script_exists"
+    fi
 }
 
 test_guard_credentials_matcher_covers_all_io_tools() {
