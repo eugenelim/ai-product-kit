@@ -1,8 +1,8 @@
 # Plan: hook-mode-guard
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending
+- **Status:** Done
+- **Plan review:** approved
 
 ## Approach
 
@@ -140,3 +140,4 @@ Anthropic publishes the schema at https://code.claude.com/docs/en/hooks. Finding
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (10 findings). Open Question 1 (slash-command payload shape) elevated to Task 0 PLAN-phase blocker.
 - 2026-05-21: Task 0 resolved — Anthropic's hook docs (https://code.claude.com/docs/en/hooks) settle the shape. Spec rewritten: there is no `SlashCommand` tool. Slash commands flow through `UserPromptExpansion` (user-typed; field: top-level `command_name`; block via exit 0 + JSON) and `PreToolUse` on `Skill` (model-invoked; field: `tool_input.skill_name`; block via exit 2 + JSON). The hook now wires three events: SessionStart + UserPromptExpansion + PreToolUse(Skill). Findings captured in `notes/payload-shape.md`. State.json `plan_review_status` can move to approved.
+- 2026-05-21: **Shipped.** `scripts/mode-guard.py` + `scripts/tests/test_mode_guard.py` + `.claude/hooks/mode-guard.md` landed. `python3 -m unittest scripts.tests.test_mode_guard` passes 18 tests (6 helper + 2 SessionStart + 4 UPE + 6 PreToolUse(Skill); the acceptance-criteria summary said "17 total / 5 PreToolUse" but the contract-tests list enumerates 6 in PreToolUse(Skill) — implementation matches the enumerated list). `tools/lint-hook.sh .claude/hooks/mode-guard.md` and `tools/pre-pr.sh` both exit 0. `.claude/CLAUDE.md` planned-qualifier dropped. ROADMAP F2.4 checked off.

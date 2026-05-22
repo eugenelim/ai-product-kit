@@ -10,11 +10,11 @@ Loaded automatically when Claude is launched inside this folder. Kept short — 
 mode: greenfield
 ```
 
-Change to `mode: enterprise` for brownfield work. The `mode-guard` hook *(planned — [ROADMAP F2.4](../ROADMAP.md#foundation-2--hook-scripts); not yet enforced)* will read this and:
-- In greenfield: block `/wardley-map`, `/internal-jtbd-interview`, `/value-chain-evolution`
-- In enterprise: block `/competitive-research`, `/market-scan`, `/jtbd-analogues`
+Change to `mode: enterprise` for brownfield work. The `mode-guard` hook reads this and:
+- In greenfield: blocks `/wardley-map`, `/internal-jtbd-interview`, `/value-chain-evolution`
+- In enterprise: blocks `/competitive-research`, `/market-scan`, `/jtbd-analogues`
 
-Both modes share `/strategy-refresh`, `/strategic-intent`, `/audit-portfolio-coherence`, `/cadence-check`. Until `mode-guard` ships, mode is documentary — set it correctly and avoid the wrong-mode commands by convention.
+Both modes share `/strategy-refresh`, `/strategic-intent`, `/audit-portfolio-coherence`, `/cadence-check`, `/phase-guide` (never blocked). See `.claude/hooks/mode-guard.md` for the full contract.
 
 If you're working across both modes, keep them in separate project folders. Mode is project-scoped intentionally.
 

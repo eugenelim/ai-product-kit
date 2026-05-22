@@ -64,7 +64,7 @@ The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards 
 
 - [ ] **F2.3** `ontology-type-check.py` — PreToolUse hook that warns when an artifact path implies an ontology object type but the frontmatter omits `object_type:`. **Slug:** `hook-ontology-type-check`. **Depends on:** F1.2.
 
-- [ ] **F2.4** `mode-guard.py` — SessionStart hook that reads `mode:` from `.claude/CLAUDE.md` and blocks the wrong-mode slash commands. **Slug:** `hook-mode-guard`.
+- [x] **F2.4** `mode-guard.py` — SessionStart hook that reads `mode:` from `.claude/CLAUDE.md` and blocks the wrong-mode slash commands. **Slug:** `hook-mode-guard`. **Shipped:** 2026-05-21.
 
 - [ ] **F2.5** `cadence-nudge.py` — SessionStart hook that surfaces strategy/OST/kill-drought drift. **Slug:** `hook-cadence-nudge`. **Depends on:** F1.1.
 
