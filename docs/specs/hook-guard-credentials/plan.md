@@ -1,8 +1,8 @@
 # Plan: hook-guard-credentials
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending
+- **Status:** Done
+- **Plan review:** complete
 
 ## Approach
 
@@ -119,3 +119,4 @@ Tests construct payloads in-memory; no filesystem access required for the path c
 
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (11 findings). Added MultiEdit to all matchers and contract tests. Fail-safe path now emits well-formed block JSON to stdout (was silently exiting 2 — would fail open in Claude Code's protocol). Added `~/.kube/config`, `~/.npmrc`, `~/.pypirc`, `~/.netrc` to pattern table with category labels. Narrowed `.env*` regex to known suffixes only — `.env.example` and `.env.sample` are explicitly allowed (their names signal "documentation"). Added path normalization (`expanduser` + `normpath`) for traversal-path coverage. Documented `*.pub` blocking as deliberate policy. Added `eval $VAR` and GPG-key-ID and Windows-paths as explicit non-goals. Added F0.10 dependency and standalone-wiring note for pre-F2.6 manual use.
+- 2026-05-21: **Shipped.** `scripts/guard-credentials.py` (165 LOC, stdlib only) + `scripts/tests/test_guard_credentials.py` (22 contract tests + 2 subprocess sanity tests, all passing) + `.claude/hooks/guard-credentials.md`. `tools/lint-hook.sh` and `tools/pre-pr.sh` both exit 0. Implementation deviations from plan: (a) `check_bash` also runs a `match_category` over the raw command after tokenization as a belt-and-braces measure — does not weaken the contract, only strengthens it; (b) test count is 24 total (22 contract + 2 subprocess) rather than the spec's "20" — additional tests cover `MultiEdit` and subprocess exit-code sanity, both required by the EXECUTE prompt.
