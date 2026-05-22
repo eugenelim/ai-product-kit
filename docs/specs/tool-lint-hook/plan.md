@@ -2,7 +2,7 @@
 
 - **Spec:** [`spec.md`](./spec.md)
 - **Status:** Done
-- **Plan review:** pending
+- **Plan review:** approved
 
 ## Approach
 

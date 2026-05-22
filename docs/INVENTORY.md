@@ -198,18 +198,18 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 
 > All SCH (scheduled agent) entries depend on the `personal-os/agents/` runtime directory, which ships empty. The directory must be populated before any scheduled agent can run. See ROADMAP P9.6.
 >
-> `.claude/settings.json` (the hook-wiring file) is planned per ROADMAP F2.6; until shipped, the hooks below are documented but not registered with Claude Code's tool-use lifecycle.
+> Six hook scripts ship as of 2026-05-21. `.claude/settings.json` (the hook-wiring file) is planned per ROADMAP F2.6 — until that lands, the scripts are committed and individually executable but not yet registered with Claude Code's tool-use lifecycle.
 
-| Hook | Event | Action | Status |
-|---|---|---|---|
-| `pin-date` | SessionStart | Run dates script | planned (F2.9) |
-| `mode-guard` | SessionStart | Refuse greenfield commands in enterprise project (and vice versa) | planned (F2.4) |
-| `phase-link-check` | PreToolUse(Write on `delivery/{visions,initiatives,specs,handoff-packets}/**`) | Require parent frontmatter link | planned (F2.1, slug `check-handover-link`) |
-| `assumption-threshold-lock` | PreToolUse(Write on `validation/experiments/**/results.md`) | Require predeclared falsification threshold filed BEFORE results | shipped (doc only; enforcement script + settings.json wiring planned F2.2 + F2.6) |
-| `validate-ost` | PostToolUse(Write on `discovery/trees/**`) | Run OST validator; abort on failure | planned (F2.7; depends on P2.8 script-ost-validator) |
-| `ontology-type-check` | PreToolUse(Write on artifact paths) | Require `object_type:` in frontmatter (warn if missing) | planned (F2.3) |
-| `guard-credentials` | PreToolUse(Bash) | Block touches to `~/.ssh`, `.env*`, credential paths | planned (F2.8) |
-| `cadence-nudge` | SessionStart | Surface if strategy >90d, OST >35d, or no kill in 14d | planned (F2.5) |
+| Hook | Event(s) | Script | Action | Status |
+|---|---|---|---|---|
+| `check-handover-link` | PreToolUse(Write, Edit, MultiEdit) | `scripts/check-handover-link.py` | Refuse writes to phase artifacts without a required `parent_*` frontmatter link (per HANDOVERS.md) | shipped 2026-05-21 (F2.1) — wiring pending F2.6 |
+| `assumption-threshold-lock` | PreToolUse(Write on `validation/experiments/**/results.md`) | `scripts/check-assumption-threshold.py` | Refuse experiment-results writes unless a sibling `experiment.md` with `predeclared_threshold` predates the write | shipped 2026-05-21 (F2.2) — wiring pending F2.6 |
+| `ontology-type-check` | PreToolUse(Write, Edit, MultiEdit) | `scripts/check-ontology-type.py` | Warn (never block) when an artifact path implies an `object_type:` but frontmatter omits or mismatches it | shipped 2026-05-21 (F2.3) — wiring pending F2.6 |
+| `mode-guard` | SessionStart + UserPromptExpansion + PreToolUse(Skill) | `scripts/mode-guard.py` | Block wrong-mode slash-command invocations; surface active mode at session start | shipped 2026-05-21 (F2.4) — wiring pending F2.6 |
+| `cadence-nudge` | SessionStart | `scripts/cadence-nudge.py` | Surface drift signals (stale strategy >90d, orphan OST >30d, kill-drought >60d) as session context | shipped 2026-05-21 (F2.5) — wiring pending F2.6 |
+| `guard-credentials` | PreToolUse(Bash, Write, Edit, MultiEdit, Read) | `scripts/guard-credentials.py` | Hard-block tool calls touching `~/.ssh`, `.env*`, `~/.kube/config`, `~/.npmrc`, `~/.pypirc`, `~/.netrc`, `.pem`/`.key`, credential dirs | shipped 2026-05-21 (F2.8) — wiring pending F2.6 |
+| `pin-date` | SessionStart | (planned) | Run dates script | planned (F2.9; depends on P9.1 skill-dates) |
+| `validate-ost` | PostToolUse(Write on `discovery/trees/**`) | (planned) | Run OST validator; abort on failure | planned (F2.7; depends on P2.8 script-ost-validator) |
 
 ---
 
