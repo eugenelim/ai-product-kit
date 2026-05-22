@@ -82,7 +82,7 @@ The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards 
 
 Items appended after Foundation 0 was marked complete. Same Foundation-0 character (build harness / linters / templates / scripts), surfaced by adversarial-reviewer findings during the inaugural reconcile-and-harden pass (see `docs/specs/reconcile-existing-components/notes/deferred-findings.md`).
 
-- [ ] **F0.10** `tools/lint-hook.sh` — Shape linter for hook documentation files under `.claude/hooks/`. Referenced by the work-loop SKILL §3.2 as the per-component-type linter for hooks. **Slug:** `tool-lint-hook`. **Source:** D1 (work-loop reviewer finding).
+- [x] **F0.10** `tools/lint-hook.sh` — Shape linter for hook documentation files under `.claude/hooks/`. Referenced by the work-loop SKILL §3.2 as the per-component-type linter for hooks. **Slug:** `tool-lint-hook`. **Source:** D1 (work-loop reviewer finding). **Shipped:** 2026-05-21.
 
 - [ ] **F0.11** `docs/_templates/spec.md` frontmatter additions — The current spec template lacks universal-metadata frontmatter (`object_type`, `status`, `last_updated`, `human_owned_decisions`, etc.). Specs scaffolded from this template inherit the omission. Either: (a) amend the template to include kit-meta frontmatter and declare a `kit-spec` object_type in the ontology, or (b) document the spec template as an explicit exemption from the universal schema. **Slug:** `template-kit-spec-frontmatter`. **Source:** D2 (reconcile-existing-components OQ5).
 

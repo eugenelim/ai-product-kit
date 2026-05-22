@@ -1,7 +1,7 @@
 # Plan: tool-lint-hook
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done
 - **Plan review:** pending
 
 ## Approach
@@ -102,3 +102,4 @@ Order of work: build the linter against the only existing hook doc (`.claude/hoo
 
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (8 findings). File-not-found exit is **1** (matches siblings), not 2. H1 regex changed `.*` → `.+`. Removed red-phase "Done when" criterion that conflicted with bash strict-mode; harness now uses no `set -e` and reports each test. Soft-warn exact format pinned. Acceptance criterion 4 now ties to Task 2 done-when. README skip clarified as call-site behavior, not linter behavior.
+- 2026-05-21: EXECUTE complete. 11 contract tests pass. `tools/pre-pr.sh` stays green with the new lint-hook row. `tools/lint-hook.sh .claude/hooks/assumption-threshold-lock.md` exits 0. **Plan deviation:** Task 5's INVENTORY.md row was skipped — the "kit-infrastructure section" the plan referenced does not exist in INVENTORY.md, and sibling linters (`lint-skill.sh`, `lint-agent.sh`, `lint-command.sh`) aren't catalogued there either. Adding an ad-hoc section is scope creep; the script is discoverable via `tools/` + the work-loop SKILL §3.2 reference. ROADMAP F0.10 checked off.

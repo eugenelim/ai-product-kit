@@ -47,6 +47,13 @@ for cmd in .claude/commands/*.md; do
     run_linter "lint-command $cmd" tools/lint-command.sh "$cmd"
 done
 
+# Hooks
+for hook in .claude/hooks/*.md; do
+    [[ -f "$hook" ]] || continue
+    [[ "$(basename "$hook")" == "README.md" ]] && continue
+    run_linter "lint-hook $hook" tools/lint-hook.sh "$hook"
+done
+
 # Frontmatter (sample: phase folder artifacts only, when present)
 if [[ -d strategy ]] || [[ -d discovery ]] || [[ -d validation ]] || [[ -d delivery ]]; then
     # Only run --all when there's at least one phase artifact to lint, to avoid

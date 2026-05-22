@@ -48,6 +48,17 @@ jobs:
             echo "::endgroup::"
           done
 
+      - name: lint-hook
+        run: |
+          set -e
+          for f in .claude/hooks/*.md; do
+            [ -f "$f" ] || continue
+            [ "$(basename "$f")" = "README.md" ] && continue
+            echo "::group::$f"
+            bash tools/lint-hook.sh "$f"
+            echo "::endgroup::"
+          done
+
       - name: lint-frontmatter
         run: |
           # Only lint product artifacts if any exist (avoids noise on a fresh kit)

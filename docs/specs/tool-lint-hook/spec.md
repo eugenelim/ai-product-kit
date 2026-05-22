@@ -1,6 +1,6 @@
 # Spec: tool-lint-hook
 
-- **Status:** Draft
+- **Status:** Shipped
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** script (shell linter)
