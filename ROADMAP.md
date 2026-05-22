@@ -58,7 +58,7 @@ The v3 kit ships three audit commands (`/audit-completeness`, `/audit-traceabili
 
 The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards that don't yet have enforcement scripts. Build these so the hooks aren't aspirational.
 
-- [ ] **F2.1** `check-handover-link.py` — PreToolUse hook that refuses to write a delivery artifact without its `parent_*` frontmatter link. **Slug:** `hook-check-handover-link`. **Depends on:** F1.2.
+- [x] **F2.1** `check-handover-link.py` — PreToolUse hook that refuses to write a delivery artifact without its `parent_*` frontmatter link. **Slug:** `hook-check-handover-link`. **Depends on:** F1.2. **Shipped:** 2026-05-21.
 
 - [ ] **F2.2** `check-assumption-threshold.py` — The kit's signature guard: refuses to write `validation/experiments/**/results.md` unless a falsification threshold was filed *before* the experiment ran. **Slug:** `hook-assumption-threshold-lock`. **Depends on:** F1.2.
 
