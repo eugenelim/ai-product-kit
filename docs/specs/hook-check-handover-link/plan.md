@@ -1,8 +1,8 @@
 # Plan: hook-check-handover-link
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending
+- **Status:** Done
+- **Plan review:** approved
 
 ## Approach
 
@@ -134,3 +134,4 @@ Tests come first, against fixtures composed in-memory (no temp files needed for 
 
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (10 findings). Replaced fictional `parse_text` with `parse` (real F1.2 API). Added MultiEdit to matchers. Rewrote Edit semantics: frontmatter-touching (old_string contains `---`) vs body-only — body-only uses on-disk frontmatter directly. Added per-field parent-target resolver column to the path table (initiative/handoff-packet → README.md only; flat-file types → `.md`). Switched override convention to mirror `assumption-threshold-lock.md` (`override_handover_link:` + reason + authorizer + log). Added Vision dual-parent requirement (`parent_learning` AND `parent_intent` per HANDOVERS.md). Added child-spec non-goal. Closed open questions. Bumped LOC ceiling to 300 and added explicit verify gate. Added F0.10 dependency to acceptance criteria.
+- 2026-05-21: Shipped. 22 contract tests pass (17 from the spec list + 5 supporting matcher/subprocess tests). `scripts/check-handover-link.py` = 288 LOC (under the 300 ceiling). `tools/lint-hook.sh .claude/hooks/check-handover-link.md` exits 0; `tools/pre-pr.sh` exits 0 with FAILED=0. Hook is inert until F2.6 wires `.claude/settings.json`.
