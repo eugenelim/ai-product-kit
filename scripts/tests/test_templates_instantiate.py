@@ -165,8 +165,12 @@ def test_T8b_whitespace_only_placeholder():
     assert result.returncode != 0
 
 
-def test_T8b_nested_whitespace_placeholder():
-    """Closes the recursive-dict coverage gap from review-iter-1 finding #4."""
+def test_T8h_nested_whitespace_placeholder():
+    """T8h — closes the recursive-dict coverage gap from review-iter-1 finding #4.
+
+    The malformed-placeholder rejection must propagate through the recursive
+    dict walk, not just trip on top-level scalars (T8b's case).
+    """
     result = _run_check_template(FIXTURES / "nested-whitespace-placeholder.md")
     assert result.returncode != 0
 

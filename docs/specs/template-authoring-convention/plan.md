@@ -90,7 +90,7 @@ Cross-cutting only. Per-task tests are inline under each task.
     - In `--check-template` mode, route every scalar/list/dict validation through `_value_acceptable_as_template`. Required-key-present checks unchanged.
     - Exit 0 on clean; exit 1 on any violation; print the violating path and field per existing convention.
   - **Refactor:** if the recursion duplicates the default-mode validators, consolidate into a single `_validate(value, expected, allow_placeholder: bool)` so default mode and `--check-template` mode share one entry point.
-- **Done when:** T5, T6, T7, T8, T8b, T8c, T8d, T8e, T8f, T8g, T9, T10, T12 pass; pre-pr-clean exits 0.
+- **Done when:** T5, T6, T7, T8, T8b, T8c, T8d, T8e, T8f, T8g, T8h, T9, T10, T12 pass; pre-pr-clean exits 0.
 
 ### Task 4: §"Handover 2.5: Discovery → Assumption Map" lands in `docs/HANDOVERS.md`; Handover 2 detector relocated
 
@@ -157,5 +157,7 @@ Cross-cutting only. Per-task tests are inline under each task.
 
 ## Changelog
 
--
+- **2026-05-22 (review-iter-1):** Skeleton deviations from spec §"Skeleton-text contract" — wrap enum-choice fields in angle brackets (`<Low | Medium | High | Critical>` etc.) and relocate the author-guidance HTML comment to after the closing `---`. Both honor the spec's own "Boundaries → Use angle-bracket placeholder syntax exclusively" and the kit's frontmatter-parser `---\n` requirement.
+- **2026-05-22 (review-iter-1 fixes):** `approvals_obtained` switched from block-list to inline-list form so the augmented placeholder is actually evaluated (was vacuously accepted as `[{}]`); added T8h + `nested-whitespace-placeholder.md` to close the recursive-dict coverage gap; deferred two diagnostic-quality items to ROADMAP as F3-G1 and F3-G2.
+- **2026-05-22 (review-iter-2):** Renamed the nested-whitespace test from a colliding `T8b` ID to T8h (its own contract test). Spec acceptance criteria updated to cite T8b–T8h.
 

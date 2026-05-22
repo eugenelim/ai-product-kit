@@ -242,6 +242,7 @@ Handover 2's existing detector line — "`/audit-assumption-coverage` flags chos
   - `augmented-placeholder.md` — `approvals_obtained: ["<role>: <YYYY-MM-DD>"]` (the multi-token scalar form `frontmatter.py` falls back to); must be accepted.
   - `nested-container-placeholder.md` — `evidence_basis: [{source: <…>, strength: <…>, link: <…>}]`; must be accepted.
   - `nested-container-invalid.md` — `evidence_basis: [{source: <…>, strength: NotInEnum, link: <…>}]` (one nested leaf is an enum-violating concrete value); must be rejected.
+  - `nested-whitespace-placeholder.md` — `evidence_basis: [{source: < >, strength: <…>, link: <…>}]` (one nested leaf is a malformed `< >` placeholder); must be rejected. _Added by adversarial-review iter-2._
   - `mixed-list-placeholders.md` — `related_problems: [<id>, OPP-001]`; must be accepted.
   - `mixed-list-invalid.md` — `related_problems: [<id>, ""]`; must be rejected (empty-string rule for untyped list fields).
 - **Audit-driven** for kit-wide health: `tools/pre-pr.sh` exits 0.
@@ -264,6 +265,7 @@ Each test is one shell line or one pytest case. They are the gate.
 - `T8e` — `python3 tools/lint-frontmatter.py --check-template scripts/tests/fixtures/templates/augmented-placeholder.md` exits 0 (the augmented form `<role>: <YYYY-MM-DD>` matches the placeholder rule).
 - `T8f` — `python3 tools/lint-frontmatter.py --check-template scripts/tests/fixtures/templates/nested-container-placeholder.md` exits 0 (list-of-maps with all leaf-scalar placeholders is accepted).
 - `T8g` — `python3 tools/lint-frontmatter.py --check-template scripts/tests/fixtures/templates/nested-container-invalid.md` exits non-zero (one nested leaf scalar is an enum-violating concrete value).
+- `T8h` — `python3 tools/lint-frontmatter.py --check-template scripts/tests/fixtures/templates/nested-whitespace-placeholder.md` exits non-zero (malformed `< >` placeholder *inside* a nested `evidence_basis` dict — confirms the placeholder rule propagates recursively, not only on top-level scalars). _Added by adversarial-review iter-2 to close the recursive-dict coverage gap that T8b alone did not exercise._
 - `T9` — `python3 tools/lint-frontmatter.py --check-template scripts/tests/fixtures/templates/placeholder-block-scalar.md` exits 0 (multi-line placeholder accepted).
 - `T10` — `python3 tools/lint-frontmatter.py scripts/tests/fixtures/templates/valid-all-placeholders.md` exits non-zero (placeholders rejected in default mode — mode separation confirmed).
 - `T11` — `python3 -m pytest scripts/tests/test_templates_instantiate.py` exits 0; the test walks `templates/*.md` (excluding `CLAUDE.global.md`) and `templates/*/README.md`.
@@ -300,7 +302,7 @@ Each test is one shell line or one pytest case. They are the gate.
 - [ ] `scripts/tests/test_templates_instantiate.py` exists, walks `templates/*.md` (skipping `CLAUDE.global.md`) and `templates/*/README.md`, and passes.
 - [ ] `docs/HANDOVERS.md` gains §"Handover 2.5: Discovery → Assumption Map" with the exact body in §"Handover-2.5 text contract"; Handover 2's detector line is relocated (not duplicated).
 - [ ] `ROADMAP.md`: F3 block gains the one-line cross-reference; D7 marked `Shipped: <date>`.
-- [ ] All contract tests pass: T1–T13 plus T8b–T8g (placeholder edge cases), T14a–T14d (detector relocation + heading count + sequence), T15, T16.
+- [ ] All contract tests pass: T1–T13 plus T8b–T8h (placeholder edge cases incl. recursive-dict malformed-placeholder), T14a–T14d (detector relocation + heading count + sequence), T15, T16.
 - [ ] No new ontology type added; no `templates/` walk added to default linter mode; no F3.x template authored.
 
 ## Cross-references
