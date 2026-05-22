@@ -165,6 +165,12 @@ def test_T8b_whitespace_only_placeholder():
     assert result.returncode != 0
 
 
+def test_T8b_nested_whitespace_placeholder():
+    """Closes the recursive-dict coverage gap from review-iter-1 finding #4."""
+    result = _run_check_template(FIXTURES / "nested-whitespace-placeholder.md")
+    assert result.returncode != 0
+
+
 def test_T8c_mixed_list_placeholders():
     result = _run_check_template(FIXTURES / "mixed-list-placeholders.md")
     assert result.returncode == 0, result.stderr

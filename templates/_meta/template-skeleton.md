@@ -37,8 +37,7 @@ ai_assistance_used:
   - <what AI drafted, summarized, or checked>
 ai_assistance_allowed: <true | restricted | not-allowed>
 human_approval_required: <true | false>
-approvals_obtained:
-  - <role>: <YYYY-MM-DD>
+approvals_obtained: ["<role>: <YYYY-MM-DD>"]   # inline-list form: the kit's frontmatter parser cannot key-extract `<role>` in block-list form
 
 # Open items
 open_questions: [<text>, ...]
