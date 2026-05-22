@@ -227,6 +227,26 @@ Specs (`docs/specs/<feature>/spec.md`), plans (`plan.md`), and state files (`sta
 
 Adding `kit-spec` as an ontology type was considered and rejected: `context/frameworks/ontology.md` §"When the ontology is wrong" warns against ad-hoc additions, and Domain I composites are explicitly phase-boundary handovers — not kit-build scaffolding.
 
+### Templates — `templates/<slug>.md`
+
+The kit ships per-ontology-type templates under `templates/`. Each template is a literal skeleton a kit user copies and fills to produce a real product artifact under `strategy/`, `discovery/`, `validation/`, `delivery/`, or `market/`. Templates are *not* product artifacts themselves — they live outside `PHASE_DIRS` and are not linted in default mode.
+
+**File layout.**
+- Single-file template: `templates/<slug>.md` (slug matches the ontology-type kebab-case name, e.g., `strategic-intent`, `vision`, `landing-report`).
+- Multi-file template (folders such as Initiative, Handoff Packet): `templates/<slug>/` containing a `README.md` plus the per-child-file templates. The folder's `README.md` carries the universal-schema frontmatter; child files carry their own type-specific frontmatter if and only if they instantiate distinct ontology objects.
+
+**Placeholder syntax.** Use angle-bracket placeholders exactly as in `docs/HANDOVERS.md`: angle brackets wrap a descriptor with no whitespace between bracket and content, e.g. `<one sentence>`, `<YYYY-MM-DD>`, `<OPP-NNN>`. The linter requires at least one non-whitespace character inside the brackets — `<>` and `< >` are rejected. Curly-brace and double-underscore styles are not used.
+
+**Frontmatter ordering.** Universal-metadata schema fields (per §"Universal metadata schema") appear first, in the order shown there. Handover-specific fields (per `docs/HANDOVERS.md`) appear in a second block under a `# Handover-specific fields` YAML comment. This makes diffs across templates trivial to read.
+
+**Pre-fill vs placeholder.** A field whose value is the *template's identity* is pre-filled (e.g., `object_type: Strategic Intent` in `templates/strategic-intent.md` — the type is known, not a user choice). Every other field is a placeholder. The `status:` field is pre-filled to `Draft` — this is the entry state of the **product-artifact lifecycle track** (per CONVENTIONS.md §"Lifecycle states"), which is what the instantiated artifact (not the template file itself) will inherit when a kit user copies the template. The template file as a kit-build component lives on a separate lifecycle track that is managed via its companion spec under `docs/specs/template-<slug>/`, not via the template's YAML body.
+
+**Required vs optional sections.** Required sections (per the relevant `HANDOVERS.md` row) appear in the template body verbatim. Optional sections appear under a single `## Optional sections` heading at the bottom of the template, each with a one-line description of when to use it. Authors of derived artifacts delete unused optional sections; required sections must remain.
+
+**Linter contract.** Templates pass `tools/lint-frontmatter.py --check-template <path>`, which accepts angle-bracket placeholders where concrete values would otherwise be required. Default mode (which walks `PHASE_DIRS`) does not walk `templates/` and is unchanged. The contract test at `scripts/tests/test_templates_instantiate.py` runs `--check-template` against every template in CI.
+
+**Authoring a new template.** Copy `templates/_meta/template-skeleton.md`. Read the relevant `docs/HANDOVERS.md` row for the handover this template gates. Fill the spec under `docs/specs/template-<slug>/` first (the F3 block in `ROADMAP.md` lists ten such specs as worked examples).
+
 ## How non-trivial work happens — the work-loop
 
 For anything beyond a one-line edit, follow the **plan → execute → verify → review → iterate** loop. The mechanics are in the [`work-loop` skill](../.claude/skills/work-loop/SKILL.md); this section is the why.
