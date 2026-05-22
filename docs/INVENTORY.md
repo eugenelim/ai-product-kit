@@ -18,6 +18,18 @@ Every artifact in the kit, classified by **phase** (rows) and **practice area** 
 
 > **Reading this inventory:** rows marked `planned` are NOT currently shippable. Their presence here documents the kit's design surface, not its current capability. Use the `Status` column to filter to what works today.
 
+## Linters (kit-meta)
+
+Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep kit components on contract. One linter per component type, plus a cross-cutting frontmatter checker. The work-loop SKILL §3.2 names them as the per-component-type verify gate.
+
+| Linter | Lints | Rules | Status |
+|---|---|---|---|
+| `tools/lint-skill.sh` | `.claude/skills/*/SKILL.md` | YAML frontmatter (`name`, `description` ≤1024, `license`); H1; `## When to use this skill`; soft cap 400 lines | shipped (F0.4) |
+| `tools/lint-agent.sh` | `.claude/agents/*.md` (excluding `README.md`) | YAML frontmatter (`name`, `description`, `tools`, `model`); H1; required body sections | shipped (F0.4) |
+| `tools/lint-command.sh` | `.claude/commands/*.md` | YAML frontmatter; required body sections | shipped (F0.4) |
+| `tools/lint-hook.sh` | `.claude/hooks/*.md` (excluding `README.md`) | H1 `^# <slug> hook$`; sections `## What it does`, `## Why this matters`, `## Configuration`; soft cap 250 lines | shipped 2026-05-21 (F0.10) |
+| `tools/lint-frontmatter.py` | every kit artifact with frontmatter | universal-metadata schema (`object_type`, `status`, `last_updated`, parent-link validity, ontology type-set membership) | shipped (F0.5) |
+
 ---
 
 ## Phase 1 — Strategy
