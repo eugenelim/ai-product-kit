@@ -62,7 +62,7 @@ The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards 
 
 - [x] **F2.2** `check-assumption-threshold.py` — The kit's signature guard: refuses to write `validation/experiments/**/results.md` unless a falsification threshold was filed *before* the experiment ran. **Slug:** `hook-assumption-threshold-lock`. **Depends on:** F1.2. **Shipped:** 2026-05-21.
 
-- [ ] **F2.3** `ontology-type-check.py` — PreToolUse hook that warns when an artifact path implies an ontology object type but the frontmatter omits `object_type:`. **Slug:** `hook-ontology-type-check`. **Depends on:** F1.2.
+- [x] **F2.3** `ontology-type-check.py` — PreToolUse hook that warns when an artifact path implies an ontology object type but the frontmatter omits `object_type:`. **Slug:** `hook-ontology-type-check`. **Depends on:** F1.2. **Shipped:** 2026-05-21.
 
 - [ ] **F2.4** `mode-guard.py` — SessionStart hook that reads `mode:` from `.claude/CLAUDE.md` and blocks the wrong-mode slash commands. **Slug:** `hook-mode-guard`.
 

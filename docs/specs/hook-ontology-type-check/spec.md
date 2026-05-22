@@ -1,6 +1,6 @@
 # Spec: hook-ontology-type-check
 
-- **Status:** Draft
+- **Status:** Shipped
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** hook (PreToolUse — Write, Edit, MultiEdit)
