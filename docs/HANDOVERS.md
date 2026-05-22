@@ -85,7 +85,47 @@ human_owned_decisions:
 
 **Failure if missing:** Operating-model failure mode #4 (jumping from interviews to "let's build it").
 
-**Detector:** `/audit-assumption-coverage` flags chosen opportunities with no assumption map.
+**Detector:** `/audit-discovery-coherence` flags OSTs with no `parent_intent`; intents with no downstream OST after >30 days. *(planned — ROADMAP P2.11; until shipped, this check is manual.)*
+
+---
+
+## Handover 2.5: Discovery → Assumption Map
+
+**Artifact:** `validation/assumption-maps/<slug>.md`
+**Object types:** Assumption (Domain C), Opportunity (Domain C, by reference)
+
+The chosen Opportunity from Handover 2 lists its assumptions; the Assumption Map is where those assumptions get *typed*, *ranked*, and *prioritized for testing*. Without this artifact, Validation jumps straight from "we picked an opportunity" to "we ran an experiment" — skipping the step where the team agrees on *which* assumption is the riskiest. That's the failure that produces validation theatre: testing the easy assumption because the riskiest one is uncomfortable.
+
+**Required frontmatter (additions on top of the universal schema):**
+
+```yaml
+object_type: Assumption Map
+parent_opportunity: <OPP-NNN>
+parent_intent: <strategic intent slug>     # restated for traceability
+assumptions:
+  - id: <ASM-NNN>
+    statement: <one sentence>
+    lens: desirability | viability | feasibility | usability | ethical
+    risk_if_wrong: Low | Medium | High | Critical
+    evidence_today: Strong | Moderate | Weak | None
+    test_priority: 1 | 2 | 3 | …          # 1 = test first
+riskiest_assumption: <ASM-NNN>             # the one Validation will test next
+human_owned_decisions:
+  - Selection of the riskiest assumption to test next
+  - Acceptance of assumptions marked "accept-as-bet"
+```
+
+**Required sections:**
+
+1. **The chosen opportunity** — one-paragraph restatement; link to the OST node.
+2. **Assumptions, by lens** — every assumption underneath the opportunity, classified into the five-lens taxonomy (desirability / viability / feasibility / usability / ethical). Cite `context/frameworks/assumption-tests.md` *(planned — ROADMAP F4.4)* for definitions; until that framework ships, link to ontology Domain C entries for the named lenses.
+3. **Risk-vs-evidence ranking** — each assumption plotted on (risk_if_wrong × evidence_today). The riskiest under-evidenced assumption is the next test target.
+4. **The riskiest assumption** — restated; why it earned the rank; what we'd lose if it's wrong.
+5. **Accepted bets** — assumptions the team explicitly chooses not to test (with rationale). These propagate to the Vision artifact's `open_assumptions:` block as tier `accept-as-bet`.
+
+**Failure if missing:** Validation theatre. Teams test the cheapest assumption rather than the riskiest, then declare "validated" on a test that wouldn't have changed the decision.
+
+**Detector:** `/audit-assumption-coverage` *(planned — ROADMAP P3.11)* flags chosen opportunities with no assumption map after >7 days. Until shipped, audit manually.
 
 ---
 
