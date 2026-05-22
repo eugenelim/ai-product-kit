@@ -88,7 +88,7 @@ The kit's operating principle, from the product ontology:
 
 > **AI may assist with analysis, synthesis, drafting, comparison, and consistency checking. Humans must own judgment, accountability, commitments, ethics, prioritization, and final decisions.**
 
-Every artifact carries explicit frontmatter:
+Every product artifact carries explicit frontmatter (kit-meta scaffolding — specs, plans, state — is exempt; see `docs/CONVENTIONS.md` §"Specs and Plans"):
 
 ```yaml
 human_owned_decisions:

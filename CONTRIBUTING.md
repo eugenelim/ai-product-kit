@@ -32,7 +32,7 @@ Quick reference:
 
 ## Conventions, in one paragraph
 
-Markdown with YAML frontmatter for everything that isn't code. Kebab-case filenames. ISO dates for temporal files. Every artifact declares `object_type:` per the ontology in [`context/frameworks/ontology.md`](context/frameworks/ontology.md). Every artifact with `human_approval_required: true` has a non-empty `human_owned_decisions:` list. The audits will check these mechanically.
+Markdown with YAML frontmatter for every product artifact that isn't code. Kebab-case filenames. ISO dates for temporal files. Every product artifact declares `object_type:` per the ontology in [`context/frameworks/ontology.md`](context/frameworks/ontology.md). Every product artifact with `human_approval_required: true` has a non-empty `human_owned_decisions:` list. The audits will check these mechanically. (Kit-meta scaffolding — specs, plans, state under `docs/specs/` — is exempt; see [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) §"Specs and Plans".)
 
 ## When in doubt
 

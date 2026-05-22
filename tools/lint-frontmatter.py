@@ -125,6 +125,14 @@ def lint_file(path: Path, ontology_types: set[str]) -> list[str]:
                 f"human_owned_decisions: list to be non-empty"
             )
 
+    if fm.get("ai_assistance_allowed") == "restricted":
+        aiu = fm.get("ai_assistance_used")
+        if not aiu or not isinstance(aiu, list) or len(aiu) == 0:
+            errors.append(
+                f"{path}: ai_assistance_allowed: restricted requires "
+                f"ai_assistance_used: list to be non-empty"
+            )
+
     return errors
 
 

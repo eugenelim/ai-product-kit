@@ -1,12 +1,12 @@
 # Inventory at a glance
 
-Every artifact in the kit, classified by **phase** (rows) and **practice area** (columns), with the ontology object types it produces and which agent invokes it.
+Every artifact in the kit, classified by **phase** (rows) and **practice area** (columns), with its primary output (ontology object type where applicable) and which agent invokes it.
 
 ## Legend
 
 - **Block:** SC = slash command, AG = agent, SK = skill, HK = hook, SCH = scheduled agent, REF = reference context, IDX = index README
 - **Invocation:** YOU = you type it, CLAUDE = Claude auto-invokes, EVENT = triggered by hook, CRON = OS scheduler
-- **Type:** the primary ontology object type the artifact produces (per `context/frameworks/ontology.md`)
+- **Output:** the artifact's primary output — an ontology object type when the artifact produces a Domain A–I type, otherwise a short label naming what the artifact emits (the ontology canon lives in `context/frameworks/ontology.md`)
 - **Status:** `shipped` (built and usable today) or `planned (Fx.y)` / `planned (Px.y)` (forward-looking design intent; build queue row in [`ROADMAP.md`](../ROADMAP.md))
 
 ## Indexes (kit-meta)
@@ -28,13 +28,13 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 | `tools/lint-agent.sh` | `.claude/agents/*.md` (excluding `README.md`) | YAML frontmatter (`name`, `description`, `tools`, `model`); H1; required body sections | shipped (F0.4) |
 | `tools/lint-command.sh` | `.claude/commands/*.md` | YAML frontmatter; required body sections | shipped (F0.4) |
 | `tools/lint-hook.sh` | `.claude/hooks/*.md` (excluding `README.md`) | H1 `^# <slug> hook$`; sections `## What it does`, `## Why this matters`, `## Configuration`; soft cap 250 lines | shipped 2026-05-21 (F0.10) |
-| `tools/lint-frontmatter.py` | every kit artifact with frontmatter | universal-metadata schema (`object_type`, `status`, `last_updated`, parent-link validity, ontology type-set membership) | shipped (F0.5) |
+| `tools/lint-frontmatter.py` | every kit artifact with frontmatter | universal-metadata schema (`object_type`, `status`, `last_updated`, parent-link validity, ontology type-set membership); `human_approval_required: true` ⇒ non-empty `human_owned_decisions`; `ai_assistance_allowed: restricted` ⇒ non-empty `ai_assistance_used` (list) | shipped (F0.5; F0.12 added `ai_assistance_allowed` check, 2026-05-21) |
 
 ---
 
 ## Phase 1 — Strategy
 
-| Artifact | Block | Mode | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Mode | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|---|
 | `/market-scan` | SC | greenfield | YOU | Market, Market Segment | Analogical industry scan | planned (P7.11) |
 | `/competitive-research` | SC | greenfield | YOU | Competitor, Differentiator | Parallel fan-out across competitors | shipped |
@@ -57,7 +57,7 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 
 ## Phase 2 — Discovery
 
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/interview-snapshot` | SC | YOU | Insight, Pain Point, Use Case | Transcript → snapshot | planned (P2.1) |
 | `/extract-opportunities` | SC | YOU | Opportunity | Snapshots → candidates | planned (P2.4) |
@@ -78,7 +78,7 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 
 ## Phase 3 — Validation
 
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/assumption-test` (design) | SC | YOU | Assumption Map | Five-lens design | planned (P3.1) |
 | `/design-experiment` | SC | YOU | Experiment | Runnable experiment with predeclared threshold | planned (P3.4) |
@@ -100,13 +100,13 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 ## Phase 4 — Delivery (Vision → Initiative → Spec → Handoff Packet)
 
 ### Vision (4A)
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/draft-vision` | SC | YOU | Vision, Value Prop, Differentiator | From learning + persona + product | planned (P4.1) |
 | `/vision-shape-check` | SC | YOU | Shape Decision | Crosses teams? Initiative or single spec? | planned (P4.2) |
 
 ### Initiative (4B)
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/draft-initiative` | SC | YOU | Initiative, Capability list | Build initiative folder | planned (P4.3) |
 | `/context-map` | SC | YOU | Bounded Contexts, Evolution Check | Interactive context map | planned (P4.4) |
@@ -114,14 +114,14 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 | `/sequence-initiative` | SC | YOU | Dependency Sequence | Delivery sequence | planned (P4.6) |
 
 ### Spec (4C)
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/draft-spec` | SC | YOU | Requirement, Acceptance Criteria, Business Rule | From initiative + context-map row + EARS | planned (P4.8) |
 | `/spec-impact-analysis` | SC | YOU | Impact Report | What changes if this spec changes? | planned (P4.9) |
 | `/audit-spec-linkage` | SC | YOU | Audit Report | Every spec needs `parent_initiative:` | planned (P4.10) |
 
 ### Engineering handoff (4D — NEW in v3)
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/handoff-packet` | SC | YOU | Handoff Packet | Assemble the ontology-defined 23-section deliverable | planned (P4.11) |
 | `/audit-completeness` | SC | YOU | Audit Report | 25-item pre-handoff checklist | shipped (script + prose fallback) |
@@ -136,7 +136,7 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 | `work-loop` | SK | CLAUDE | Standard pattern | Plan → execute → verify → review | shipped |
 
 ### Across delivery
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/release-notes` | SC | YOU | Customer Communication | Customer-facing notes | planned (P4.12) |
 | `/launch-comms` | SC | YOU | Customer Communication | Internal + external launch messaging | planned (P4.13) |
@@ -147,7 +147,7 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 
 ## Phase 5 — Landings
 
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/landing-report` | SC | YOU | Landing Report | Actuals vs predictions vs counter-metrics | planned (P5.1) |
 | `/adoption-readout` | SC | YOU | Adoption Curve | Adoption only | planned (P5.2) |
@@ -163,7 +163,7 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 ## Cross-cutting
 
 ### Communication
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/stakeholder-update` | SC | YOU (weekly/monthly) | Stakeholder Update | Auto-compose from current state | planned (P8.1) |
 | `/exec-narrative` | SC | YOU | Exec Narrative | 6-pager on a strategic question | planned (P8.2) |
@@ -174,14 +174,14 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 | `writing-critic` | AG | CLAUDE (dispatch) | Voice-aware review | (in writing surfaces) | planned (P8.8) |
 
 ### Research
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/research-digest` | SC | YOU (daily) | Research Digest | Academic + industry | planned (P8.10) |
 | `/summarize-paper` | SC | YOU | Paper Summary | Structured summary of one PDF | planned (P8.11) |
 | `paper-summarizer` | AG | CLAUDE (fan-out) | Summary | One paper in parallel | planned (P8.12) |
 
 ### Personal OS
-| Artifact | Block | Inv | Produces (ontology) | Purpose | Status |
+| Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/today` | SC | YOU (morning) | Daily Plan | Tasks + AI-helpable surfacing | planned (P9.2) |
 | `/inbox` | SC | YOU | Triage | Triage and file inbox | planned (P9.3) |

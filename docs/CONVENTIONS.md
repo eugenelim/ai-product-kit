@@ -4,14 +4,14 @@ How work happens in this kit. The Charter is the constitution; this is the opera
 
 ## File conventions
 
-- Markdown with YAML frontmatter for everything that isn't code.
+- Markdown with YAML frontmatter for every product artifact that isn't code (kit-meta scaffolding — specs, plans, state — is exempt; see §"Specs and Plans").
 - Kebab-case filenames. ISO dates (`YYYY-MM-DD`) when temporal: `2026-05-20-stakeholder-update.md`.
 - Slugs in frontmatter match the filename stem (without extension and date prefix).
 - Cross-links use kit-relative paths: `parent_intent: ../intents/north-star-retention.md`.
 
 ## Universal metadata schema
 
-Every kit artifact carries the frontmatter block below. **Universally required fields** (enforced by `tools/lint-frontmatter.py`): `object_type`, `status`, `last_updated`. All other fields are **required where applicable** per the artifact's phase-specific handover contract in `docs/HANDOVERS.md` and are checked by `/audit-completeness`, not by the linter. A reader producing a compliant artifact needs both this schema AND the relevant handover contract.
+Every product artifact carries the frontmatter block below (kit-meta scaffolding — specs, plans, state — is exempt; see [§"Exempt from the universal metadata schema"](#exempt-from-the-universal-metadata-schema) below). **Universally required fields** (enforced by `tools/lint-frontmatter.py`): `object_type`, `status`, `last_updated`. All other fields are **required where applicable** per the artifact's phase-specific handover contract in `docs/HANDOVERS.md` and are checked by `/audit-completeness`, not by the linter. A reader producing a compliant artifact needs both this schema AND the relevant handover contract.
 
 ```yaml
 ---
@@ -44,7 +44,7 @@ evidence_basis:
     link: <path or url>
 open_assumptions: [<text>, ...]
 
-# Human-vs-AI ownership (every artifact must declare this)
+# Human-vs-AI ownership (every product artifact must declare this)
 human_owned_decisions:
   - <decision a human must make personally>
 ai_assistance_used:
@@ -216,6 +216,16 @@ Run `tools/new-spec.sh <feature-slug>` to scaffold a new spec directory from the
 ### Cite upward, never downward
 
 Specs link to the ADRs and RFCs that constrain them. ADRs do not link to specs (specs are too small and short-lived to be worth citing from an ADR). The roadmap in [`ROADMAP.md`](../ROADMAP.md) is the ordered list of specs to build.
+
+### Exempt from the universal metadata schema
+
+Specs (`docs/specs/<feature>/spec.md`), plans (`plan.md`), and state files (`state.json`) do not carry the universal-metadata YAML frontmatter. The exemption rests on three facts:
+
+- Specs use the **kit-build lifecycle track** (`Draft → In Review → Approved → Implementing → Shipped → Frozen`), which is separate from the product-artifact track and has different downstream consumers.
+- The **markdown bullet block under the spec's H1** (Status, Plan, State, Component type, Serves kit phase, Constrained by) IS the spec's metadata surface. It carries the same information the universal schema does for product artifacts.
+- `tools/lint-frontmatter.py` walks only `PHASE_DIRS = ["strategy", "discovery", "validation", "delivery", "market"]`. Universal-schema frontmatter on a spec under `docs/specs/` would never be enforced.
+
+Adding `kit-spec` as an ontology type was considered and rejected: `context/frameworks/ontology.md` §"When the ontology is wrong" warns against ad-hoc additions, and Domain I composites are explicitly phase-boundary handovers — not kit-build scaffolding.
 
 ## How non-trivial work happens — the work-loop
 

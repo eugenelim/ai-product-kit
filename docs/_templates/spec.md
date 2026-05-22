@@ -7,6 +7,8 @@
 - **Serves kit phase:** Strategy | Discovery | Validation | Delivery | Landings | Cross-cutting | Meta (kit itself)
 - **Constrained by:** <ADR / RFC / parent spec ids>
 
+_Specs are exempt from the universal metadata schema (see [`docs/CONVENTIONS.md`](../CONVENTIONS.md) §"Specs and Plans"). The bullet block above IS the spec's metadata; no YAML frontmatter is required._
+
 > **Spec contract.** This document defines what "done" means for this kit component. The implementing work must match this spec, or update it in the same session. Verification must be derivable from this spec — if a behavior isn't here, it isn't promised.
 
 ## Objective

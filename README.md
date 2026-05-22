@@ -8,7 +8,7 @@ A Claude Code-powered operating system for product managers, built on three foun
 
 The first foundation tells you *what phase you're at*. The second tells you *what kind of object you're producing and what links it must carry*. The third tells you *which Claude Code primitive to reach for*.
 
-The kit's central claim: **most PM tooling is flat — a catalog of activities with no phase awareness and no type system.** This kit refuses to be flat. Every artifact declares the phase it serves and the ontology type it is. The repo structure enforces handovers as artifacts rather than conversations.
+The kit's central claim: **most PM tooling is flat — a catalog of activities with no phase awareness and no type system.** This kit refuses to be flat. Every product artifact declares the phase it serves and the ontology type it is. The repo structure enforces handovers as artifacts rather than conversations.
 
 ---
 
@@ -131,8 +131,8 @@ ai-product-kit/
 - **AGENTS.md as canonical agent context** — adopted from the agent-ready-repo template. Works across Claude Code, Cursor, Codex, Gemini CLI, Copilot. `CLAUDE.md` is a symlink.
 - **Source-of-truth table** — every kind of decision has exactly one place it lives. "If you can't find it in one of these places, the answer doesn't exist yet — ask, or open an RFC."
 - **Charter / ADR / RFC structure** — lifecycle-aware doc taxonomy. Charter is frozen one-page constitution; ADRs record decisions with their full rationale; RFCs propose changes to the kit.
-- **Canonical product/business ontology** — eight domains, 82 documented typed objects (74 atomic + 8 composite), universal metadata schema. Every artifact declares its `object_type:` and links into the traceability chain.
-- **Human-vs-AI ownership model** — every artifact declares `human_owned_decisions:`, `ai_assistance_used:`, `ai_assistance_allowed:`, `human_approval_required:`. The completeness audit refuses to mark an artifact `Approved` without the named human signatures.
+- **Canonical product/business ontology** — eight domains, 82 documented typed objects (74 atomic + 8 composite), universal metadata schema. Every product artifact declares its `object_type:` and links into the traceability chain.
+- **Human-vs-AI ownership model** — every product artifact declares `human_owned_decisions:`, `ai_assistance_used:`, `ai_assistance_allowed:`, `human_approval_required:`. The completeness audit refuses to mark an artifact `Approved` without the named human signatures.
 - **Specialist reviewer subagents** — `adversarial-reviewer`, `compliance-reviewer`, `quality-engineer`. Sharp, differentiable lenses; pick the ones the artifact warrants.
 - **The work-loop skill** — plan → execute → verify → review, the kit's standard PM-work pattern.
 - **New audits** — `/audit-traceability` (every requirement traces to evidence), `/audit-completeness` (the ontology's pre-engineering-handoff checklist as a single command).

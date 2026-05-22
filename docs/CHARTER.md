@@ -33,7 +33,7 @@ Give product managers a Claude Code-powered operating system that:
 
 2. **Handovers travel as artifacts, not conversations.** Every phase boundary is gated by a named file with required frontmatter. The phase-guard hooks enforce this mechanically *(today: `assumption-threshold-lock` ships; the remaining phase-guard hooks are planned — see [ROADMAP F2](../ROADMAP.md#foundation-2--hook-scripts))*.
 
-3. **Ontology is the type system.** Every artifact declares its `object_type:` and uses the universal metadata schema. Traceability links are required, not optional.
+3. **Ontology is the type system.** Every product artifact declares its `object_type:` and uses the universal metadata schema (kit-meta scaffolding is exempt; see [`docs/CONVENTIONS.md`](CONVENTIONS.md) §"Specs and Plans"). Traceability links are required, not optional.
 
 4. **Outcomes over outputs.** Initiatives declare the outcome they serve, not the features they ship. A launch is the start of an adoption curve, not the finish line.
 
