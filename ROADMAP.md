@@ -155,16 +155,16 @@ Once the type system has enforcement, per-type frontmatter templates make correc
 
 > F3.x items consume the authoring convention from `docs/specs/template-authoring-convention/`. Read that spec first; copy `templates/_meta/template-skeleton.md` to start each F3.x template.
 
-- [ ] **F3.1** Strategic Intent template (`templates/strategic-intent.md`). **Slug:** `template-strategic-intent`.
-- [ ] **F3.2** OST template (`templates/ost.md`). **Slug:** `template-ost`.
-- [ ] **F3.3** Assumption Map template (`templates/assumption-map.md`). **Slug:** `template-assumption-map`.
-- [ ] **F3.4** Experiment design + results templates. **Slug:** `template-experiment`.
-- [ ] **F3.5** Learning Memo template. **Slug:** `template-learning-memo`.
-- [ ] **F3.6** Vision template. **Slug:** `template-vision`.
+- [x] **F3.1** Strategic Intent template (`templates/strategic-intent.md`). **Slug:** `template-strategic-intent`. **Shipped:** 2026-05-22.
+- [x] **F3.2** OST template (`templates/ost.md`). **Slug:** `template-ost`. **Shipped:** 2026-05-22.
+- [x] **F3.3** Assumption Map template (`templates/assumption-map.md`). **Slug:** `template-assumption-map`. **Shipped:** 2026-05-22.
+- [x] **F3.4** Experiment design + results templates. **Slug:** `template-experiment`. **Shipped:** 2026-05-22.
+- [x] **F3.5** Learning Memo template. **Slug:** `template-learning-memo`. **Shipped:** 2026-05-22.
+- [x] **F3.6** Vision template. **Slug:** `template-vision`. **Shipped:** 2026-05-22.
 - [ ] **F3.7** Initiative README + context-map + flow + child-specs + sequence templates. **Slug:** `template-initiative`.
-- [ ] **F3.8** Spec template (PM-side — distinct from the kit's spec template). **Slug:** `template-pm-spec`.
+- [x] **F3.8** Spec template (PM-side — distinct from the kit's spec template). **Slug:** `template-pm-spec`. **Shipped:** 2026-05-22.
 - [ ] **F3.9** Handoff Packet template (`templates/handoff-packet/` with the 23 required sections from the ontology). **Slug:** `template-handoff-packet`.
-- [ ] **F3.10** Landing Report template. **Slug:** `template-landing-report`.
+- [x] **F3.10** Landing Report template. **Slug:** `template-landing-report`. **Shipped:** 2026-05-22.
 
 ---
 

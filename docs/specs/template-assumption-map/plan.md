@@ -1,7 +1,7 @@
 # Plan: template-assumption-map
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-22)
 - **Plan review:** pending
 
 > **Plan contract.** Implementation strategy for the F3.3 Assumption Map template. The build is a single-file authoring task: copy the canonical skeleton, pre-fill identity, splice the Handover-2.5 contract (frontmatter block + verbatim section headings), verify with the linter, review against the contract, capture in the kit index. Changelog at the bottom.

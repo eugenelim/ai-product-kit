@@ -1,7 +1,7 @@
 # Plan: template-pm-spec
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-22)
 - **Plan review:** pending (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** Implementation strategy for the spec. Allowed to change as we learn; changelog at the bottom.

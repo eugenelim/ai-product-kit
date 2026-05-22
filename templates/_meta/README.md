@@ -9,7 +9,14 @@ Infrastructure for the kit's template system, not a template itself. `_meta/` ho
 
 ## Shipped templates
 
-_(None yet. F3.x workers append their templates here in their CAPTURE phase.)_
+- [`strategic-intent.md`](../strategic-intent.md) — Strategy → Discovery handover (HANDOVERS §"Handover 1"). Spec: `docs/specs/template-strategic-intent/`.
+- [`ost.md`](../ost.md) — Opportunity Solution Tree, Discovery → Validation handover (HANDOVERS §"Handover 2"). Spec: `docs/specs/template-ost/`.
+- [`assumption-map.md`](../assumption-map.md) — Discovery → Assumption Map handover (HANDOVERS §"Handover 2.5"). Spec: `docs/specs/template-assumption-map/`.
+- [`experiment/`](../experiment/) — Experiment design + results folder template, scaffolds the artifact pair the Validation Learning Memo's `test.experiment:` link resolves to (per HANDOVERS §"Handover 3" + `assumption-threshold-lock` hook). Spec: `docs/specs/template-experiment/`.
+- [`learning-memo.md`](../learning-memo.md) — Validation Learning Memo, Validation → Vision handover (HANDOVERS §"Handover 3"). Spec: `docs/specs/template-learning-memo/`.
+- [`vision.md`](../vision.md) — Vision → Initiative handover (HANDOVERS §"Handover 4"). Spec: `docs/specs/template-vision/`.
+- [`pm-spec.md`](../pm-spec.md) — PM-side Feature spec, sits under an Initiative's `child-specs.md` manifest; instantiates as `delivery/initiatives/<initiative-slug>/specs/<spec-slug>.md`. Spec: `docs/specs/template-pm-spec/`.
+- [`landing-report.md`](../landing-report.md) — Engineering → Landings handover (HANDOVERS §"Handover 7"); predicted-vs-actual outcomes, adoption curve, counter-metrics, verdict. Spec: `docs/specs/template-landing-report/`.
 
 ## Why this directory
 

@@ -1,7 +1,7 @@
 # Plan: template-vision
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-22)
 - **Plan review:** approved (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** This is the implementation strategy. Unlike the spec, this document is allowed to change as you learn. When it changes substantially (a different approach, not just a re-ordering), note why in the changelog at the bottom.

@@ -1,7 +1,7 @@
 # Plan: template-strategic-intent
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-22)
 - **Plan review:** pending
 
 > **Plan contract.** Implementation strategy for the spec. Allowed to change as we learn; changelog at the bottom.
