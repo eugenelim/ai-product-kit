@@ -1,7 +1,7 @@
 # Plan: hook-ontology-type-check
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done
 - **Plan review:** pending
 
 ## Approach
@@ -110,3 +110,4 @@ Tests run in-memory wherever possible (compose a payload dict, feed `check()`); 
 
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (9 findings). Replaced fictional `parse_text` with `parse`. Removed `Experiment Result` row (not a canonical ontology type). Closed Open Q2 (case-sensitivity): now warns on case mismatch with explicit contract test. Added MultiEdit support; Edit semantics now mirror F2.1's body-only vs frontmatter-touching classification. Added trailing-slash handling, Initiative/Handoff-Packet boundary, HANDOVERS-drift cross-reference. Added F0.10 + F2.1 dependencies.
+- 2026-05-21: Shipped. `scripts/check-ontology-type.py` (189 LOC, stdlib + `scripts.lib.frontmatter` only), `scripts/tests/test_check_ontology_type.py` (17 tests — 14 contract + 1 trailing-slash sanity + 2 subprocess smoke), `.claude/hooks/ontology-type-check.md` (lint clean). `python3 -m unittest scripts.tests.test_check_ontology_type` exits 0; `tools/lint-hook.sh` exits 0; `tools/pre-pr.sh` exits 0. Edit-fallback inlined per Rollout note (F2.1 is a parallel worktree). No `scripts/lib/edits.py` extraction yet — defer to F2.6 wiring or a refactor when a third hook lands.
