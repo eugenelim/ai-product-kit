@@ -1,7 +1,7 @@
 # Plan: template-initiative
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Approved
+- **Status:** Done (2026-05-22)
 - **Plan review:** approved (iter-2 clean — 2026-05-22)
 
 > **Plan contract.** This is the implementation strategy. Unlike the spec, this document is allowed to change as you learn. When it changes substantially (a different approach, not just a re-ordering), note why in the changelog at the bottom.
@@ -175,4 +175,4 @@ Cross-cutting only. Per-task tests are inline under the single task below.
 
 Append entries when the plan changes substantially during execution. Format: `<YYYY-MM-DD>: <one-line description of the change and why>`.
 
--
+- 2026-05-22: REVIEW iter-1 — adversarial-reviewer returned needs-fixes. Applied D2 fix (corrected source-comment attribution on the orientation H2s of `context-map.md` and `capabilities.md`: they are inferred folder-index orientation, not HANDOVERS-5 item-1/item-5 verbatim — those items source only the per-X fields below). Applied D1 mitigation (added an HTML comment in `context-map.md` documenting that HANDOVERS-5's folder-contents description mentions "shared shapes" but §"Required content" item 1 — the binding contract per the spec — does not; the shared-shape concern is absorbed into each H3's `**Public contract:**` descriptor; if HANDOVERS-5 promotes shared-shapes to a first-class field, the template adds a fifth labeled body line at that point). Spec-text findings (C1 internal "verbatim" inconsistency for `status:`; H1 missing OQ entry on item-1-as-exhaustive) deferred — OQ1 already documents the `status:` deviation and the README's inline comment on line 10 calls it out for readers; no contract bug. E1/E2/E3 deferred per reviewer disposition.

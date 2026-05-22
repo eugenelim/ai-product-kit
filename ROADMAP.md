@@ -161,7 +161,7 @@ Once the type system has enforcement, per-type frontmatter templates make correc
 - [x] **F3.4** Experiment design + results templates. **Slug:** `template-experiment`. **Shipped:** 2026-05-22.
 - [x] **F3.5** Learning Memo template. **Slug:** `template-learning-memo`. **Shipped:** 2026-05-22.
 - [x] **F3.6** Vision template. **Slug:** `template-vision`. **Shipped:** 2026-05-22.
-- [ ] **F3.7** Initiative README + context-map + flow + child-specs + sequence templates. **Slug:** `template-initiative`.
+- [x] **F3.7** Initiative README + context-map + flow + child-specs + sequence + capabilities templates. **Slug:** `template-initiative`. **Shipped:** 2026-05-22.
 - [x] **F3.8** Spec template (PM-side — distinct from the kit's spec template). **Slug:** `template-pm-spec`. **Shipped:** 2026-05-22.
 - [ ] **F3.9** Handoff Packet template (`templates/handoff-packet/` with the 23 required sections from the ontology). **Slug:** `template-handoff-packet`.
 - [x] **F3.10** Landing Report template. **Slug:** `template-landing-report`. **Shipped:** 2026-05-22.
