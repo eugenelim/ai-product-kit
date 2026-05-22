@@ -1,8 +1,8 @@
 # Plan: hook-assumption-threshold-lock
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending
+- **Status:** Done
+- **Plan review:** approved
 
 ## Approach
 
@@ -127,3 +127,4 @@ Tests come first. Fixtures are constructed in a per-test `tmp_path` because the 
 
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (10 findings). Path glob upgraded to `**/` (recursive) to match hook doc. `predeclared_at` check now explicitly documented as a doc extension, with CAPTURE-phase doc update. Added `override_threshold_lock_false_does_not_unblock` and `override_without_authorizer_blocks` contract tests; required `is True` (strict) check. Added `no_frontmatter_delimiters` test distinct from malformed-YAML. Added symlink-mtime and `object_type` non-goals as known limitations. Added F0.10 dependency.
+- 2026-05-21: Shipped. `scripts/check-assumption-threshold.py` (241 LOC, stdlib + `scripts.lib.frontmatter` only) and `scripts/tests/test_check_assumption_threshold.py` (18 tests = 15 contract tests + 1 nested-path glob test + 2 subprocess entry-point tests) both green via `python3 -m unittest scripts.tests.test_check_assumption_threshold`. `tools/lint-hook.sh .claude/hooks/assumption-threshold-lock.md` and `tools/pre-pr.sh` exit 0. `.claude/hooks/assumption-threshold-lock.md` "What it does" list amended to insert the `predeclared_at <= today` check between former steps 2 and 3 (now five numbered steps instead of four). Script is inert until F2.6 wires it into `.claude/settings.json`.

@@ -12,9 +12,10 @@ Before any such write succeeds, the hook runs `scripts/check-assumption-threshol
 
 1. Locates the experiment's `experiment.md` design file in the same folder
 2. Reads its frontmatter — must contain `predeclared_threshold:` with both `success:` and `falsification:` criteria
-3. Confirms the design file's modification time predates the results-write event
-4. If both checks pass, the write proceeds
-5. If either fails, the write is blocked and the hook returns an error explaining what's missing
+3. Confirms `predeclared_at:` is on or before today (rejects future-dated thresholds — the assumption can't be predeclared after the fact)
+4. Confirms the design file's modification time predates the results-write event
+5. If all checks pass, the write proceeds
+6. If any fails, the write is blocked and the hook returns an error explaining what's missing
 
 ## Why this matters
 
