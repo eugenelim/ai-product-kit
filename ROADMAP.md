@@ -103,7 +103,7 @@ Items appended for substantive hardening that exceeded the reconcile-and-harden 
 - [ ] **D4** `ost-validator` references — author `references/ost-schema.json`, `references/action-vocabulary.md`, and `references/examples/`. **Sub-task of:** P2.8 (script-ost-validator).
 - [ ] **D5** `adversarial-reviewer` contract expansion — cover specs/plans/core docs (not just product-phase artifacts); add mandatory `location:` field to output schema. **Sub-task of:** P6.3 (audit-all aggregator); or own mini-spec.
 - [ ] **D6** `competitor-research` hardening additions beyond the in-pass fixes — feedback-loop integration, sub-agent failure recovery, paid-data-source contract. **Appends to:** Phase 7 strategy items.
-- [ ] **D7** `handover-2.5-assumption-map` — add a formal Assumption Map handover contract between Discovery (chosen opportunity) and Validation (experiment design). **Source:** HANDOVERS.md reviewer C1.
+- [x] **D7** `handover-2.5-assumption-map` — add a formal Assumption Map handover contract between Discovery (chosen opportunity) and Validation (experiment design). **Source:** HANDOVERS.md reviewer C1. **Shipped:** 2026-05-22 (via `docs/specs/template-authoring-convention/` — Handover 2.5 added to `docs/HANDOVERS.md`).
 - [ ] **D9** `ontology-add-handover-composite-types` — the Domain I extension shipped in the reconcile pass; track future RFC if any composite types are added or removed. **Status:** Domain I shipped in this pass; this is the placeholder for future Domain I edits.
 - [ ] **D11** `skill-strategy-coherence-hardening` — fix classification-rule overlap on `coherent` vs `drifting`; add `sequenced` classification; specify single-artifact-portfolio behavior. **Sub-task of:** F4.10 (framework-strategic-coherence) and the skill itself.
 - [ ] **D12** `audit-completeness-count-reconciliation` — confirm whether the canonical checklist is 25 items (current command), 26 items (per ontology §41 reviewer reading), or another number. Reconcile command + HANDOVERS.md + the ontology source. **Sub-task of:** F1.5.
@@ -152,6 +152,8 @@ Items that originated as ADR-review findings. ADRs were edited inline in this pa
 ## Foundation 3 — Templates per ontology type
 
 Once the type system has enforcement, per-type frontmatter templates make correct artifact creation cheap. Each template is short — a frontmatter block plus a one-line note on required sections.
+
+> F3.x items consume the authoring convention from `docs/specs/template-authoring-convention/`. Read that spec first; copy `templates/_meta/template-skeleton.md` to start each F3.x template.
 
 - [ ] **F3.1** Strategic Intent template (`templates/strategic-intent.md`). **Slug:** `template-strategic-intent`.
 - [ ] **F3.2** OST template (`templates/ost.md`). **Slug:** `template-ost`.
