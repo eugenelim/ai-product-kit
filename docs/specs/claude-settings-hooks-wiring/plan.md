@@ -17,7 +17,7 @@ Hook-doc cleanup is straightforward: replace the shorthand `{matcher, command}` 
 - `jq` is the only new dependency (already widely available on developer machines and in GitHub Actions runners).
 - Bash + `jq` only for the test harness — no Python.
 - `.claude/settings.json` MUST be valid JSON at every commit; broken settings.json silently disables ALL hooks from that source.
-- ≤ 80 LOC for the test harness, including all 14 contract tests.
+- ≤ 200 LOC for the test harness, including all 14 contract tests. (Originally ≤ 80; revised during EXECUTE after the iteration-1 adversarial review demanded non-vacuous guards on two tests — each guard adds an extra `checked`/`length > 0` branch. Final harness lands at 157 LOC.)
 
 ## Tasks
 
@@ -101,3 +101,5 @@ Hook-doc cleanup is straightforward: replace the shorthand `{matcher, command}` 
 - 2026-05-21: Initial plan.
 - 2026-05-21: Addressed adversarial review (9 findings, 4 critical). UserPromptExpansion matcher claim corrected (matcher is optional, not absent). `python` → `python3` fix added to Task 3 for assumption-threshold-lock.md. `test_no_matchPaths_field` jq expression replaced with `[.. | objects | has("matchPaths")] | any | not` (previous form silently passed on empty streams). Firing-order claim demoted from causal "runs first because" to "assumed declared-order, see Risk #3." Added a Multi-source settings semantics section to spec §Inputs and outputs documenting the array-merge assumption. Removed the `if [[ -f ]]` guard from Task 4 — missing settings.json is exactly the failure case the harness should catch. Task 3 rewritten to make the structural re-render explicit (not just `matchPaths` removal).
 - 2026-05-21: EXECUTE complete. `.claude/settings.json` written; `tools/tests/test-settings-json.sh` exists; all 14 contract tests pass. 5 hook docs re-rendered to canonical schema. `tools/pre-pr.sh` exits 0 with the new `✓ settings-json` row. `.github/workflows/lint.yml` gains the `settings-json` step. INVENTORY.md Global Hooks table updated to "wired (F2.6, 2026-05-21)" on all six rows. ROADMAP F2.6 checked.
+- 2026-05-21: REVIEW iteration 1 → fixed 4 findings (AGENTS.md stale "planned" qualifier; guard-credentials.md stale "F2.6 will consolidate" forward-reference; two test-harness vacuous-pass risks — empty event arrays and zero-command extraction). Commit bf01a63.
+- 2026-05-21: REVIEW iteration 2 → fixed 2 findings (spec acceptance-criteria checkboxes left as `[ ]` despite Status: Shipped; plan's ≤ 80 LOC harness constraint exceeded — revised to ≤ 200 LOC reflecting the iter-1 non-vacuous guards adding ~75 lines).

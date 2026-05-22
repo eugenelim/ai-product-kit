@@ -186,13 +186,13 @@ If the harness ignores declared order, the wiring is still correct: each script'
 
 ## Acceptance criteria
 
-- [ ] `.claude/settings.json` exists at the project root's `.claude/` directory.
-- [ ] `jq -e . .claude/settings.json` exits 0.
-- [ ] `tools/tests/test-settings-json.sh` exists and passes all 14 contract tests.
-- [ ] All five hook docs with shorthand-schema Configuration blocks are updated to canonical form: `check-handover-link.md`, `assumption-threshold-lock.md`, `ontology-type-check.md`, `mode-guard.md`, `cadence-nudge.md`. (`guard-credentials.md` is already canonical — no change.)
-- [ ] `tools/pre-pr.sh` still exits 0 (all hook docs continue to lint clean after edits).
-- [ ] `ROADMAP.md` F2.6 line: `[ ]` → `[x]`, append `**Shipped:** 2026-05-21.`
-- [ ] `.claude/settings.local.json` is unchanged.
+- [x] `.claude/settings.json` exists at the project root's `.claude/` directory.
+- [x] `jq -e . .claude/settings.json` exits 0.
+- [x] `tools/tests/test-settings-json.sh` exists and passes all 14 contract tests.
+- [x] All five hook docs with shorthand-schema Configuration blocks are updated to canonical form: `check-handover-link.md`, `assumption-threshold-lock.md`, `ontology-type-check.md`, `mode-guard.md`, `cadence-nudge.md`. (`guard-credentials.md`'s stale forward-reference also cleaned up in iter-1 review.)
+- [x] `tools/pre-pr.sh` still exits 0 (all hook docs continue to lint clean after edits).
+- [x] `ROADMAP.md` F2.6 line: `[ ]` → `[x]`, append `**Shipped:** 2026-05-21.`
+- [x] `.claude/settings.local.json` is unchanged.
 
 ## Cross-references
 
