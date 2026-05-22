@@ -1,7 +1,7 @@
 # Plan: hook-cadence-nudge
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done
 - **Plan review:** pending
 
 ## Approach
@@ -134,4 +134,5 @@ Tests build small fixture trees per signal under `scripts/tests/fixtures/cadence
 ## Changelog
 
 - 2026-05-21: Initial plan.
+- 2026-05-21: **Shipped.** `scripts/cadence-nudge.py` (240 LOC), `.claude/hooks/cadence-nudge.md`, 8 fixture trees under `scripts/tests/fixtures/cadence/`, and 14 contract tests in `scripts/tests/test_cadence_nudge.py` all green. Implementation deviations: (a) hook script registers itself in `sys.modules` and inserts repo root onto `sys.path` so it runs as a subprocess from arbitrary cwd; the test loader does the same via `importlib.util.spec_from_file_location`. (b) Stale-strategy sort is oldest-first, so truncation keeps the two most-drifted entries (this is the most useful retention rule when the value list overflows). (c) Kill-drought rendering for the "no killed learnings + alive chosen opp" branch reads as `no killed learnings on file (chosen: <slug>)` to make the absence-signal legible.
 - 2026-05-21: Addressed adversarial review (10 findings). **Critical schema fix:** orphan-OST signal now reads `chosen_opportunity:` directly off the OST node frontmatter (matches F1.1 sample-kit schema), not `chosen: true` on child Opportunity files (which don't exist as edges). Fixture rewritten accordingly. Fixed 91→92 day arithmetic (2026-02-18 to 2026-05-21 is 92 days). Orphan-OST clock interpretation locked to "OST `last_updated` >30 days." Kill-drought guard tightened: don't fire if chosen opportunity already killed. Empty-kit predicate operationalized as "zero typed nodes of the three target types." Truncation rule made deterministic (in-order, replace items beyond index 1 with `…`). Thresholds cited (quarterly/monthly/bimonthly cadence). Integration smoke tests labeled distinct from contract tests. Added F0.10 dependency.

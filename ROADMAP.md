@@ -66,7 +66,7 @@ The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards 
 
 - [x] **F2.4** `mode-guard.py` — SessionStart hook that reads `mode:` from `.claude/CLAUDE.md` and blocks the wrong-mode slash commands. **Slug:** `hook-mode-guard`. **Shipped:** 2026-05-21.
 
-- [ ] **F2.5** `cadence-nudge.py` — SessionStart hook that surfaces strategy/OST/kill-drought drift. **Slug:** `hook-cadence-nudge`. **Depends on:** F1.1.
+- [x] **F2.5** `cadence-nudge.py` — SessionStart hook that surfaces strategy/OST/kill-drought drift. **Slug:** `hook-cadence-nudge`. **Depends on:** F1.1. **Shipped:** 2026-05-21.
 
 - [ ] **F2.6** `.claude/settings.json` — Wire all hooks together with the proper matchers and exit-code conventions. **Slug:** `claude-settings-hooks-wiring`. **Depends on:** F2.1–F2.5.
 
