@@ -1,10 +1,3 @@
-<!--
-This skeleton produces a single-file template. For folder-based templates
-(Initiative, Handoff Packet), the convention is: a `README.md` carries this
-frontmatter; child files carry their own frontmatter ONLY when they
-instantiate a distinct ontology object (see CONVENTIONS.md §"Templates"
-→ "File layout"; F3.7 and F3.9 specs encode the per-child decision).
--->
 ---
 # Universal-metadata schema (per docs/CONVENTIONS.md §"Universal metadata schema").
 # Order matches CONVENTIONS.md exactly. Pre-filled fields are the template's identity.
@@ -15,8 +8,8 @@ name: <human-readable name>
 description: <one to three sentences>
 owner: <named human or role>
 status: Draft   # product-artifact track entry state; see CONVENTIONS.md §"Lifecycle states"
-priority: Low | Medium | High | Critical
-risk_level: Low | Medium | High | Critical
+priority: <Low | Medium | High | Critical>
+risk_level: <Low | Medium | High | Critical>
 created: <YYYY-MM-DD>
 last_updated: <YYYY-MM-DD>
 
@@ -33,7 +26,7 @@ related_kpis: [<id>, ...]
 # Evidence vs assumption
 evidence_basis:
   - source: <interview | ticket | metric | market-signal>
-    strength: Strong | Moderate | Weak
+    strength: <Strong | Moderate | Weak>
     link: <path or url>
 open_assumptions: [<text>, ...]
 
@@ -42,8 +35,8 @@ human_owned_decisions:
   - <decision a human must make personally>
 ai_assistance_used:
   - <what AI drafted, summarized, or checked>
-ai_assistance_allowed: true | restricted | not-allowed
-human_approval_required: true | false
+ai_assistance_allowed: <true | restricted | not-allowed>
+human_approval_required: <true | false>
 approvals_obtained:
   - <role>: <YYYY-MM-DD>
 
@@ -54,6 +47,12 @@ risks: [<id>, ...]
 # Add fields from HANDOVERS.md that are required for this artifact type.
 # Example for Strategic Intent: central_challenge, guiding_policy, coherent_actions, horizon.
 ---
+
+<!-- Single-file template skeleton. For folder-based templates (Initiative,
+Handoff Packet), the README.md carries this frontmatter; child files carry
+their own frontmatter only when they instantiate a distinct ontology object.
+See CONVENTIONS.md §"Templates" → "File layout"; F3.7 and F3.9 specs encode
+the per-child decision. -->
 
 # <Artifact name>
 

@@ -48,6 +48,127 @@ LIFECYCLE_STATES = {
 # Phase folders to walk when --all is given
 PHASE_DIRS = ["strategy", "discovery", "validation", "delivery", "market"]
 
+# --- --check-template mode ---------------------------------------------------
+#
+# Templates under `templates/<slug>.md` use angle-bracket placeholder syntax;
+# concrete values must still satisfy CONVENTIONS.md universal-schema enums.
+# Default mode behavior is unchanged.
+#
+# Placeholder shapes (from spec docs/specs/template-authoring-convention/):
+#   - Atomic placeholder:    ^<\S(?:[^>]*\S)?>$
+#   - Augmented placeholder: ^[^<>]*(<\S(?:[^>]*\S)?>[^<>]*)+$
+#   - Block-scalar:          a `|`/`>` block whose first non-empty line matches augmented
+#   - Nested-container:      list/dict whose every leaf scalar is itself acceptable
+
+ATOMIC_PLACEHOLDER = re.compile(r"^<\S(?:[^>]*\S)?>$")
+AUGMENTED_PLACEHOLDER = re.compile(r"^[^<>]*(<\S(?:[^>]*\S)?>[^<>]*)+$")
+
+# Concrete-value enums per CONVENTIONS.md universal-metadata schema. Applied
+# only in --check-template mode (default mode preserves its existing checks).
+TEMPLATE_FIELD_ENUMS: dict[str, set] = {
+    "priority": {"Low", "Medium", "High", "Critical"},
+    "risk_level": {"Low", "Medium", "High", "Critical"},
+    "strength": {"Strong", "Moderate", "Weak"},
+    # ai_assistance_allowed: `true` is coerced to bool True by the parser.
+    "ai_assistance_allowed": {True, "restricted", "not-allowed"},
+    "human_approval_required": {True, False},
+}
+
+
+def _is_placeholder_scalar(value: object) -> bool:
+    """True if `value` is a string matching one of the placeholder shapes."""
+    if not isinstance(value, str):
+        return False
+    if "\n" in value:
+        # Block-scalar: judge by first non-empty line.
+        first = next((ln for ln in value.split("\n") if ln.strip()), "")
+        return bool(AUGMENTED_PLACEHOLDER.match(first))
+    return bool(AUGMENTED_PLACEHOLDER.match(value))
+
+
+def _check_template_value(
+    value: object, field_name: str, ontology_types: set[str]
+) -> list[str]:
+    """Recursively validate a value under --check-template rules.
+
+    Returns a list of error messages (empty if valid). Lists and dicts are
+    accepted iff every leaf scalar inside is itself acceptable.
+    """
+    errors: list[str] = []
+    if isinstance(value, list):
+        for item in value:
+            errors.extend(_check_template_value(item, field_name, ontology_types))
+        return errors
+    if isinstance(value, dict):
+        for k, v in value.items():
+            errors.extend(_check_template_value(v, k, ontology_types))
+        return errors
+    if isinstance(value, str):
+        if _is_placeholder_scalar(value):
+            return errors  # placeholder accepted
+        if "<" in value or ">" in value:
+            errors.append(
+                f"field '{field_name}': malformed placeholder {value!r} "
+                f"(angle brackets present but does not match placeholder shape)"
+            )
+            return errors
+        if value == "":
+            errors.append(
+                f"field '{field_name}': empty-string concrete value"
+            )
+            return errors
+        # Field-specific concrete-value validation
+        if field_name == "object_type":
+            base = value.split("|")[0].strip()
+            if ontology_types and base not in ontology_types:
+                errors.append(
+                    f"field 'object_type': '{base}' not in ontology type set"
+                )
+            return errors
+        if field_name == "status":
+            if value not in LIFECYCLE_STATES:
+                errors.append(
+                    f"field 'status': '{value}' not a canonical lifecycle state"
+                )
+            return errors
+        if field_name in TEMPLATE_FIELD_ENUMS:
+            enum = TEMPLATE_FIELD_ENUMS[field_name]
+            if value not in enum:
+                errors.append(
+                    f"field '{field_name}': value {value!r} not in enum "
+                    f"{sorted(repr(e) for e in enum)}"
+                )
+        return errors
+    # Non-string scalar (bool / int / None)
+    if field_name in TEMPLATE_FIELD_ENUMS:
+        enum = TEMPLATE_FIELD_ENUMS[field_name]
+        if value not in enum:
+            errors.append(
+                f"field '{field_name}': value {value!r} not in enum "
+                f"{sorted(repr(e) for e in enum)}"
+            )
+    return errors
+
+
+def lint_template_file(path: Path, ontology_types: set[str]) -> list[str]:
+    """Lint a template file under --check-template rules."""
+    errors: list[str] = []
+    fm = parse_frontmatter(path)
+    if fm is None:
+        errors.append(f"{path}: no YAML frontmatter")
+        return errors
+
+    # Required-key check (identical to default mode).
+    for field in ("object_type", "status", "last_updated"):
+        if field not in fm:
+            errors.append(f"{path}: missing required field '{field}'")
+
+    # Walk every present field through the recursive validator.
+    for k, v in fm.items():
+        for err in _check_template_value(v, k, ontology_types):
+            errors.append(f"{path}: {err}")
+    return errors
+
 
 def load_ontology_types() -> set[str]:
     """Extract the canonical type names from the ontology reference doc."""
@@ -140,7 +261,37 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("paths", nargs="*", help="Files to lint")
     parser.add_argument("--all", action="store_true", help="Lint every kit artifact")
+    parser.add_argument(
+        "--check-template",
+        dest="check_template",
+        metavar="PATH",
+        help="Lint a template file under templates/, accepting angle-bracket "
+             "placeholders where concrete values would otherwise be required. "
+             "Mutually exclusive with --all and positional paths.",
+    )
     args = parser.parse_args()
+
+    if args.check_template:
+        if args.paths or args.all:
+            print("lint-frontmatter: --check-template is mutually exclusive with "
+                  "--all and positional paths", file=sys.stderr)
+            return 2
+        path = Path(args.check_template)
+        if not path.exists():
+            print(f"lint-frontmatter: file not found: {path}", file=sys.stderr)
+            return 1
+        ontology_types = load_ontology_types()
+        if not ontology_types:
+            print("lint-frontmatter: WARN ontology.md not found or has no type "
+                  "table; type-set check skipped", file=sys.stderr)
+        errors = lint_template_file(path, ontology_types)
+        for err in errors:
+            print(f"lint-frontmatter: {err}", file=sys.stderr)
+        if errors:
+            print(f"lint-frontmatter: {len(errors)} error(s) in {path}",
+                  file=sys.stderr)
+            return 1
+        return 0
 
     if not args.paths and not args.all:
         parser.print_help(sys.stderr)
