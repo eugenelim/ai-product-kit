@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"},
+          {"type": "command", "command": "python3 scripts/cadence-nudge.py"}
+        ]
+      }
+    ],
+    "UserPromptExpansion": [
+      {
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"}
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Write|Edit|MultiEdit|Read",
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/guard-credentials.py"}
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/check-handover-link.py"},
+          {"type": "command", "command": "python3 scripts/check-ontology-type.py"}
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/check-assumption-threshold.py"}
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"}
+        ]
+      }
+    ]
+  }
+}

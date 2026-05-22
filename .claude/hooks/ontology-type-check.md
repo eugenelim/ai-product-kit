@@ -74,7 +74,7 @@ The path is emitted verbatim from the tool payload — no normalization.
 
 ## Configuration
 
-In `.claude/settings.json` (wired by F2.6):
+Wired in `.claude/settings.json` as of F2.6 (2026-05-21), co-located with `check-handover-link` under the same `Write|Edit|MultiEdit` matcher entry:
 
 ```json
 {
@@ -82,7 +82,10 @@ In `.claude/settings.json` (wired by F2.6):
     "PreToolUse": [
       {
         "matcher": "Write|Edit|MultiEdit",
-        "command": "python3 scripts/check-ontology-type.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/check-handover-link.py"},
+          {"type": "command", "command": "python3 scripts/check-ontology-type.py"}
+        ]
       }
     ]
   }

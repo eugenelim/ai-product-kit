@@ -100,7 +100,7 @@ All four fields are required. The hook will allow the write AND append a one-lin
 
 ## Configuration
 
-In `.claude/settings.json` (F2.6 wires this; until then, the hook ships but is inert):
+Wired in `.claude/settings.json` as of F2.6 (2026-05-21):
 
 ```json
 {
@@ -108,7 +108,9 @@ In `.claude/settings.json` (F2.6 wires this; until then, the hook ships but is i
     "PreToolUse": [
       {
         "matcher": "Write|Edit|MultiEdit",
-        "command": "python3 scripts/check-handover-link.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/check-handover-link.py"}
+        ]
       }
     ]
   }

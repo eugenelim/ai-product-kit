@@ -71,7 +71,7 @@ The hook will allow the write but log it to `validation/experiments/OVERRIDE-LOG
 
 ## Configuration
 
-In `.claude/settings.json`:
+Wired in `.claude/settings.json` as of F2.6 (2026-05-21):
 
 ```json
 {
@@ -79,13 +79,16 @@ In `.claude/settings.json`:
     "PreToolUse": [
       {
         "matcher": "Write",
-        "matchPaths": ["validation/experiments/**/results.md"],
-        "command": "python scripts/check-assumption-threshold.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/check-assumption-threshold.py"}
+        ]
       }
     ]
   }
 }
 ```
+
+The script path-filters internally (it only acts when `tool_input.file_path` matches `validation/experiments/**/results.md`); no `matchPaths` filter is needed at the settings layer.
 
 ## Related
 

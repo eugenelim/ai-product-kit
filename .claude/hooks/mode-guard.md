@@ -35,25 +35,31 @@ If you're working across both modes, the right answer per the kit's own guidance
 
 ## Configuration
 
-In `.claude/settings.json`:
+Wired in `.claude/settings.json` as of F2.6 (2026-05-21):
 
 ```json
 {
   "hooks": {
     "SessionStart": [
       {
-        "command": "python3 scripts/mode-guard.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"}
+        ]
       }
     ],
     "UserPromptExpansion": [
       {
-        "command": "python3 scripts/mode-guard.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"}
+        ]
       }
     ],
     "PreToolUse": [
       {
         "matcher": "Skill",
-        "command": "python3 scripts/mode-guard.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"}
+        ]
       }
     ]
   }

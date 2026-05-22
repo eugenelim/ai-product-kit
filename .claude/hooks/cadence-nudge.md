@@ -60,14 +60,17 @@ If a signal is genuinely a false positive (e.g., the team has decided 180 days i
 
 ## Configuration
 
-In `.claude/settings.json` (wired by F2.6):
+Wired in `.claude/settings.json` as of F2.6 (2026-05-21), co-located with `mode-guard` under the same SessionStart entry:
 
 ```json
 {
   "hooks": {
     "SessionStart": [
       {
-        "command": "python3 scripts/cadence-nudge.py"
+        "hooks": [
+          {"type": "command", "command": "python3 scripts/mode-guard.py"},
+          {"type": "command", "command": "python3 scripts/cadence-nudge.py"}
+        ]
       }
     ]
   }

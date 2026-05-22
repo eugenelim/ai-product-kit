@@ -198,16 +198,16 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 
 > All SCH (scheduled agent) entries depend on the `personal-os/agents/` runtime directory, which ships empty. The directory must be populated before any scheduled agent can run. See ROADMAP P9.6.
 >
-> Six hook scripts ship as of 2026-05-21. `.claude/settings.json` (the hook-wiring file) is planned per ROADMAP F2.6 — until that lands, the scripts are committed and individually executable but not yet registered with Claude Code's tool-use lifecycle.
+> Six hook scripts ship as of 2026-05-21 and are wired in `.claude/settings.json` (F2.6, 2026-05-21). Every new session in this repo registers them with Claude Code's tool-use lifecycle.
 
 | Hook | Event(s) | Script | Action | Status |
 |---|---|---|---|---|
-| `check-handover-link` | PreToolUse(Write, Edit, MultiEdit) | `scripts/check-handover-link.py` | Refuse writes to phase artifacts without a required `parent_*` frontmatter link (per HANDOVERS.md) | shipped 2026-05-21 (F2.1) — wiring pending F2.6 |
-| `assumption-threshold-lock` | PreToolUse(Write on `validation/experiments/**/results.md`) | `scripts/check-assumption-threshold.py` | Refuse experiment-results writes unless a sibling `experiment.md` with `predeclared_threshold` predates the write | shipped 2026-05-21 (F2.2) — wiring pending F2.6 |
-| `ontology-type-check` | PreToolUse(Write, Edit, MultiEdit) | `scripts/check-ontology-type.py` | Warn (never block) when an artifact path implies an `object_type:` but frontmatter omits or mismatches it | shipped 2026-05-21 (F2.3) — wiring pending F2.6 |
-| `mode-guard` | SessionStart + UserPromptExpansion + PreToolUse(Skill) | `scripts/mode-guard.py` | Block wrong-mode slash-command invocations; surface active mode at session start | shipped 2026-05-21 (F2.4) — wiring pending F2.6 |
-| `cadence-nudge` | SessionStart | `scripts/cadence-nudge.py` | Surface drift signals (stale strategy >90d, orphan OST >30d, kill-drought >60d) as session context | shipped 2026-05-21 (F2.5) — wiring pending F2.6 |
-| `guard-credentials` | PreToolUse(Bash, Write, Edit, MultiEdit, Read) | `scripts/guard-credentials.py` | Hard-block tool calls touching `~/.ssh`, `.env*`, `~/.kube/config`, `~/.npmrc`, `~/.pypirc`, `~/.netrc`, `.pem`/`.key`, credential dirs | shipped 2026-05-21 (F2.8) — wiring pending F2.6 |
+| `check-handover-link` | PreToolUse(Write, Edit, MultiEdit) | `scripts/check-handover-link.py` | Refuse writes to phase artifacts without a required `parent_*` frontmatter link (per HANDOVERS.md) | shipped 2026-05-21 (F2.1) — wired (F2.6, 2026-05-21) |
+| `assumption-threshold-lock` | PreToolUse(Write on `validation/experiments/**/results.md`) | `scripts/check-assumption-threshold.py` | Refuse experiment-results writes unless a sibling `experiment.md` with `predeclared_threshold` predates the write | shipped 2026-05-21 (F2.2) — wired (F2.6, 2026-05-21) |
+| `ontology-type-check` | PreToolUse(Write, Edit, MultiEdit) | `scripts/check-ontology-type.py` | Warn (never block) when an artifact path implies an `object_type:` but frontmatter omits or mismatches it | shipped 2026-05-21 (F2.3) — wired (F2.6, 2026-05-21) |
+| `mode-guard` | SessionStart + UserPromptExpansion + PreToolUse(Skill) | `scripts/mode-guard.py` | Block wrong-mode slash-command invocations; surface active mode at session start | shipped 2026-05-21 (F2.4) — wired (F2.6, 2026-05-21) |
+| `cadence-nudge` | SessionStart | `scripts/cadence-nudge.py` | Surface drift signals (stale strategy >90d, orphan OST >30d, kill-drought >60d) as session context | shipped 2026-05-21 (F2.5) — wired (F2.6, 2026-05-21) |
+| `guard-credentials` | PreToolUse(Bash, Write, Edit, MultiEdit, Read) | `scripts/guard-credentials.py` | Hard-block tool calls touching `~/.ssh`, `.env*`, `~/.kube/config`, `~/.npmrc`, `~/.pypirc`, `~/.netrc`, `.pem`/`.key`, credential dirs | shipped 2026-05-21 (F2.8) — wired (F2.6, 2026-05-21) |
 | `pin-date` | SessionStart | (planned) | Run dates script | planned (F2.9; depends on P9.1 skill-dates) |
 | `validate-ost` | PostToolUse(Write on `discovery/trees/**`) | (planned) | Run OST validator; abort on failure | planned (F2.7; depends on P2.8 script-ost-validator) |
 

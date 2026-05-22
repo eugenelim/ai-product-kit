@@ -68,7 +68,7 @@ The hook documentation in `.claude/hooks/` and AGENTS.md describes phase guards 
 
 - [x] **F2.5** `cadence-nudge.py` — SessionStart hook that surfaces strategy/OST/kill-drought drift. **Slug:** `hook-cadence-nudge`. **Depends on:** F1.1. **Shipped:** 2026-05-21.
 
-- [ ] **F2.6** `.claude/settings.json` — Wire all hooks together with the proper matchers and exit-code conventions. **Slug:** `claude-settings-hooks-wiring`. **Depends on:** F2.1–F2.5.
+- [x] **F2.6** `.claude/settings.json` — Wire all hooks together with the proper matchers and exit-code conventions. **Slug:** `claude-settings-hooks-wiring`. **Depends on:** F2.1–F2.5. **Shipped:** 2026-05-21.
 
 - [ ] **F2.7** `validate-ost.py` — PostToolUse hook on `discovery/trees/**` writes that runs the OST validator and aborts on failure. **Slug:** `hook-validate-ost`. **Depends on:** P2.8 (script-ost-validator).
 

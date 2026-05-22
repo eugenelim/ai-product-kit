@@ -59,6 +59,9 @@ jobs:
             echo "::endgroup::"
           done
 
+      - name: settings-json
+        run: bash tools/tests/test-settings-json.sh
+
       - name: lint-frontmatter
         run: |
           # Only lint product artifacts if any exist (avoids noise on a fresh kit)

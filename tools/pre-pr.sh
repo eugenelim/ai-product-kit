@@ -54,6 +54,9 @@ for hook in .claude/hooks/*.md; do
     run_linter "lint-hook $hook" tools/lint-hook.sh "$hook"
 done
 
+# Settings JSON (.claude/settings.json wiring)
+run_linter "settings-json" tools/tests/test-settings-json.sh
+
 # Frontmatter (sample: phase folder artifacts only, when present)
 if [[ -d strategy ]] || [[ -d discovery ]] || [[ -d validation ]] || [[ -d delivery ]]; then
     # Only run --all when there's at least one phase artifact to lint, to avoid
