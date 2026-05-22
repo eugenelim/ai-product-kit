@@ -5,7 +5,7 @@ Two responsibilities:
 1. Walk every shipped template under `templates/` and assert it passes
    `tools/lint-frontmatter.py --check-template <path>`. This is the gate the
    F3.x workers wire their template into.
-2. Run the spec's contract tests (T5–T12 incl. T8b–T8g) against the
+2. Run the spec's contract tests (T5–T12 incl. T8b–T8h) against the
    `scripts/tests/fixtures/templates/` fixture set. These pin the placeholder-
    recognition rules against the cases the spec enumerates.
 

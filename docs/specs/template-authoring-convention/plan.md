@@ -1,8 +1,8 @@
 # Plan: template-authoring-convention
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending (set by `tools/check-done.py --phase plan`)
+- **Status:** Done (2026-05-22)
+- **Plan review:** approved (pre-EXECUTE × 2 + post-EXECUTE × 3 iterations, converged clean)
 
 > **Plan contract.** Implementation strategy for the spec. Allowed to change as we learn; changelog at the bottom.
 
