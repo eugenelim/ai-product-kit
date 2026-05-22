@@ -153,10 +153,17 @@ def _check_template_value(
 def lint_template_file(path: Path, ontology_types: set[str]) -> list[str]:
     """Lint a template file under --check-template rules."""
     errors: list[str] = []
-    fm = parse_frontmatter(path)
-    if fm is None:
+    # Use the rich Frontmatter object directly so we can surface parse_errors
+    # (e.g., unclosed `---` delimiter). The default-mode `parse_frontmatter`
+    # wrapper discards parse_errors, which would leave a malformed file
+    # blaming a missing field instead of the real cause.
+    fm_obj = _fm_parse_file(path)
+    if fm_obj is None:
         errors.append(f"{path}: no YAML frontmatter")
         return errors
+    for parse_err in fm_obj.parse_errors:
+        errors.append(f"{path}: frontmatter parse error — {parse_err}")
+    fm = fm_obj.data
 
     # Required-key check (identical to default mode).
     for field in ("object_type", "status", "last_updated"):

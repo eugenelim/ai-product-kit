@@ -33,14 +33,31 @@ SKIP = {
 }
 
 
-def _discover_template_targets() -> list[Path]:
+def _discover_template_targets(
+    templates_dir: Path | None = None, skip: set[Path] | None = None
+) -> list[Path]:
+    """Discover template files under `templates_dir`.
+
+    Two globs cover the two template shapes:
+      - `*.md` — single-file templates (e.g., `templates/strategic-intent.md`)
+      - `*/README.md` — folder templates (e.g., `templates/initiative/README.md`)
+
+    `skip` defaults to the production SKIP set. Passing a tmp_path-rooted
+    `templates_dir` lets a unit test exercise the discovery rule without
+    relying on production templates (closes ROADMAP F3-G2).
+    """
+    if templates_dir is None:
+        templates_dir = REPO_ROOT / "templates"
+    if skip is None:
+        skip = SKIP
     targets: set[Path] = set()
-    templates_dir = REPO_ROOT / "templates"
     targets.update(p for p in templates_dir.glob("*.md"))
     targets.update(p for p in templates_dir.glob("*/README.md"))
     # Always include the canonical skeleton explicitly so the test is never a no-op.
-    targets.add(templates_dir / "_meta" / "template-skeleton.md")
-    return sorted(t for t in targets if t not in SKIP)
+    skeleton = templates_dir / "_meta" / "template-skeleton.md"
+    if skeleton.exists():
+        targets.add(skeleton)
+    return sorted(t for t in targets if t not in skip)
 
 
 def _run_check_template(path: Path) -> subprocess.CompletedProcess[str]:
@@ -72,6 +89,23 @@ def test_target_count_nonzero():
         "no template targets discovered — the test would be a silent no-op. "
         "Confirm templates/_meta/template-skeleton.md exists."
     )
+
+
+def test_discovery_picks_up_folder_template_readme(tmp_path):
+    """Closes ROADMAP F3-G2 (fixed in-session): the `*/README.md` glob is
+    a no-op today (only `templates/_meta/README.md` matches, and that's in
+    SKIP). It first becomes load-bearing when F3.7 (Initiative) or F3.9
+    (Handoff Packet) lands a folder template. This test exercises the
+    discovery rule against a synthetic folder template so the glob is
+    proven correct now, not the first time someone ships a folder template.
+    """
+    templates_dir = tmp_path / "templates"
+    (templates_dir / "foo").mkdir(parents=True)
+    (templates_dir / "single.md").write_text("---\nx: y\n---\n")
+    (templates_dir / "foo" / "README.md").write_text("---\nx: y\n---\n")
+    targets = _discover_template_targets(templates_dir=templates_dir, skip=set())
+    assert (templates_dir / "single.md") in targets, "single-file template missed"
+    assert (templates_dir / "foo" / "README.md") in targets, "folder-template README missed"
 
 
 def test_skeleton_field_names_are_known():
@@ -163,6 +197,17 @@ def test_T8_bogus_enum_value():
 def test_T8b_whitespace_only_placeholder():
     result = _run_check_template(FIXTURES / "whitespace-only-placeholder.md")
     assert result.returncode != 0
+
+
+def test_unclosed_delimiter_surfaces_parse_error():
+    """Closes ROADMAP F3-G1 (fixed in-session): on malformed frontmatter, the
+    linter must name the parse error, not just blame missing required fields.
+    """
+    result = _run_check_template(FIXTURES / "unclosed-delimiter.md")
+    assert result.returncode != 0
+    assert "parse error" in result.stderr, (
+        f"expected 'parse error' in stderr, got: {result.stderr}"
+    )
 
 
 def test_T8h_nested_whitespace_placeholder():
