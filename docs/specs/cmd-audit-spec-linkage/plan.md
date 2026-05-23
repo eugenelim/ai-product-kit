@@ -1,7 +1,7 @@
 # Plan: cmd-audit-spec-linkage
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-23)
 - **Plan review:** pending (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** This is the implementation strategy. Unlike the spec, this document is allowed to change as you learn. When it changes substantially (a different approach, not just a re-ordering), note why in the changelog at the bottom.
@@ -126,4 +126,4 @@ The eight script contract tests (per spec §"Contract tests") drive Task 2. The 
 
 ## Changelog
 
--
+- 2026-05-23: PLAN → EXECUTE → VERIFY → REVIEW → CAPTURE in one session as part of Wave 3 (P4.2 + P4.9 + P4.10). TDD-built: 9 fixture-based script tests went red, script written, all green. Cross-cutting impl review + quality-engineer surfaced four fixes applied in-session: (1) wrapper documents `--write` always persists markdown regardless of `--format`; (2) script coerces list-valued `parent_initiative` to its first element (correctness — list value was silently misclassified as dangling); (3) script treats whitespace-only `parent_initiative` as missing not dangling; (4) script emits a stderr warning when `graph.parse_errors` is non-empty (observability — silent parse-skips inflated the clean count). Two regression tests added: list-coercion + whitespace-handling. Deferred: log-append race (already accepted in §Risks Risk-4); scope-not-found stderr diagnostic; missing `delivery/initiatives/` warning; threshold-boundary tests; `--write --format json` test.

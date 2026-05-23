@@ -1,6 +1,6 @@
 # Spec: cmd-audit-spec-linkage
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** command + script (bundled — mirrors `docs/specs/audit-traceability-script/spec.md`)

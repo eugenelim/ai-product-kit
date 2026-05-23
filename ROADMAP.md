@@ -236,15 +236,15 @@ The kit's most important guard surface. The `assumption-threshold-lock` hook fro
 The culmination: producing the validated engineering-handoff packet.
 
 - [x] **P4.1** `/draft-vision` — Vision from learning memo + persona + product. **Slug:** `cmd-draft-vision`. **Depends on:** F3.6. **Shipped:** 2026-05-23.
-- [ ] **P4.2** `/vision-shape-check` — Crosses teams? Initiative or single spec? **Slug:** `cmd-vision-shape-check`.
+- [x] **P4.2** `/vision-shape-check` — Crosses teams? Initiative or single spec? **Slug:** `cmd-vision-shape-check`. **Shipped:** 2026-05-23.
 - [x] **P4.3** `/draft-initiative` — Build the initiative folder structure. **Slug:** `cmd-draft-initiative`. **Depends on:** F3.7. **Shipped:** 2026-05-23.
 - [x] **P4.4** `/context-map` — Interactive bounded-contexts + Wardley-lite evolution check. **Slug:** `cmd-context-map`. **Shipped:** 2026-05-23.
 - [x] **P4.5** `/end-to-end-flow` — Mermaid cross-team flow. **Slug:** `cmd-end-to-end-flow`. **Shipped:** 2026-05-23.
 - [x] **P4.6** `/sequence-initiative` — Dependency-aware delivery sequence. **Slug:** `cmd-sequence-initiative`. **Shipped:** 2026-05-23.
 - [x] **P4.7** `ears-lint` skill — EARS pattern checker for spec sentences. **Slug:** `skill-ears-lint`. **Depends on:** F4.12. **Shipped:** 2026-05-23.
 - [x] **P4.8** `/draft-spec` — Spec from initiative + context-map row + EARS guidance. **Slug:** `cmd-draft-spec`. **Depends on:** P4.7 (EARS-lint skill planned; this command emits the EARS-pattern prompt without mechanical lint). **Shipped:** 2026-05-23.
-- [ ] **P4.9** `/spec-impact-analysis` — What changes if this spec changes? **Slug:** `cmd-spec-impact-analysis`.
-- [ ] **P4.10** `/audit-spec-linkage` — Every spec needs `parent_initiative:`. **Slug:** `cmd-audit-spec-linkage`. **Depends on:** F1.1.
+- [x] **P4.9** `/spec-impact-analysis` — What changes if this spec changes? **Slug:** `cmd-spec-impact-analysis`. **Shipped:** 2026-05-23.
+- [x] **P4.10** `/audit-spec-linkage` — Every spec needs `parent_initiative:`. **Slug:** `cmd-audit-spec-linkage`. **Depends on:** F1.1. **Shipped:** 2026-05-23.
 - [x] **P4.11** `/handoff-packet` — Assemble the 23-section engineering deliverable. **Slug:** `cmd-handoff-packet`. **Depends on:** F3.9, F1.5. **Shipped:** 2026-05-23.
 - [ ] **P4.12** `/release-notes` — Customer-facing notes. **Slug:** `cmd-release-notes`.
 - [ ] **P4.13** `/launch-comms` — Internal + external launch messaging. **Slug:** `cmd-launch-comms`.

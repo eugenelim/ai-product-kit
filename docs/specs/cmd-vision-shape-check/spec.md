@@ -1,6 +1,6 @@
 # Spec: cmd-vision-shape-check
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** command
@@ -35,7 +35,7 @@ Authoring this command after P4.1 / P4.3 shipped costs one focused work-loop. Th
 
 **Outputs.**
 
-1. `.claude/commands/vision-shape-check.md` — the new slash-command file. Frontmatter: `description:` (≤ 1024 chars; one sentence) and `argument-hint: <slug>` (positional only; no flags). Body H2 structure: `## When to run`, `## Procedure` (with Steps 1–3 as H3s), `## What this command will not do`. Body ≤ 120 lines.
+1. `.claude/commands/vision-shape-check.md` — the new slash-command file. Frontmatter: `description:` (≤ 1024 chars; one sentence) and `argument-hint: <slug>` (positional only; no flags). Body H2 structure: `## When to run`, `## Inputs`, `## Procedure` (with Steps 1–3 as H3s), `## Exit codes`, `## What this command will not do`. Body ≤ 120 lines.
 2. **Runtime stdout** — exactly three labelled lines, in this exact order, with labels in ALL CAPS followed by `:` and a single space, as the structured top of the command's output:
 
     ```
@@ -59,7 +59,7 @@ Authoring this command after P4.1 / P4.3 shipped costs one focused work-loop. Th
 
 The command's body intentionally deviates from `.claude/commands/_meta/command-skeleton.md` Steps 2–4. **This command is not a template-fill command; the docs/CONVENTIONS.md §Phase-4 Template-Fill Commands convention does not apply.** The skeleton's Steps 2 (template instantiation), 3 (H2-by-H2 placeholder walk), 4 (human_owned_decisions confirmation), 5 (lint the written artifact), and 6 (NEXT chain hint to a creating command with a new slug) are not appropriate for an analyst-shape command that reads one artifact, asks at most one boolean, and emits a verdict.
 
-The body's H2 order is exactly: `## When to run`, `## Procedure` (with Steps 1–3 as H3s), `## What this command will not do`. The Procedure's three Steps are:
+The body's H2 order is exactly: `## When to run`, `## Inputs`, `## Procedure` (with Steps 1–3 as H3s), `## Exit codes`, `## What this command will not do`. The Procedure's three Steps are:
 
 - **Step 1 — read the Vision and resolve `crosses_teams:`.** Validate the positional arg matches `^[a-z0-9-]+$`. Open `delivery/visions/<slug>.md`. If the file does not exist or YAML frontmatter is malformed, exit code 2 with diagnostic. Read the `crosses_teams:` field. If `true` → verdict `initiative`; if `false` → verdict `single-spec`; if absent or unparseable → defer to Step 2.
 - **Step 2 — ask one clarifying boolean if and only if `crosses_teams:` was ambiguous in Step 1.** Surface to the human: the Vision's §"The change" body excerpt and §"What we believe and why" body excerpt as context, then ask exactly once: `"Does this vision cross team boundaries? (y/n)"`. One question, never batched (per `.claude/CLAUDE.md`). On `y` → verdict `initiative`; on `n` → verdict `single-spec`; on any other response → re-prompt once; on a second non-y/n → exit code 1. Skip this Step entirely if Step 1 already resolved.

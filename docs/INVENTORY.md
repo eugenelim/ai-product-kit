@@ -112,7 +112,7 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/draft-vision` | SC | YOU | Vision, Value Prop, Differentiator | From learning + persona + product | shipped (2026-05-23) |
-| `/vision-shape-check` | SC | YOU | Shape Decision | Crosses teams? Initiative or single spec? | planned (P4.2) |
+| `/vision-shape-check` | SC | YOU | Shape Decision | Crosses teams? Initiative or single spec? | shipped (2026-05-23) |
 
 ### Initiative (4B)
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
@@ -126,8 +126,8 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
 | `/draft-spec` | SC | YOU | Requirement, Acceptance Criteria, Business Rule | From initiative + context-map row + EARS | shipped (2026-05-23) |
-| `/spec-impact-analysis` | SC | YOU | Impact Report | What changes if this spec changes? | planned (P4.9) |
-| `/audit-spec-linkage` | SC | YOU | Audit Report | Every spec needs `parent_initiative:` | planned (P4.10) |
+| `/spec-impact-analysis` | SC | YOU | Impact Report | What changes if this spec changes? | shipped (2026-05-23) |
+| `/audit-spec-linkage` | SC | YOU | Audit Report | Every spec needs `parent_initiative:` | shipped (script + prose fallback) |
 
 ### Engineering handoff (4D — NEW in v3)
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |

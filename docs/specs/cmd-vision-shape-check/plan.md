@@ -1,7 +1,7 @@
 # Plan: cmd-vision-shape-check
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-23)
 - **Plan review:** pending (set by supervisor after cross-cutting review)
 
 > **Plan contract.** Implementation strategy for `.claude/commands/vision-shape-check.md`. The spec is the contract; this plan is the path.
@@ -85,4 +85,4 @@ If the supervisor skips either doc update, the command is shipped-but-unreachabl
 
 ## Changelog
 
--
+- 2026-05-23: PLAN → EXECUTE → VERIFY → REVIEW → CAPTURE in one session as part of Wave 3 (P4.2 + P4.9 + P4.10). Cross-cutting impl review surfaced one body-shape drift: the implementation includes `## Inputs` and `## Exit codes` H2s that the spec's body-shape contract had not enumerated. Resolved by expanding the canonical body-shape list in the spec (less risky than removing useful content). Final body 74 lines, well under the 120-line cap.

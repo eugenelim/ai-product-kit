@@ -1,6 +1,6 @@
 # Spec: cmd-spec-impact-analysis
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** command
@@ -9,7 +9,7 @@
 
 _Specs are exempt from the universal metadata schema (see [`docs/CONVENTIONS.md`](../../CONVENTIONS.md) §"Specs and Plans"). The bullet block above IS the spec's metadata; no YAML frontmatter is required._
 
-> **Spec contract.** Defines the literal `.claude/commands/spec-impact-analysis.md` slash command — a Phase-4 *analytical, read-only* worker that takes a `<spec-slug>` (optionally disambiguated by `--from-initiative <initiative-slug>`), locates the spec folder under `delivery/initiatives/<initiative-slug>/specs/<spec-slug>/`, builds the typed-object graph via `scripts.lib.graph.build(root)`, walks upward (`parent_*` ancestors), downward (children referencing this spec), and sideways (`related_*` shared-concept surface), detects cross-team boundaries from the parent initiative's `crosses_teams:` list, surfaces risk flags (orphan ancestors, dangling edges, high-risk Requirement count, cycle membership), and emits a structured stdout report. The command writes NO artifact and mutates NO file. Verification is goal-based — the command file passes `tools/lint-command.sh`, and a manual gesture against a fixture spec exits 0 with the documented report shape on stdout. **This command is not a template-fill command; the `docs/CONVENTIONS.md` §"Phase-4 Template-Fill Commands" convention does not apply.**
+> **Spec contract.** Defines the literal `.claude/commands/spec-impact-analysis.md` slash command — a Phase-4 *analytical, read-only* worker that takes a `<spec-slug>` (optionally disambiguated by `--from-initiative <initiative-slug>`), locates the spec file at `delivery/initiatives/<initiative-slug>/specs/<spec-slug>.md`, builds the typed-object graph via `scripts.lib.graph.build(root)`, walks upward (`parent_*` ancestors), downward (children referencing this spec), and sideways (`related_*` shared-concept surface), detects cross-team boundaries from the parent initiative's `crosses_teams:` list, surfaces risk flags (orphan ancestors, dangling edges, high-risk Requirement count, cycle membership), and emits a structured stdout report. The command writes NO artifact and mutates NO file. Verification is goal-based — the command file passes `tools/lint-command.sh`, and a manual gesture against a fixture spec exits 0 with the documented report shape on stdout. **This command is not a template-fill command; the `docs/CONVENTIONS.md` §"Phase-4 Template-Fill Commands" convention does not apply.**
 
 ## Objective
 

@@ -1,7 +1,7 @@
 # Plan: cmd-spec-impact-analysis
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-23)
 - **Plan review:** pending (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** This is the implementation strategy. Unlike the spec, this document is allowed to change as you learn. When it changes substantially (a different approach, not just a re-ordering), note why in the changelog at the bottom.
@@ -100,4 +100,4 @@ No additional caller wiring is required — the command is invoked by humans (or
 
 ## Changelog
 
-- (none yet — initial draft)
+- 2026-05-23: PLAN → EXECUTE → VERIFY → REVIEW → CAPTURE in one session as part of Wave 3 (P4.2 + P4.9 + P4.10). Cross-cutting PLAN review corrected the spec-folder layout assumption (folder → flat-file at `delivery/initiatives/<i>/specs/<s>.md`); cross-cutting impl review caught the opening block-quote's stale folder reference (fixed in spec line 12). Implementation honors the flat-file layout throughout.
