@@ -1,0 +1,14 @@
+# Requirements registry — per HANDOVERS-6 §"Folder contents" and ontology §"Domain E — Requirement".
+# Each entry instantiates one Requirement object. Duplicate the entry block for additional requirements.
+# The parent_capability and parent_feature fields satisfy /audit-completeness checklist item 12 ("Requirements are mapped to features and capabilities").
+requirements:
+  - id: <REQ-NNN>
+    object_type: Requirement
+    description: "<one-line statement of what must be true>"
+    parent_capability: <CAP-NNN>
+    parent_feature: <FEAT-NNN>
+    acceptance_criteria_ref: "<heading slug in acceptance-criteria.md>"
+    risk_level: "<Low | Medium | High | Critical>"
+    owner: "<named human or role>"
+    status: "<Draft | In Review | Validated | Approved | Ready for Engineering>"
+    fixed_vs_flexible: "<fixed | flexible | unknown>"

@@ -1,6 +1,6 @@
 # Spec: template-handoff-packet
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-22)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** template

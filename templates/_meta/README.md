@@ -18,6 +18,7 @@ Infrastructure for the kit's template system, not a template itself. `_meta/` ho
 - [`initiative/`](../initiative/) — Initiative folder template (per HANDOVERS §"Handover 5"); README + five narrative child files (`context-map.md`, `flow.md`, `child-specs.md`, `sequence.md`, `capabilities.md`). Spec: `docs/specs/template-initiative/`.
 - [`pm-spec.md`](../pm-spec.md) — PM-side Feature spec, sits under an Initiative's `child-specs.md` manifest; instantiates as `delivery/initiatives/<initiative-slug>/specs/<spec-slug>.md`. Spec: `docs/specs/template-pm-spec/`.
 - [`landing-report.md`](../landing-report.md) — Engineering → Landings handover (HANDOVERS §"Handover 7"); predicted-vs-actual outcomes, adoption curve, counter-metrics, verdict. Spec: `docs/specs/template-landing-report/`.
+- [`handoff-packet/`](../handoff-packet/) — Handoff Packet folder template (per HANDOVERS §"Handover 6"); README + 21 narrative content files + `requirements.yaml` (Requirement registry). Spec: `docs/specs/template-handoff-packet/`.
 
 ## Why this directory
 

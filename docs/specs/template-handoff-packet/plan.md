@@ -1,7 +1,7 @@
 # Plan: template-handoff-packet
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Draft
+- **Status:** Done (2026-05-22)
 - **Plan review:** approved (pre-EXECUTE adversarial review iter-1 returned 3 Block + 6 Needs-fix + 5 Defer findings on 2026-05-22; all Block + Needs-fix findings resolved in-spec/in-plan; Defer findings logged as spec OQ7–OQ11)
 
 > **Plan contract.** This is the implementation strategy. Unlike the spec, this document is allowed to change as you learn. When it changes substantially (a different approach, not just a re-ordering), note why in the changelog at the bottom.
@@ -252,4 +252,4 @@ Cross-cutting only. Per-task tests are inline under the single task below.
 
 Append entries when the plan changes substantially during execution. Format: `<YYYY-MM-DD>: <one-line description of the change and why>`.
 
--
+- 2026-05-22: EXECUTE+VERIFY+REVIEW+CAPTURE landed in one session on branch `eugenelim/implement-f3.9-spec`. Adversarial review returned pass with 0 critical / 2 Needs-fix / 5 Defer. Needs-fix fixes applied in-session: (a) reverted README warning-comment wording to spec-verbatim form (dropped explanatory prefix; restored "audit-gate date fields"); (b) added in-file callout to `requirements.yaml` that `parent_capability` + `parent_feature` fields satisfy `/audit-completeness` checklist item 12. Defer-V1 (engineering-ready phrasing in `open-questions.md`) also fixed in-session per the "small cosmetic defers in-session" rule. Other Defer findings (D2 blank-line cosmetic; H1 business-objective placeholder additive sub-prompts; H2 NFR "in part" cross-pointer; M2 future-workflow.md has no mapped checklist item — spec gap, not template bug) left as known limitations; M2 is the only one that may warrant a follow-up spec (extend `/audit-completeness` item 6 to cover both current and future workflow, or add a new checklist item).
