@@ -1,7 +1,6 @@
 # Work-loop session scratch — per-spec state.json files are gitignored.
 # A new session deserves a fresh budget.
 docs/specs/**/state.json
-docs/specs/**/notes/
 
 # Python
 __pycache__/
