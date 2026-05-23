@@ -37,7 +37,7 @@ Handover contracts: `docs/HANDOVERS.md`. Phase-guard hooks enforce them.
 
 ## Object types (ontology)
 
-Every product artifact declares its `object_type:` per `context/frameworks/ontology.md`. Eight domains (A–H) plus a kit-composite Domain I, for 82 documented types total (74 atomic + 8 composite handover artifacts). When uncertain, run the `ontology-classifier` skill — it surfaces missing fields and proposes the type. (Kit-meta scaffolding — specs, plans, state — is exempt; see `docs/CONVENTIONS.md` §"Specs and Plans".)
+Every product artifact declares its `object_type:` per `context/frameworks/ontology.md`. Eight domains (A–H) plus a kit-composite Domain I, for 84 documented types total (76 atomic + 8 composite handover artifacts). When uncertain, run the `ontology-classifier` skill — it surfaces missing fields and proposes the type. (Kit-meta scaffolding — specs, plans, state — is exempt; see `docs/CONVENTIONS.md` §"Specs and Plans".)
 
 ## Human-vs-AI ownership
 

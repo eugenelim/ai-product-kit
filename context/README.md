@@ -51,7 +51,7 @@ Pull when drafting customer-facing or in-your-name content. Files: `guide.md`, `
 The PM-craft schemas the kit operates on. Pull when working with the corresponding artifact.
 
 ### Universal type system
-- **`ontology.md`** *(shipped)* — the canonical product/business ontology: eight domains plus a kit-composite Domain I, 82 documented typed objects (74 atomic + 8 composite), traceability rules, lifecycle states. Pull for any work that produces a typed artifact (which is nearly everything). The `ontology-classifier` skill loads this.
+- **`ontology.md`** *(shipped)* — the canonical product/business ontology: eight domains plus a kit-composite Domain I, 84 documented typed objects (76 atomic + 8 composite), traceability rules, lifecycle states. Pull for any work that produces a typed artifact (which is nearly everything). The `ontology-classifier` skill loads this.
 
 ### Strategy phase *(all planned)*
 - `rumelt.md` *(planned — F4.7)* — diagnosis / guiding policy / coherent actions; failure modes
@@ -87,7 +87,7 @@ The PM-craft schemas the kit operates on. Pull when working with the correspondi
 Short entries — one paragraph each, with synonyms and "not to be confused with."
 
 - `discovery-terms.md`, `validation-terms.md`, `delivery-terms.md`, `business-terms.md`, `strategy-terms.md`
-- `ontology-terms.md` (v3) — the eight domains plus Domain I and their 82 documented types, with cross-references *(planned — when this glossary file ships it must stay in sync with `context/frameworks/ontology.md`, which is the source of truth)*
+- `ontology-terms.md` (v3) — the eight domains plus Domain I and their 84 documented types, with cross-references *(planned — when this glossary file ships it must stay in sync with `context/frameworks/ontology.md`, which is the source of truth)*
 
 ## Discipline rules
 

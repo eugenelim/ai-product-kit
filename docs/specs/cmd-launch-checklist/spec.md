@@ -1,6 +1,6 @@
 # Spec: cmd-launch-checklist
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** command (Phase-4 post-ship operational-artifact slash command; **NOT** a member of the Phase-4 Template-Fill convention family — see §"Convention applicability" below)

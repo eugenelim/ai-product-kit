@@ -133,6 +133,7 @@ Whether the business can support, sell, launch, govern.
 | Launch Plan | Activities to release and promote |
 | Rollout Strategy | How access is introduced |
 | Customer Communication | External messaging |
+| Launch Communication | Per-launch, per-audience messaging draft (internal-team announcement, external blog, customer email). Authored post-ship by `/launch-comms` (P4.13) from a Handoff Packet. |
 | Risk | Potential harm, failure, negative impact |
 | Control / Mitigation | Action to reduce risk |
 
@@ -148,6 +149,7 @@ Accountability and decision history.
 | Change Request | Proposed modification after approval |
 | Requirement Owner | Person responsible for clarity |
 | Handoff Packet | Final bundle to engineering |
+| Launch Checklist | Change-type-aware operational gate authored post-handoff by `/launch-checklist` (P4.14). Sibling-child of a Handoff Packet; per-item human confirmation records what was actually cleared before launch. |
 | Traceability Link | Connection between objects |
 
 > Note: lifecycle state (the value of an artifact's `status:` frontmatter field) is a *property* of objects, not an object type itself. See "Lifecycle states" section below for the canonical state vocabulary.
@@ -240,6 +242,6 @@ State transitions are recorded in artifact frontmatter (`status:`) with `last_up
 
 ## When the ontology is wrong
 
-If an object appears in your work that doesn't fit any of the documented types (74 atomic types across Domains A–H plus 8 composite types in Domain I), open an RFC. Don't invent ad-hoc types — that's how ontology drift starts.
+If an object appears in your work that doesn't fit any of the documented types (76 atomic types across Domains A–H plus 8 composite types in Domain I), open an RFC. Don't invent ad-hoc types — that's how ontology drift starts.
 
 For "close but not quite" cases, the linter (`tools/lint-frontmatter.py`) accepts `object_type: <Base Type> | Adapted` as a documented escape hatch. Use it sparingly and follow up with an RFC if the adapted form recurs.

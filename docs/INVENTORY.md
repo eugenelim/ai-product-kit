@@ -36,8 +36,8 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 
 | Convention | Skeleton | Contract test | Constrains | Status |
 |---|---|---|---|---|
-| `docs/specs/template-authoring-convention/` | `templates/_meta/template-skeleton.md` | `scripts/tests/test_templates_instantiate.py` (`--check-template` mode) | F3.1–F3.10 (ten kit-provided product-artifact templates under `templates/`) | shipped 2026-05-22 |
-| `docs/specs/phase-4-command-convention/` | `.claude/commands/_meta/command-skeleton.md` | `scripts/tests/test_phase4_command_shape.py` | P4.1, P4.3, P4.4, P4.5, P4.6, P4.8, P4.11 (seven Phase-4 template-fill slash commands) | shipped 2026-05-23 |
+| `docs/specs/template-authoring-convention/` | `templates/_meta/template-skeleton.md` | `scripts/tests/test_templates_instantiate.py` (`--check-template` mode) | F3.1–F3.10 (ten kit-provided product-artifact templates under `templates/`); plus four post-ship templates added 2026-05-23 (`templates/release-notes.md`, `templates/launch-comms/{internal,blog,email}.md`, `templates/launch-checklist/{new-feature,breaking-change,pricing,regulated}.md`, `templates/retro.md`) | shipped 2026-05-22 |
+| `docs/specs/phase-4-command-convention/` | `.claude/commands/_meta/command-skeleton.md` | `scripts/tests/test_phase4_command_shape.py` | P4.1, P4.3, P4.4, P4.5, P4.6, P4.8, P4.11 (seven Phase-4 template-fill slash commands); plus P4.12, P4.13, P4.14, P4.15 (four Wave-4 post-ship commands with declared deviations — see each command's `## What this command will not do` section) | shipped 2026-05-23 |
 
 ---
 
@@ -148,10 +148,10 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 ### Across delivery
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
-| `/release-notes` | SC | YOU | Customer Communication | Customer-facing notes | planned (P4.12) |
-| `/launch-comms` | SC | YOU | Customer Communication | Internal + external launch messaging | planned (P4.13) |
-| `/launch-checklist` | SC | YOU | Launch Plan | Change-type checklist | planned (P4.14) |
-| `/retro` | SC | YOU | Retro | Facilitated retro | planned (P4.15) |
+| `/release-notes` | SC | YOU | Customer Communication | Customer-facing release-note drafter (Handoff-Packet default, `--from-landing` optional). Walks customer-voice "what's new" + 3-7 feature bullets one prompt at a time; surfaces zone-3 approval as `human_owned_decisions:`; chains to `/launch-comms`. | shipped 2026-05-23 (P4.12) |
+| `/launch-comms` | SC | YOU | Launch Communication | Multi-audience comms drafter (internal-team / external-blog / customer-email). Per-audience H2 asymmetry encodes audience-distinct contract; customer-facing drafts gated by zone-3 `human_owned_decisions:`; chains to `/launch-checklist`. | shipped 2026-05-23 (P4.13) |
+| `/launch-checklist` | SC | YOU | Launch Checklist | Change-type-aware operational gate (`new-feature` / `breaking-change` / `pricing` / `regulated`). Per-item human walk (10–13 items per change-type); extends `launch-considerations.md`; chains to `/landing-report`. | shipped 2026-05-23 (P4.14) |
+| `/retro` | SC | YOU | Decision | Facilitator: 5 fixed questions in fixed order, one at a time, never batched. Verbatim capture; adjacent to upstream Landing Report or Handoff Packet per `--scope`. Terminal Phase-4 step; the kit re-enters Strategy on a cadence decision. | shipped 2026-05-23 (P4.15) |
 | `roadmap-skeptic` | AG | CLAUDE (dispatch) | Review | Bets vs commitments lens | planned (P4.16) |
 | `section-fact-checker` | AG | CLAUDE (fan-out) | Fact check | One section at a time | planned (P8.9) |
 
@@ -236,7 +236,7 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | Strategic coherence audit | Rumelt + 2025/26 incoherence research |
 | Validation theatre detector | Operating model failure #4 + Bland & Osterwalder |
 | Landings phase + audit-landings-debt | Google's "landings not launches" reframe |
-| **Product/business ontology (8 domains + kit-composite Domain I, 82 documented types)** | **`product_business_knowledge_ontology_agent_handoff.md`** (source: 74 atomic; kit-composite Domain I adds 8 — see `context/frameworks/ontology.md`) |
+| **Product/business ontology (8 domains + kit-composite Domain I, 84 documented types)** | **`product_business_knowledge_ontology_agent_handoff.md`** (source: 76 atomic; kit-composite Domain I adds 8 — see `context/frameworks/ontology.md`) |
 | **Universal metadata schema** | **Ontology section 13** |
 | **Traceability rules + `/audit-traceability`** | **Ontology section 32** |
 | **`/audit-completeness` (25-item checklist)** | **Ontology section 41** |

@@ -1,7 +1,7 @@
 # Plan: cmd-retro
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
+- **Status:** Done (2026-05-23)
 - **Plan review:** pending (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** Implementation strategy for `/retro`. Allowed to change as you learn; substantive shifts logged in the §"Changelog" below. The spec is the contract; this is how we build to it.
@@ -138,3 +138,4 @@ If, after shipping, no INVENTORY row exists and no documentation links to `/retr
 Append entries when the plan changes substantially during execution. Format: `<YYYY-MM-DD>: <one-line description of the change and why>`.
 
 -
+- 2026-05-23: Shipped Wave-4 EXECUTE alongside three sibling post-ship specs; cross-cutting adversarial review surfaced and addressed 9 PLAN-phase + 3 REVIEW-phase findings (see commit messages for the load-bearing fixes).

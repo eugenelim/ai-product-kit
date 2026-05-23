@@ -11,7 +11,7 @@
 
 ## Objective
 
-Build `.claude/skills/ontology-classifier/SKILL.md` plus optional reference docs. The skill teaches Claude to: read unstructured input (an interview transcript snippet, a Slack thread, a customer email, a meeting note), classify each meaningful chunk into one of the kit's documented ontology types (74 atomic + 8 composite), and emit a structured output the orchestrator can either persist as an artifact or surface for human review.
+Build `.claude/skills/ontology-classifier/SKILL.md` plus optional reference docs. The skill teaches Claude to: read unstructured input (an interview transcript snippet, a Slack thread, a customer email, a meeting note), classify each meaningful chunk into one of the kit's documented ontology types (76 atomic + 8 composite), and emit a structured output the orchestrator can either persist as an artifact or surface for human review.
 
 This is the F1.3 deliverable. It unblocks AGENTS.md's repeated "run the ontology-classifier skill when uncertain" advice and discharges the `(planned — F1.3)` annotation across the kit's docs.
 
@@ -35,7 +35,7 @@ Without this skill, kit users classify inbound material by hand against `context
 ## Boundaries
 
 ### Always do
-- Classify against the ontology's 74 atomic + 8 composite types only. New types require an RFC, not skill output.
+- Classify against the ontology's 76 atomic + 8 composite types only. New types require an RFC, not skill output.
 - Mark confidence honestly: `Confirmed` only when the chunk explicitly carries the field's value; `Inferred` when reasonable; `Unknown` when the chunk doesn't support a value.
 - Surface every required-field gap rather than silently dropping them — the human owner decides what to fill.
 - Use the `| Adapted` suffix when a chunk is "close but not exact" — never invent a new type.

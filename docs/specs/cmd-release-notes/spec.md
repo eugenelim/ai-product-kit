@@ -1,6 +1,6 @@
 # Spec: cmd-release-notes
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** command (plus a small single-file template — `templates/release-notes.md` — shipped alongside; see §"Component type" below for the explicit rationale)

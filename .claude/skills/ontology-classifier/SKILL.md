@@ -1,6 +1,6 @@
 ---
 name: ontology-classifier
-description: Extract typed objects from unstructured input (transcripts, threads, emails, notes) and classify each chunk into one of the kit's 74 atomic + 8 composite ontology types. Surfaces missing required fields per the universal metadata schema; emits a proposal block the orchestrator can edit-and-persist. Use whenever inbound material needs to become typed kit artifacts.
+description: Extract typed objects from unstructured input (transcripts, threads, emails, notes) and classify each chunk into one of the kit's 76 atomic + 8 composite ontology types. Surfaces missing required fields per the universal metadata schema; emits a proposal block the orchestrator can edit-and-persist. Use whenever inbound material needs to become typed kit artifacts.
 license: MIT
 ---
 
@@ -108,7 +108,7 @@ When a chunk is "close but not exact" for a documented type, use the linter-acce
 
 ## Hard rules
 
-- **Never invent a new `object_type` value.** All proposals reference documented types from `context/frameworks/ontology.md` (74 atomic + 8 Domain I composites).
+- **Never invent a new `object_type` value.** All proposals reference documented types from `context/frameworks/ontology.md` (76 atomic + 8 Domain I composites).
 - **Never escalate confidence** to clean up a proposal. Honest `Inferred` and `Unknown` labels are the gate that lets humans trust the output.
 - **Never persist.** Output is a proposal block; the orchestrator or human decides whether and where to write.
 - **Never skip a required-field gap.** If the chunk doesn't support a required field, surface it — don't drop it because it's awkward.

@@ -246,10 +246,10 @@ The culmination: producing the validated engineering-handoff packet.
 - [x] **P4.9** `/spec-impact-analysis` — What changes if this spec changes? **Slug:** `cmd-spec-impact-analysis`. **Shipped:** 2026-05-23.
 - [x] **P4.10** `/audit-spec-linkage` — Every spec needs `parent_initiative:`. **Slug:** `cmd-audit-spec-linkage`. **Depends on:** F1.1. **Shipped:** 2026-05-23.
 - [x] **P4.11** `/handoff-packet` — Assemble the 23-section engineering deliverable. **Slug:** `cmd-handoff-packet`. **Depends on:** F3.9, F1.5. **Shipped:** 2026-05-23.
-- [ ] **P4.12** `/release-notes` — Customer-facing notes. **Slug:** `cmd-release-notes`.
-- [ ] **P4.13** `/launch-comms` — Internal + external launch messaging. **Slug:** `cmd-launch-comms`.
-- [ ] **P4.14** `/launch-checklist` — Change-type-aware checklist. **Slug:** `cmd-launch-checklist`.
-- [ ] **P4.15** `/retro` — Facilitated retro. **Slug:** `cmd-retro`.
+- [x] **P4.12** `/release-notes` — Customer-facing notes. **Slug:** `cmd-release-notes`. **Shipped:** 2026-05-23.
+- [x] **P4.13** `/launch-comms` — Internal + external launch messaging. **Slug:** `cmd-launch-comms`. **Shipped:** 2026-05-23.
+- [x] **P4.14** `/launch-checklist` — Change-type-aware checklist. **Slug:** `cmd-launch-checklist`. **Shipped:** 2026-05-23.
+- [x] **P4.15** `/retro` — Facilitated retro. **Slug:** `cmd-retro`. **Shipped:** 2026-05-23.
 - [ ] **P4.16** `roadmap-skeptic` agent — Bets vs commitments lens. **Slug:** `agent-roadmap-skeptic`.
 
 ---

@@ -1,6 +1,6 @@
 # Spec: cmd-retro
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** command (with a small optional template — see §"Inputs and outputs" → "Template question")

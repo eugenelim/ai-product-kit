@@ -10,7 +10,7 @@
 A product manager's operating system, built on two foundations:
 
 - A **four-phase operating model** (Strategy → Discovery → Validation → Delivery → Landings) with each phase gated by a load-bearing handover artifact.
-- A **canonical product/business ontology** (eight domains, ~82 documented object types (74 atomic across Domains A–H + 8 composite in Domain I), traceability rules, lifecycle states, and a Human-vs-AI responsibility model).
+- A **canonical product/business ontology** (eight domains, ~84 documented object types (76 atomic across Domains A–H + 8 composite in Domain I), traceability rules, lifecycle states, and a Human-vs-AI responsibility model).
 
 The detailed map of what lives where is in [`docs/architecture/overview.md`](docs/architecture/overview.md). The phase-by-phase guide is in [`docs/PHASE-GUIDE.md`](docs/PHASE-GUIDE.md). The artifact contracts at every phase boundary are in [`docs/HANDOVERS.md`](docs/HANDOVERS.md). Read those before exploring — they'll save you 20 minutes of grep.
 
@@ -23,7 +23,7 @@ For each kind of decision or knowledge, there is exactly one place it lives.
 | What is this kit, and what's in/out of scope? | [`docs/CHARTER.md`](docs/CHARTER.md) |
 | What phase am I at right now? | [`docs/PHASE-GUIDE.md`](docs/PHASE-GUIDE.md) — or run `/phase-guide` |
 | What artifact closes the phase I'm at? | [`docs/HANDOVERS.md`](docs/HANDOVERS.md) |
-| What types of objects can exist, and how do they link? | [`context/frameworks/ontology.md`](context/frameworks/ontology.md) (eight domains + kit-composite Domain I, 82 documented types) |
+| What types of objects can exist, and how do they link? | [`context/frameworks/ontology.md`](context/frameworks/ontology.md) (eight domains + kit-composite Domain I, 84 documented types) |
 | Required metadata for any artifact? | [`docs/CONVENTIONS.md`](docs/CONVENTIONS.md) — universal metadata schema |
 | Who owns decisions — human vs AI? | [`docs/HUMAN-AI-OWNERSHIP.md`](docs/HUMAN-AI-OWNERSHIP.md) |
 | Why did we choose X over Y? | [`docs/adr/`](docs/adr/) (Architecture Decision Records — frozen) |
