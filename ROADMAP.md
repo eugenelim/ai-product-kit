@@ -231,6 +231,8 @@ The kit's most important guard surface. The `assumption-threshold-lock` hook fro
 
 ## Phase 4 — Delivery and Engineering Handoff
 
+> P4.1, P4.3, P4.4, P4.5, P4.6, P4.8, P4.11 items consume the command convention from `docs/specs/phase-4-command-convention/`. Read that spec first; copy `.claude/commands/_meta/command-skeleton.md` to start each command.
+
 The culmination: producing the validated engineering-handoff packet.
 
 - [ ] **P4.1** `/draft-vision` — Vision from learning memo + persona + product. **Slug:** `cmd-draft-vision`. **Depends on:** F3.6.

@@ -30,6 +30,15 @@ Shape linters used by `tools/pre-pr.sh` and `.github/workflows/lint.yml` to keep
 | `tools/lint-hook.sh` | `.claude/hooks/*.md` (excluding `README.md`) | H1 `^# <slug> hook$`; sections `## What it does`, `## Why this matters`, `## Configuration`; soft cap 250 lines | shipped 2026-05-21 (F0.10) |
 | `tools/lint-frontmatter.py` | every kit artifact with frontmatter | universal-metadata schema (`object_type`, `status`, `last_updated`, parent-link validity, ontology type-set membership); `human_approval_required: true` ⇒ non-empty `human_owned_decisions`; `ai_assistance_allowed: restricted` ⇒ non-empty `ai_assistance_used` (list) | shipped (F0.5; F0.12 added `ai_assistance_allowed` check, 2026-05-21) |
 
+## Authoring conventions (kit-meta)
+
+Parent-convention specs that lock the shape of a fan-out before its workers run. Each ships a convention text inside `docs/CONVENTIONS.md`, a literal copyable skeleton under a `_meta/` directory, and a pytest contract test that auto-tightens as each fan-out worker ships its artifact.
+
+| Convention | Skeleton | Contract test | Constrains | Status |
+|---|---|---|---|---|
+| `docs/specs/template-authoring-convention/` | `templates/_meta/template-skeleton.md` | `scripts/tests/test_templates_instantiate.py` (`--check-template` mode) | F3.1–F3.10 (ten kit-provided product-artifact templates under `templates/`) | shipped 2026-05-22 |
+| `docs/specs/phase-4-command-convention/` | `.claude/commands/_meta/command-skeleton.md` | `scripts/tests/test_phase4_command_shape.py` | P4.1, P4.3, P4.4, P4.5, P4.6, P4.8, P4.11 (seven Phase-4 template-fill slash commands) | shipped 2026-05-23 |
+
 ---
 
 ## Phase 1 — Strategy
