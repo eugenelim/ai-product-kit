@@ -10,6 +10,8 @@ Items surfaced during this work-loop but explicitly deferred to a separate spec 
 
 **Why deferred:** the prose skill is sufficient for the current dispatch surface (model-executed classification inside `/draft-spec` and `/handoff-packet`). A runnable form is justified only when CI or a hook needs model-free lint, which is not yet a present requirement.
 
+**Implementation-time note (added by post-EXECUTE adversarial review iter-2):** the Python implementation must implement Step 0 (Complex pre-filter) **before** the single-keyword priority cascade in steps 1–5. A naïve sequential `if … elif …` cascade that returns on first match would classify any leading-`When` Complex sentence as Event-driven and never reach the Complex check. The current `SKILL.md` §"Classification procedure" was rewritten in iter-2 to make this explicit. Mavin et al.'s Complex form is unreachable by a single-pass keyword cascade; the pre-filter is load-bearing.
+
 ## Pre-EXECUTE adversarial-reviewer iter-1 finding E3 — no negative test for skill restating pattern definitions
 
 **Status:** deferred to post-EXECUTE Task 6 (adversarial review) per the reviewer's recommendation.

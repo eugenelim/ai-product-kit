@@ -10,6 +10,7 @@ For the canonical list referenced from `AGENTS.md`, see the [Skills available to
 - **[`ost-validator`](ost-validator/SKILL.md)** — validate-then-repair loop on Opportunity Solution Tree change sets. Detects orphans, double-deletes, data loss; returns structured pass/fail with specific repair instructions.
 - **[`strategy-coherence`](strategy-coherence/SKILL.md)** — bundles the Rumelt-style coherence-audit rule library. Used by `/audit-portfolio-coherence` and when reviewing a proposed initiative against the existing portfolio.
 - **[`ontology-classifier`](ontology-classifier/SKILL.md)** — extracts typed objects from unstructured input (transcripts, threads, emails, notes) and proposes classifications against the 74 atomic + 8 composite ontology types. Surfaces missing required fields and confidence labels; never persists.
+- **[`ears-lint`](ears-lint/SKILL.md)** — EARS pattern checker for Requirement and Acceptance-Criterion sentences. Classifies each candidate sentence into one of {Ubiquitous, Event-driven, State-driven, Optional-feature, Unwanted-behavior, Complex, Non-conformant} with rationale and suggested rewrite. Consumes `context/frameworks/ears.md` as the rule source.
 
 ## Planned
 
@@ -18,7 +19,6 @@ Listed for completeness; not currently shippable. Build queue in [`ROADMAP.md`](
 - `interview-snapshot` *(planned — [ROADMAP P2.2](../../ROADMAP.md#phase-2--discovery-commands))* — speaker detection + time-aligned quotes for `/interview-snapshot`.
 - `opportunity-clustering` *(planned — [ROADMAP P2.5](../../ROADMAP.md#phase-2--discovery-commands))* — theme raw opportunities into clusters.
 - `experiment-template` *(planned — [ROADMAP P3.3](../../ROADMAP.md#phase-3--validation-commands))* — scaffold the experiment folder per the assumption-test contract.
-- `ears-lint` *(planned — [ROADMAP P4.7](../../ROADMAP.md#phase-4--delivery-and-engineering-handoff))* — EARS pattern checker for spec sentences.
 - `wardley-evolution` *(planned — [ROADMAP P7.8](../../ROADMAP.md#enterprise-mode-strategy))* — place value-chain components on the evolution axis (enterprise mode).
 - `voice-check` *(planned — [ROADMAP P8.4](../../ROADMAP.md#phase-8--communication-and-research))* — voice-guide rubric for customer-facing drafts.
 - `dates` *(planned — [ROADMAP P9.1](../../ROADMAP.md#phase-9--personal-os))* — today/tomorrow/this-week/next-week; eliminates the "Claude thinks it's 2024" failure.

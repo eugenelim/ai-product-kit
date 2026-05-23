@@ -140,7 +140,8 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | `quality-engineer` | AG | CLAUDE (dispatch) | Review | Testability / observability / reliability lens | shipped |
 | `traceability-walker` | AG | CLAUDE (fan-out) | Audit Report | Per-subtree traceability shell-out (wraps F1.4) | shipped |
 | `voice-check` | SK | CLAUDE | Voice rubric | For customer-facing drafts | planned (P8.4) |
-| `ears-lint` | SK | CLAUDE | EARS check | Spec sentence pattern | planned (P4.7) |
+| `ears-lint` | SK | CLAUDE | EARS check | Spec sentence pattern | shipped (2026-05-23) |
+| EARS framework | REF | (pulled) | — | `context/frameworks/ears.md` | shipped (2026-05-23) |
 | `ontology-classifier` | SK | CLAUDE | Object types + links | Extract typed objects from input | shipped |
 | `work-loop` | SK | CLAUDE | Standard pattern | Plan → execute → verify → review | shipped |
 

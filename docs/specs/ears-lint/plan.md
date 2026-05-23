@@ -1,8 +1,8 @@
 # Plan: ears-lint
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending (set by `tools/check-done.py --phase plan`)
+- **Status:** Done (2026-05-23)
+- **Plan review:** approved (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** Implementation strategy for shipping F4.12 (`framework-ears`) and P4.7 (`skill-ears-lint`) together as Wave 2. Two coupled deliverables in one work-loop: the framework doc is the rule library; the skill is the consumer. Plan is allowed to change as we learn — substantive changes get a Changelog entry.
 
@@ -126,3 +126,4 @@ Tasks are sized so each is a coherent unit; the second commit bundles Tasks 1, 2
 
 - 2026-05-23 — Initial plan authored alongside the spec. PLAN phase entry.
 - 2026-05-23 — Pre-EXECUTE adversarial-reviewer iter-1: addressed C1 (T3/T4/T5/T9/T18 grep predicates wrapped in `[[ ... ]]` assertions), C2 (self-consistency limitation acknowledged in Verification mode + record-before-compare ordering added to Task 4), D2 (Task 7 sub-step count corrected), H1 (orchestrator-side splitter failure modes named in Invocation contract), H2 (Open Question §2 enforcement gap flagged), V1 (runnable Python form tracking location named via `notes/deferred-findings.md` + placeholder slug), E1 (passive-voice fixture row added; non-conformant failure modes (e) added), E2 (Always-do rule resolves `If … shall …` without `then` as Unwanted-behavior; fixture row added). E3 deferred to post-EXECUTE Task 6 review per the reviewer's recommendation.
+- 2026-05-23 — Post-EXECUTE adversarial-reviewer iter-2: addressed F1 (the spec's keyword-priority order made Complex unreachable under a sequential cascade — fixed in `SKILL.md` §"Classification procedure" by promoting Complex to a Step 0 pre-filter ahead of the single-keyword steps; framework's Complex classification rule tightened to name the "distinct pattern families" requirement; `deferred-findings.md` annotated so the future Python form does not reintroduce the bug), F2 (skill §"Failure modes" rewritten to cite-and-defer to the framework's §"Failure modes" rather than restate the same examples; the skill section now contains only classifier-operational addenda — what to write in `suggested_rewrite` per shape plus the one shape the framework omits), V1 (vague "implied condition" language in suggested_rewrite guidance replaced with a concrete fallback to a Ubiquitous-shaped rewrite plus a note for the author), V2 ("most common combinations" replaced with "common combinations include" in the framework — Mavin et al. does not rank by frequency). E1 (non-leading `where` example), E2 (compound `If` clauses), E3 (`If`-without-`shall` fixture row), F3 (intro blockquote rationale), F4 (goal-style as named heading) deferred — the framework's tightened Complex rule covers E2, the skill's failure-modes section now cites the framework which covers F4, and E1/E3/F3 are documentation polish that does not block CAPTURE.

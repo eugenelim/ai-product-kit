@@ -183,7 +183,7 @@ The `context/frameworks/*.md` reference files are pulled on demand by skills and
 - [ ] **F4.9** `jtbd.md` — Christensen / Ulwick formulations. **Slug:** `framework-jtbd`.
 - [ ] **F4.10** `strategic-coherence.md` — Three axes (resources / capabilities / market posture); incoherence patterns. **Slug:** `framework-strategic-coherence`.
 - [ ] **F4.11** `landings-not-launches.md` — Adoption curve is part of the work. **Slug:** `framework-landings-not-launches`.
-- [ ] **F4.12** `ears.md` — EARS pattern for spec sentences. **Slug:** `framework-ears`.
+- [x] **F4.12** `ears.md` — EARS pattern for spec sentences. **Slug:** `framework-ears`. **Shipped:** 2026-05-23.
 - [ ] **F4.13** `competitive-analysis.md` — What a thorough analysis contains. **Slug:** `framework-competitive-analysis`.
 
 ---
@@ -241,7 +241,7 @@ The culmination: producing the validated engineering-handoff packet.
 - [x] **P4.4** `/context-map` — Interactive bounded-contexts + Wardley-lite evolution check. **Slug:** `cmd-context-map`. **Shipped:** 2026-05-23.
 - [x] **P4.5** `/end-to-end-flow` — Mermaid cross-team flow. **Slug:** `cmd-end-to-end-flow`. **Shipped:** 2026-05-23.
 - [x] **P4.6** `/sequence-initiative` — Dependency-aware delivery sequence. **Slug:** `cmd-sequence-initiative`. **Shipped:** 2026-05-23.
-- [ ] **P4.7** `ears-lint` skill — EARS pattern checker for spec sentences. **Slug:** `skill-ears-lint`. **Depends on:** F4.12.
+- [x] **P4.7** `ears-lint` skill — EARS pattern checker for spec sentences. **Slug:** `skill-ears-lint`. **Depends on:** F4.12. **Shipped:** 2026-05-23.
 - [x] **P4.8** `/draft-spec` — Spec from initiative + context-map row + EARS guidance. **Slug:** `cmd-draft-spec`. **Depends on:** P4.7 (EARS-lint skill planned; this command emits the EARS-pattern prompt without mechanical lint). **Shipped:** 2026-05-23.
 - [ ] **P4.9** `/spec-impact-analysis` — What changes if this spec changes? **Slug:** `cmd-spec-impact-analysis`.
 - [ ] **P4.10** `/audit-spec-linkage` — Every spec needs `parent_initiative:`. **Slug:** `cmd-audit-spec-linkage`. **Depends on:** F1.1.

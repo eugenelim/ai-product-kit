@@ -1,6 +1,6 @@
 # Spec: ears-lint
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** framework-ref + skill (one spec, two coupled artifacts — mirrors the F3 `template-authoring-convention` precedent of shipping multiple deliverables under one spec when they share contract surface)
@@ -110,7 +110,7 @@ A reader of this section should be able to write the framework body, the skill b
 - Keep `context/frameworks/ears.md` ≤ 150 body lines. The framework is one page of reference, not a tutorial.
 - Keep the skill's body ≤ 200 lines and ensure it passes `tools/lint-skill.sh` (required frontmatter fields, H1 matching the skill name, "## When to use this skill" section, description ≤ 1024 chars).
 - Cite `context/frameworks/ears.md` from the skill body as the rule source for every pattern classification; do not restate the patterns inside the SKILL.md.
-- Apply pattern-matching keywords in priority order Unwanted-behavior → Event-driven → State-driven → Optional-feature → Ubiquitous → Complex (this order is load-bearing because some keywords are subsets of others — e.g., a sentence starting with `If` should classify as Unwanted-behavior before Ubiquitous's "fall-through" rule triggers).
+- Classification procedure: a Complex pre-filter runs first (count distinct leading-pattern keywords from distinct pattern families; if two or more, classify Complex). Only if the pre-filter does not match, apply the single-keyword cascade Unwanted-behavior → Event-driven → State-driven → Optional-feature → Ubiquitous → Non-conformant. The pre-filter is load-bearing because Mavin's Complex form is unreachable under a pure sequential cascade — a sentence starting with `When` that also contains `while` would classify as Event-driven on the first match and never reach a Complex check. _Note: pre-EXECUTE iter-1 specified the order with Complex at the tail; post-EXECUTE iter-2 corrected this — see Changelog._
 - Treat Unwanted-behavior's keyword as `If` alone — the literal "then" in Mavin et al.'s canonical template `"If <precondition>, then the <system> shall <response>"` is the canonical form, but the kit accepts the equivalent comma-only form `"If <precondition>, the <system> shall <response>"` as Unwanted-behavior. Rationale: in PM-authored requirements the comma-only form is far more common than the explicit `then`, and rejecting it would force ungrammatical rewrites for no semantic gain. The skill's classification procedure encodes this; the framework's Unwanted-behavior H3 names both forms.
 - Record manual-gesture verification in `docs/specs/ears-lint/notes/manual-verification-2026-05-23.md` — sentence-by-sentence expected vs actual classification, with any discrepancies surfaced and resolved before VERIFY exits.
 

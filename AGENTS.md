@@ -127,7 +127,7 @@ Full catalog in [`docs/INVENTORY.md`](docs/INVENTORY.md).
 - `strategy-coherence` — bundles the coherence-audit rule library
 - `voice-check` *(planned — [ROADMAP P8.4](ROADMAP.md#phase-8--communication-and-research))* — voice-guide rubric for customer-facing drafts
 - `dates` *(planned — [ROADMAP P9.1](ROADMAP.md#phase-9--personal-os))* — today/tomorrow/this-week/next-week (eliminates the "Claude thinks it's 2024" failure)
-- `ears-lint` *(planned — [ROADMAP P4.7](ROADMAP.md#phase-4--delivery-and-engineering-handoff))* — EARS pattern checker for spec sentences
+- `ears-lint` — EARS pattern checker for Requirement and Acceptance-Criterion sentences; classifies each candidate into one of {Ubiquitous, Event-driven, State-driven, Optional-feature, Unwanted-behavior, Complex, Non-conformant} with rationale and suggested rewrite. Rule source is `context/frameworks/ears.md`.
 - `ontology-classifier` — extract typed objects from unstructured input and link them per the ontology
 
 Full index in [`.claude/skills/README.md`](.claude/skills/README.md).
