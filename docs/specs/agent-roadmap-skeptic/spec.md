@@ -1,6 +1,6 @@
 # Spec: agent-roadmap-skeptic
 
-- **Status:** Draft
+- **Status:** Shipped (2026-05-23)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** agent (specialist reviewer — sibling of `adversarial-reviewer`, `quality-engineer`; NOT a fan-out worker)
@@ -42,7 +42,7 @@ Three of the four canonical Phase-4 artifact types — Vision, Initiative, Spec 
   - Initiative → Handover 5
   - Spec → Handover 6
   - Handoff Packet → Handover 6
-- `upstream_chain` — the parent artifacts back to the Strategic Intent: parent learning memo, parent vision, parent initiative as applicable. The orchestrator passes paths; the agent reads them to compare child claims against parent commitments. **Unresolvable parents:** if a path in `upstream_chain` does not resolve to a readable file, the agent notes it in the review document as an unresolvable parent, marks every finding that would have required parent-chain reading as "unconfirmed pending parent resolution", and sets `verdict: needs-fixes` minimum (never `pass`).
+- `upstream_chain` — the parent artifacts back to the Strategic Intent: parent learning memo, parent vision, parent initiative as applicable. The orchestrator passes paths; the agent reads them to compare child claims against parent commitments. **Unresolvable parents:** if a path in `upstream_chain` does not resolve to a readable file, the agent notes it in the review document as an unresolvable parent, marks every finding that would have required parent-chain reading as "unconfirmed pending parent resolution", and sets `verdict: needs-fixes` minimum (never `pass`). **Absent `upstream_chain`** (null, empty, or omitted by the orchestrator): treat as unresolvable for all §4 / §5 / §8 checks that require parent-chain reading, state this in the Verdict, and cap at `needs-fixes`.
 - Optional: prior reviewer output (e.g. `adversarial-reviewer`'s verdict) so the agent can stay out of that lens.
 
 **Outputs to the orchestrator.**
@@ -63,10 +63,10 @@ critical_issues: <count>
 Body sections, in this order:
 
 1. **Verdict** — one paragraph naming the verdict and the top reason.
-2. **Critical issues** — findings severe enough to back up to a parent phase (typically: the parent Vision's `predicted_outcomes` cannot justify the artifact's scope; an `open_assumption` flagged `must-test-before-shipping` in the parent is being treated as settled here; `human_owned_decisions` are placeholders on an artifact whose status implies it is ready). Each finding cites a specific file and line/section and proposes a concrete fix.
-3. **Commitments that are actually bets** — dated promises with no falsifiable plan, no named owner, no resourcing, no dependency map.
+2. **Critical issues** — findings that require backing up to a parent phase. Always-Critical conditions: (a) the parent Vision's `predicted_outcomes` cannot justify the artifact's scope; (b) an `open_assumption` flagged `must-test-before-shipping` in the parent is being treated as settled here without a link to a `status: survived` learning memo. Conditional-Critical: a §6 finding (placeholder `human_owned_decisions:`) escalates into §Critical issues only when the artifact's `human_approval_required: true` lacks a matching `approvals_obtained:` entry; otherwise the finding stays in §6. Each Critical-issues finding cites a specific file and line/section and proposes a concrete fix.
+3. **Commitments that are actually bets** — dated promises that fail the three-element commitment predicate from the Definitions block above (missing owner, missing dependency map, or missing falsifiable delivery condition).
 4. **Assumptions treated as settled requirements** — scope items whose acceptance criteria assume a learning that hasn't been validated or that the parent Vision listed under `open_assumptions:` without resolution.
-5. **Scope beyond parent justification** — Initiative or Spec scope items that the parent Vision's `predicted_outcomes` thresholds cannot justify. Cite the predicted_outcome and the scope item.
+5. **Scope beyond parent justification** — Initiative or Spec scope items that the parent Vision's `predicted_outcomes` thresholds cannot justify — or scope that has shrunk below what those thresholds require. Cite the predicted_outcome and the scope item.
 6. **Placeholder human_owned_decisions** — `human_owned_decisions:` entries still in template/placeholder form on an artifact whose `status:` or `human_approval_required:` posture implies it is ready for the next phase.
 7. **Dated language without evidence basis** — "by end of Q2", "in two weeks", "next quarter", etc., with no link to a learning memo, an evidence basis, or an explicit `accept-as-bet` tag.
 8. **Capabilities / Features promised without traced commitment-grounding** — items that name a deliverable capability or feature where the *commitment to deliver* lacks a link to a surviving learning memo or an explicit `accept-as-bet` tag. Applies to `capabilities.md` (Initiative) and `acceptance-criteria.md` (Handoff Packet); for Spec artifacts, apply to the Spec's Acceptance Criteria and walk the parent Initiative's `capabilities.md` via the upstream chain. (Distinct from `adversarial-reviewer`'s "hidden assumption" check: this lens asks specifically whether the *commitment to deliver* is grounded, not whether the *claim about the customer* is. If the commitment is grounded and the customer-claim is ambiguous, stay silent — that is adversarial-reviewer's territory.)
@@ -77,8 +77,9 @@ Sections with no findings may be omitted (empty sections are noise). A verdict o
 - For findings in §3 (Commitments that are actually bets): "This is a bet, not a commitment — either supply the missing {owner, dependency map, falsifiable delivery condition}, or move it to `open_assumptions:` with tier `accept-as-bet`."
 - For findings in §4–§8: "Cite the resolved learning memo (path), or move the item to `open_assumptions:` with an explicit tier {must-test-before-shipping, accept-as-bet, will-monitor-post-ship}."
 
-**`block` verdict — one hard predicate, plus discretionary block.**
-- **Hard `block` predicate (never requires calibration):** any `open_assumption` from the parent Vision tagged `tier: must-test-before-shipping` that the child artifact treats as settled without a link to a learning memo whose `status: survived` resolves it is *always* a `block`. Not `needs-fixes`.
+**`block` verdict — hard predicates (never require calibration), plus a discretionary block.**
+- **Hard `block` predicate 1:** any `open_assumption` from the parent Vision tagged `tier: must-test-before-shipping` that the child artifact treats as settled without a link to a learning memo whose `status: survived` resolves it is *always* a `block`. Not `needs-fixes`.
+- **Hard `block` predicate 2 (Draft-Vision early-exit):** a Vision with `status: Draft` (or missing) AND `human_approval_required: true` lacking a matching `approvals_obtained:` entry is *always* a `block`. The agent returns immediately on this case (see §Boundaries §"Ask first" above and the agent body's §"When the orchestrator invokes you").
 - **Discretionary `block`:** the artifact's commitment posture cannot be repaired in-place — the parent phase (Vision, Learning, or Strategic Intent) needs to be reopened. Surface that explicitly in the Verdict paragraph.
 
 ## Boundaries
@@ -95,7 +96,7 @@ Sections with no findings may be omitted (empty sections are noise). A verdict o
 
 - Reviewing an artifact whose phase is ambiguous (e.g., a `delivery/visions/<slug>.md` that's clearly still a Phase-3 learning memo dressed up as a Vision). Return a structured `block` verdict naming the phase confusion; the orchestrator decides whether to route to `discovery-coach`/`assumption-skeptic` instead.
 - Reviewing a "Phase-4 artifact" that lives outside the four canonical paths above (e.g., a one-off planning doc). Decline cleanly and recommend `adversarial-reviewer` instead.
-- Reviewing a Vision with `status: Draft` (or no `status:` field) and no `approvals_obtained:` entry corresponding to its `human_approval_required: true`. A Draft Vision with unfilled `predicted_outcomes:` will produce a flood of spurious §3–§5 findings. Return a structured `block` naming the incomplete-gate condition and recommend `/audit-completeness` runs first; do not run the bets-vs-commitments lens.
+- Reviewing a Vision with `status: Draft` (or no `status:` field) and no `approvals_obtained:` entry corresponding to its `human_approval_required: true`. A Draft Vision produces a high rate of false-positive §3–§5 findings because `predicted_outcomes:` is typically unfilled and `human_owned_decisions:` typically unresolved. Return a structured `block` naming the incomplete-gate condition and recommend `/audit-completeness` runs first; do not run the bets-vs-commitments lens. (This is one of two hard `block` predicates the agent encodes — see spec §"`block` verdict" below and the agent body's §Hard rules.)
 - Receiving a `target_path` that does not resolve to one of the four canonical Phase-4 paths in §Inputs. Decline cleanly and ask the orchestrator to re-resolve; do not pick a closest match.
 
 ### Never do

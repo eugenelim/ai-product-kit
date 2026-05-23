@@ -250,7 +250,7 @@ The culmination: producing the validated engineering-handoff packet.
 - [x] **P4.13** `/launch-comms` — Internal + external launch messaging. **Slug:** `cmd-launch-comms`. **Shipped:** 2026-05-23.
 - [x] **P4.14** `/launch-checklist` — Change-type-aware checklist. **Slug:** `cmd-launch-checklist`. **Shipped:** 2026-05-23.
 - [x] **P4.15** `/retro` — Facilitated retro. **Slug:** `cmd-retro`. **Shipped:** 2026-05-23.
-- [ ] **P4.16** `roadmap-skeptic` agent — Bets vs commitments lens. **Slug:** `agent-roadmap-skeptic`.
+- [x] **P4.16** `roadmap-skeptic` agent — Bets vs commitments lens. **Slug:** `agent-roadmap-skeptic`. **Shipped:** 2026-05-23.
 
 ---
 

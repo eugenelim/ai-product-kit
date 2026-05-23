@@ -142,7 +142,7 @@ Full index in [`.claude/skills/README.md`](.claude/skills/README.md).
 - `compliance-reviewer` *(planned — [ROADMAP P6.1](ROADMAP.md#phase-6--reviewer-agents-and-the-work-loop-closure))* — regulatory, legal, privacy, ethics lens. Use when the artifact touches user data, claims, pricing, safety, or regulated workflows. Complements human legal/compliance review; does not replace it.
 - `quality-engineer` — testability, observability, reliability, maintainability lens for specs and handoff packets.
 
-Plus the phase-skeptic agents (`strategy-skeptic` *(planned — ROADMAP P7.3)*, `discovery-coach` *(planned — ROADMAP P2.13)*, `assumption-skeptic` *(planned — ROADMAP P3.2)*, `roadmap-skeptic` *(planned — ROADMAP P4.16)*, `landing-skeptic` *(planned — ROADMAP P5.7)*) and fan-out workers (`competitor-research`, `interview-coder` *(planned — ROADMAP P2.3)*, `paper-summarizer` *(planned — ROADMAP P8.12)*, `cohort-analyst` *(planned — ROADMAP P5.5)*, etc.). Full catalog in [`.claude/agents/README.md`](.claude/agents/README.md).
+Plus the phase-skeptic agents (`strategy-skeptic` *(planned — ROADMAP P7.3)*, `discovery-coach` *(planned — ROADMAP P2.13)*, `assumption-skeptic` *(planned — ROADMAP P3.2)*, `roadmap-skeptic`, `landing-skeptic` *(planned — ROADMAP P5.7)*) and fan-out workers (`competitor-research`, `interview-coder` *(planned — ROADMAP P2.3)*, `paper-summarizer` *(planned — ROADMAP P8.12)*, `cohort-analyst` *(planned — ROADMAP P5.5)*, etc.). Full catalog in [`.claude/agents/README.md`](.claude/agents/README.md).
 
 ## Things you should not do without asking
 

@@ -1,8 +1,8 @@
 # Plan: agent-roadmap-skeptic
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Drafting
-- **Plan review:** pending
+- **Status:** Done (2026-05-23)
+- **Plan review:** approved
 
 > **Plan contract.** Implementation strategy for shipping `.claude/agents/roadmap-skeptic.md` — the Phase-4 specialist-reviewer agent encoding the bets-vs-commitments lens.
 
@@ -139,4 +139,4 @@ No existing audit / command / skill needs to be updated to call this new agent i
 
 ## Changelog
 
--
+- 2026-05-23: Shipped after three REVIEW iterations. Iteration 1 added the discretionary `block` trigger, under-scope direction on §5, softened the "mechanical predicate" claim, concretized §Critical-issues enumeration, added absent-`upstream_chain` handling, and named README.md as the frontmatter source for Initiative/Handoff-Packet folders. Iteration 2 fixed C-1 (escalation rule for §6 placeholder `human_owned_decisions` made conditional on `human_approval_required: true` lacking `approvals_obtained:`), replaced "flood of spurious findings" with concrete language, and promoted the Draft-Vision early-exit to a second hard `block` predicate in §Hard rules. Iteration 3 returned `verdict: pass`; two stylistic tidy-ups in the spec's prose sections were folded into the same commit.
