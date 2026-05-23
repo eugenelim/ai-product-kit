@@ -111,28 +111,28 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 ### Vision (4A)
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
-| `/draft-vision` | SC | YOU | Vision, Value Prop, Differentiator | From learning + persona + product | planned (P4.1) |
+| `/draft-vision` | SC | YOU | Vision, Value Prop, Differentiator | From learning + persona + product | shipped (2026-05-23) |
 | `/vision-shape-check` | SC | YOU | Shape Decision | Crosses teams? Initiative or single spec? | planned (P4.2) |
 
 ### Initiative (4B)
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
-| `/draft-initiative` | SC | YOU | Initiative, Capability list | Build initiative folder | planned (P4.3) |
-| `/context-map` | SC | YOU | Bounded Contexts, Evolution Check | Interactive context map | planned (P4.4) |
-| `/end-to-end-flow` | SC | YOU | Business Workflow | Cross-team flow (Mermaid) | planned (P4.5) |
-| `/sequence-initiative` | SC | YOU | Dependency Sequence | Delivery sequence | planned (P4.6) |
+| `/draft-initiative` | SC | YOU | Initiative, Capability list | Build initiative folder | shipped (2026-05-23) |
+| `/context-map` | SC | YOU | Bounded Contexts, Evolution Check | Interactive context map | shipped (2026-05-23) |
+| `/end-to-end-flow` | SC | YOU | Business Workflow | Cross-team flow (Mermaid) | shipped (2026-05-23) |
+| `/sequence-initiative` | SC | YOU | Dependency Sequence | Delivery sequence | shipped (2026-05-23) |
 
 ### Spec (4C)
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
-| `/draft-spec` | SC | YOU | Requirement, Acceptance Criteria, Business Rule | From initiative + context-map row + EARS | planned (P4.8) |
+| `/draft-spec` | SC | YOU | Requirement, Acceptance Criteria, Business Rule | From initiative + context-map row + EARS | shipped (2026-05-23) |
 | `/spec-impact-analysis` | SC | YOU | Impact Report | What changes if this spec changes? | planned (P4.9) |
 | `/audit-spec-linkage` | SC | YOU | Audit Report | Every spec needs `parent_initiative:` | planned (P4.10) |
 
 ### Engineering handoff (4D — NEW in v3)
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
-| `/handoff-packet` | SC | YOU | Handoff Packet | Assemble the ontology-defined 23-section deliverable | planned (P4.11) |
+| `/handoff-packet` | SC | YOU | Handoff Packet | Assemble the ontology-defined 23-section deliverable | shipped (2026-05-23) |
 | `/audit-completeness` | SC | YOU | Audit Report | 25-item pre-handoff checklist | shipped (script + prose fallback) |
 | `/audit-traceability` | SC | YOU | Audit Report | Walk the seven traceability rules | shipped (script + prose fallback) |
 | `adversarial-reviewer` | AG | CLAUDE (dispatch) | Review | Default reviewer; artifact-vs-contract drift | shipped |
