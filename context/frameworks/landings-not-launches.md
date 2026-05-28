@@ -6,7 +6,7 @@
 
 The traditional product calendar treats launch as the terminal event: build → test → launch → celebrate → move on. Reality treats launch as the inflection where adoption work begins. A product that ships but is not adopted has produced output without outcome — and Cagan's "feature factory" failure mode (`context/frameworks/validation-theatre.md`) lives in the gap.
 
-The kit's Phase 5 makes adoption work an explicit phase with its own handover artifact (the Landing Report). Phase 4 (Delivery) ends at code-in-prod; Phase 5 (Landings) begins there and ends at outcome-realized-or-rejected. Skipping Phase 5 is the most common failure mode in product practice — and the most expensive, because the work that didn't land is rarely surfaced before the next quarter's commitments lock in.
+The kit's Phase 5 makes adoption work an explicit phase with its own handover artifact (the Landing Report). Phase 4 (Delivery) ends at code-in-prod; Phase 5 (Landings) begins there and ends at outcome-realized-or-rejected. Skipping Phase 5 is the most common failure mode in product practice — and the most expensive, because if Phase 5 is skipped, failed outcomes typically only appear during the next planning cycle when prior work's impact is reviewed — after new commitments have already been made.
 
 The phrase "Landings, not Launches" names the discipline: launches are events; landings are work.
 

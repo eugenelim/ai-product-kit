@@ -36,6 +36,7 @@ The OST is a directed acyclic graph with strict layering. The validator at `.cla
 - **The "everything is an opportunity" tree** — every PM hunch gets a node; no real customer source backs any of them. The tree looks rich; the evidence is aspirational.
 - **The "single-path" tree** — only one Opportunity per Outcome. Convergent thinking too early; the tree never had a chance to surface alternatives.
 - **The "flat tree"** — all Opportunities at the same depth, no sub-Opportunities. Makes prioritization impossible because every node looks comparable; useful trees have varying depth as some Opportunities decompose further than others.
+- **The "frozen tree"** — an OST that has not been updated in weeks or months while the team continues interviewing. Continuous discovery's whole premise is that the tree moves; a frozen tree means either the discovery work stopped or the integration into the tree stopped. The kit's `cadence-nudge` hook (F2.5, shipped) surfaces this drift at session start; see also `context/frameworks/continuous-discovery.md`.
 
 ## How the kit uses this framework
 

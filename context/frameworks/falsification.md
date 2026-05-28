@@ -12,6 +12,8 @@ The kit's Learning Memo template (F3.5, shipped at `templates/learning-memo.md`)
 
 **What counts as falsified must be declared before the test runs.** Without a predeclared threshold, every result can be post-hoc rationalized into a survival ("the conversion rate was lower than we hoped but the segment was unrepresentative"; "the latency missed the SLA but the test load was unrealistic"). The kit's `hook-assumption-threshold-lock` (F2.2, shipped at `scripts/check-assumption-threshold.py`) is the mechanical guard: it refuses to write `validation/experiments/**/results.md` unless a falsification threshold was filed before the experiment ran.
 
+The threshold declaration must name the **statistical shape** of the metric explicitly — point estimate (e.g., "conversion rate ≥ 12%"), interval (e.g., "p-value ≤ 0.05 on a two-tailed test"), or categorical (e.g., "≥4 of 5 users complete the task unaided"). The shape must match the test's actual output; declaring a point-estimate threshold and then reporting a p-value (or vice versa) lets the team interpret the result either way after the fact. This is the prescriptive fix for the confidence-interval-confusion failure mode named below.
+
 This is the kit's signature guard — the one PreToolUse hook that protects the falsification discipline at write-time, not at review-time. Post-hoc rationalization is the dominant failure mode in product validation; the hook makes the rationalization mechanically visible by refusing the write that would conceal it.
 
 ## Why the kit is asymmetric

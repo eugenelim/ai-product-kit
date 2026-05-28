@@ -6,15 +6,21 @@
 
 Torres names **weekly customer contact** as the discipline; the kit's practical target is **≥3 customer interviews + ≥1 assumption test + ≥1 falsified-or-survived assumption per week** (three interviews is not Torres's published number — it is the kit's practical minimum for trio coverage across PM, designer, and tech lead). Frame it as a discipline, not a quota: the point is sustained contact, not the specific numbers. A team that hits 2-2-2 on a regular cadence is in better shape than one that hits 3-1-1 once and then nothing for two months.
 
+The numbers are asymmetric on purpose. Three interviews is not three times more useful than one — it is qualitatively different work. A single interview produces an anecdote; three interviews in the same week produce *contrast*, which is the raw material for pattern detection on the OST. The trio hears one customer say something, then a second customer say something adjacent-but-not-identical, then a third disconfirm it; that triangulation is what promotes an Opportunity from "interesting" to "load-bearing." One interview a week cannot do that, no matter how good the interviewer. The cadence is structured to force the contrast, not to hit a research-volume target.
+
+The ≥1 assumption test and ≥1 resolved assumption mirror the same logic: the goal is to keep the OST and the assumption map *moving* every week, not to accumulate research artifacts. A week in which three interviews happened but no assumption resolved and no Opportunity changed status is a failed week by this rubric, even though the cadence number was hit. Conversely, a week with two interviews that killed a load-bearing assumption is a win.
+
 The kit operationalizes the cadence through `scripts/cadence-nudge.py` (F2.5, shipped) — a SessionStart hook that surfaces drift when a team has gone too long without an interview, an OST update, or a killed assumption. The hook is a nudge, not a gate; it reads the timestamps on the most recent artifacts in `discovery/`, `validation/learnings/`, and `discovery/trees/` and reports drift in the session's opening message.
 
-Cadence is the carrier wave. The signal — what you learn — only accumulates if the carrier is continuous.
+Without sustained cadence, insights from individual interviews don't aggregate into patterns; the OST stays static and the phase gate cannot close.
 
 ## The product trio
 
 Discovery is done by a cross-functional **trio**: PM, designer, tech lead. They interview together, build OSTs together, decide together. The trio is not a relay (designer hands research to PM, PM hands strategy to tech lead); it is a single decision-making body.
 
 Why a trio matters in practice: different roles surface different opportunities from the same conversation. The designer hears interaction friction; the tech lead hears feasibility constraints; the PM hears business viability. Discovery done by a single role is systematically blind to two of the three lenses — which then surface late in delivery as rework, post-launch friction, or feasibility surprises.
+
+The intent behind the trio structure is *concurrent ownership*, not *broader attendance*. A PM who runs the interview and then forwards notes to a designer and a tech lead has not done trio discovery — they have done PM discovery and added two reviewers. The three lenses must be live in the room, asking their own follow-ups, because the relevant friction often sits in the gap between what one role hears and what another role would have asked next. The trio is also the unit of *commitment*: when all three sign the same Opportunity as `chosen: true`, the Discovery → Validation handover lands with no role-shaped seams that later surface as "we never agreed to that."
 
 The kit's Engineering Handoff Packet (F3.9 template) is designed to reflect the trio's shared ownership — the `human_owned_decisions:` and `approvals_obtained:` fields can carry approvals from any of the three roles, not just the PM.
 

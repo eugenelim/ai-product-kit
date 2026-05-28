@@ -1,12 +1,14 @@
 # Wardley mapping
 
-> A strategic mapping technique that anchors a value chain on a named user need and positions each component along an evolution axis. Defined by Simon Wardley in his CC-BY-SA online book *Wardley Maps* (https://list.wardleymaps.com/, ongoing). A Wardley map is a *map* (not a diagram) because the spatial position of every component carries meaning: the y-axis is the value chain from user-facing to invisible-infrastructure; the x-axis is the evolution stage from Genesis to Commodity. This kit consumes Wardley in enterprise mode only — the `mode-guard` hook (F2.4, shipped) blocks `/wardley-map` outside enterprise mode. Downstream consumers are the `/wardley-map` command (planned — P7.7) and the `wardley-evolution` skill (planned — P7.8).
+> A strategic mapping technique that anchors a value chain on a named user need and positions each component along an evolution axis. Defined by Simon Wardley in his CC-BY-SA online book *Wardley Maps* (https://list.wardleymaps.com/, ongoing). A Wardley map encodes two semantically loaded axes — value chain position on y and evolutionary stage on x — so that moving a component on either axis conveys a specific strategic implication. The y-axis runs from user-facing to invisible-infrastructure; the x-axis runs from Genesis to Commodity. This kit consumes Wardley in enterprise mode only — the `mode-guard` hook (F2.4, shipped) blocks `/wardley-map` outside enterprise mode. Downstream consumers are the `/wardley-map` command (planned — P7.7) and the `wardley-evolution` skill (planned — P7.8).
 
 ## The map — value chain anchored on user need
 
 Every Wardley map starts with a named **user need**. The value chain hangs from that need: each component above another is something that the lower one supports. If you cannot name who the user is and what they need, you do not have a map — you have a diagram of components.
 
 The anchor matters because strategic decisions are valid only relative to a user. A component that is critical for one user need may be irrelevant for another. The discipline of forcing the map to declare its anchor user is the single most useful rule Wardley imposes; teams that skip it end up with diagrams that suggest moves that don't actually serve any specific customer.
+
+The anchoring is load-bearing in a deeper sense: a Wardley map without a user-need anchor is geometrically identical to one with an anchor — the same boxes, the same lines, the same axis positions — but strategically empty. The y-axis is defined as *distance from the user*, so removing the user collapses the axis's meaning. Components no longer have a "closer to" or "further from" position; the value chain becomes an undirected dependency graph. Gameplay moves that assume the value chain points somewhere (commoditize the layer beneath user-visible differentiation; absorb the layer your competitor depends on) become incoherent. The anchor is not annotation — it is the coordinate system.
 
 ## The evolution axis — Genesis → Custom → Product (incl. rental) → Commodity (incl. utility)
 
@@ -31,12 +33,12 @@ Wardley names many climatic patterns; the kit references five canonical ones:
 
 ## Doctrine and gameplay
 
-Wardley separates universal advice from contextual moves.
+Wardley separates universal advice from contextual moves, and the separation is strategically load-bearing: the two categories of action have different validity conditions and degrade in different ways when applied in isolation.
 
-- **Doctrine** is universal — it applies regardless of map shape. Examples: "Focus on user needs," "Use a common language," "Know your users," "Think small (as in teams)," "Be transparent." Doctrine doesn't change with the map; it is the discipline that lets the map be honest in the first place.
-- **Gameplay** is contextual — moves you make based on the map's current shape. Examples: "Open-source the commodity layer to drive a competitor's investment to zero," "Embrace the evolution of a layer to force consolidation," "Acquire to accelerate a genesis-stage component you cannot build internally." Gameplay shifts as the map shifts; doctrine does not.
+- **Doctrine** is universal and invariant — it applies regardless of map shape. Examples: "Focus on user needs," "Use a common language," "Know your users," "Think small (as in teams)," "Be transparent," "Challenge assumptions." Doctrine doesn't change with the map; it is the discipline that lets the map be honest in the first place. Doctrine is what you do *before* and *around* moves — it governs how the team observes, debates, and decides.
+- **Gameplay** is contextual and map-shape-dependent — moves you make based on the map's current shape. Examples: "Open-source the commodity layer to drive a competitor's investment to zero," "Embrace the evolution of a layer to force consolidation," "Acquire to accelerate a genesis-stage component you cannot build internally," "Pioneer-Settler-Town-Planner" team structures matched to evolution stages. Gameplay shifts as the map shifts; what was the right move last quarter may be the wrong move this quarter.
 
-A team using gameplay without doctrine plays clever but inconsistent moves. A team using doctrine without gameplay is rigorous but does not act.
+The separation matters because the two failure modes are different and both common. **Doctrine without gameplay** produces a rigorous, transparent, user-focused team that never makes a move — every quarter looks like the last because no map-specific action is taken. **Gameplay without doctrine** produces a clever, opportunistic team that makes inconsistent bets — one quarter open-sourcing a commodity, the next quarter trying to differentiate on the same layer, because the underlying discipline ("know your users," "challenge assumptions") was skipped. A team needs both: doctrine to keep the map honest, gameplay to act on what the honest map shows.
 
 ## Common failure modes
 

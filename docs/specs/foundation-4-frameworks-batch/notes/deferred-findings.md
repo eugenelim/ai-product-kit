@@ -2,6 +2,25 @@
 
 Findings surfaced by the post-EXECUTE adversarial reviewer (REVIEW iter-1, 2026-05-28) that were deferred rather than fixed in-loop. Each row carries a one-line rationale and a "when to address" trigger.
 
+## Resolved in REVIEW iter-2 (2026-05-28)
+
+User requested the deferred findings be addressed in a follow-up pass after the initial SHIP commit. Iter-2 resolved 8 of the 7 originally-deferred items (1 was bundled with another). The remaining items below are the new deferrals.
+
+- **N-1.** Five thin frameworks expanded via parallel sub-agent dispatch:
+  - `continuous-discovery.md` (55 → 61 lines; intent paragraphs added to "The weekly habit" explaining the asymmetric cadence, and to "The product trio" explaining concurrent ownership vs broader attendance).
+  - `wardley.md` (60 → 61 lines, ~35% word-count growth; "The map" gained a paragraph on the user-need anchor as the coordinate system; "Doctrine and gameplay" gained the strategic-load-bearing explanation plus third doctrine and gameplay examples).
+  - `assumption-tests.md` (51 → 64 lines, ~2x word count; each of the five lenses gained a signature-failure-mode sentence — stated-preference-over-revealed-behavior for desirability, support-and-success-cost-forgotten for viability, controlled-environment-breaks-at-production for feasibility, 5-user-studies-miss-long-tail for usability, affected-populations-not-in-sample for ethical).
+  - `jtbd.md` (60 → 81 lines; "When to use which" gained the data-input contrast and the handoff-point in the OST workflow; the wrong-segmentation vs wrong-investment error framing was added).
+  - `interview-snapshot.md` (48 → 82 lines; concrete examples added for the ambiguous-flagging rule and the paraphrase-vs-invent rule; proxy-research anti-example added to the "what a good snapshot is *not*" section).
+- **ME-1.** `falsification.md` — predeclared-threshold section now names the statistical-shape rule explicitly (point estimate vs interval vs categorical; the shape must match the test's output). Prescriptive fix lives next to the diagnostic.
+- **ME-2.** `opportunity-solution-tree.md` — "frozen tree" failure mode added as a fifth common failure-mode bullet (an OST not updated in weeks while the team continues interviewing; cross-references the `cadence-nudge` hook).
+- **ME-3.** `jtbd.md` — `## How the kit uses this framework` clarifies that the framework itself is mode-agnostic; only the named slash-commands are mode-gated.
+- **VL-1.** `continuous-discovery.md` — "Cadence is the carrier wave..." metaphor replaced with the precise sentence about insights not aggregating without sustained cadence.
+- **VL-2.** `wardley.md` — intro-blockquote "spatial position carries meaning" replaced with the explicit two-axis-semantics sentence.
+- **VL-3.** `landings-not-launches.md` — "rarely surfaced before the next quarter's commitments lock in" replaced with the more concrete "failed outcomes typically only appear during the next planning cycle when prior work's impact is reviewed — after new commitments have already been made."
+
+All kit-wide gates re-verified after the fixes: `python3 tools/lint-frontmatter.py --all` clean; `bash tools/pre-pr.sh` clean.
+
 ## Deferred
 
 - **N-1 (thinness across 5 frameworks).** Five of twelve docs (`continuous-discovery.md`, `wardley.md`, `assumption-tests.md`, `jtbd.md`, `interview-snapshot.md`) came in at 46–58 lines, below the spec's advisory per-framework targets (110–150 lines). The reviewer named specific sections that read as compressed.
