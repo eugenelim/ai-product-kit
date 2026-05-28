@@ -1,6 +1,6 @@
 # Spec: phase-2-discovery-audits-and-comms
 
-- **Status:** Approved
+- **Status:** Shipped (2026-05-28)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** Coupled batch of three slash commands — one audit (P2.11), one narrative-drafter (P2.12), one weekly digest (P2.14). Mirrors the `phase-4-template-fill-commands` and Batch A / Batch B precedents.
