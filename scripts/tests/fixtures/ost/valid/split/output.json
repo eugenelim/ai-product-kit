@@ -1,0 +1,9 @@
+{
+  "outcome": {"id": "OUT-001", "name": "Outcome"},
+  "nodes": [
+    {"id": "OPP-001A", "type": "Opportunity", "name": "Wide opp", "parent": "OUT-001", "evidence_basis": ["IS-001"]},
+    {"id": "OPP-001B", "type": "Opportunity", "name": "Wide opp", "parent": "OUT-001", "evidence_basis": []},
+    {"id": "SOL-001", "type": "Solution", "name": "Sol A", "parent": "OPP-001A"},
+    {"id": "SOL-002", "type": "Solution", "name": "Sol B", "parent": "OPP-001B"}
+  ]
+}

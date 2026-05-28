@@ -36,7 +36,17 @@ import copy
 import json
 import sys
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
+
+# Python version guard. `from __future__ import annotations` makes function
+# signatures lazy but variable annotations (`x: set[str] = ...`) are evaluated
+# at runtime on Python < 3.9. The kit's minimum is 3.9 — declared here and in
+# pyproject.toml.
+if sys.version_info < (3, 9):
+    sys.exit(
+        "validate_ost: Python 3.9+ required; got "
+        f"{sys.version_info.major}.{sys.version_info.minor}"
+    )
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SCHEMA = REPO_ROOT / ".claude" / "skills" / "ost-validator" / "references" / "ost-schema.json"
@@ -174,55 +184,82 @@ def _validate_node_types(tree: dict) -> str | None:
 # ---------- change-set internal consistency -----------------------------------
 
 
-def _check_change_set_consistency(input_tree: dict, change_set: dict) -> str | None:
-    known_ids: set[str] = {input_tree["outcome"]["id"]}
+def _check_change_set_consistency(input_tree: dict, change_set: dict) -> Optional[str]:
+    known_ids: Set[str] = {input_tree["outcome"]["id"]} if input_tree.get("outcome", {}).get("id") else set()
     known_ids.update(n["id"] for n in input_tree.get("nodes", []))
-    for a in change_set.get("actions", []):
+    outcome_present = bool(input_tree.get("outcome", {}).get("id"))
+    for i, a in enumerate(change_set.get("actions", [])):
         op = a.get("op")
-        # Validate references; new ids get added as actions are walked.
+        # Validate references; new ids get added as actions are walked. Also
+        # validate per-action required sub-fields here — schema enforces only
+        # top-level shape (presence of `op`), so per-op field requirements live
+        # in code. A malformed action is exit 2 (input error), not exit 1.
         if op == "add-outcome":
-            known_ids.add(a.get("id"))
+            if "id" not in a or "name" not in a:
+                return f"action[{i}] add-outcome requires id and name"
+            if outcome_present:
+                # add-outcome on a tree that already has an Outcome would
+                # silently overwrite the root; the vocabulary doc forbids this.
+                return f"action[{i}] add-outcome used on a tree that already has an Outcome (id={input_tree['outcome']['id']!r}); use reframe to rename"
+            known_ids.add(a["id"])
+            outcome_present = True
         elif op in {"add-opportunity", "add-solution"}:
+            if "id" not in a or "name" not in a or "parent" not in a:
+                return f"action[{i}] {op} requires id, name, parent"
             # Parent existence is NOT a consistency error — Rule 2 (no-orphans)
             # catches missing parents on the resulting tree. This keeps the
             # consistency check focused on actions that cannot be applied at all
             # (merge / split / delete / reframe / add-source-opportunity targeting
             # nodes that aren't there).
-            known_ids.add(a.get("id"))
+            known_ids.add(a["id"])
         elif op == "reframe":
-            if a.get("id") not in known_ids:
-                return f"reframe action references unknown id {a.get('id')!r}"
+            if "id" not in a or "name" not in a:
+                return f"action[{i}] reframe requires id and name"
+            if a["id"] not in known_ids:
+                return f"action[{i}] reframe references unknown id {a['id']!r}"
         elif op == "merge":
-            ids = a.get("ids", [])
-            for i in ids:
-                if i not in known_ids:
-                    return f"merge action references unknown id {i!r}"
-            into = a.get("into")
+            if "ids" not in a or "into" not in a:
+                return f"action[{i}] merge requires ids[] and into"
+            ids = a["ids"]
+            if not isinstance(ids, list) or len(ids) < 2:
+                return f"action[{i}] merge requires ids[] with at least 2 entries; got {ids!r}"
+            for j in ids:
+                if j not in known_ids:
+                    return f"action[{i}] merge references unknown id {j!r}"
+            into = a["into"]
             if into not in ids:
-                return f"merge action's into={into!r} not in ids={ids}"
+                return f"action[{i}] merge into={into!r} not in ids={ids}"
             # remove merged-not-into from known_ids (they're consumed by the merge)
-            for i in ids:
-                if i != into and i in known_ids:
-                    known_ids.discard(i)
+            for j in ids:
+                if j != into and j in known_ids:
+                    known_ids.discard(j)
         elif op == "split":
-            if a.get("id") not in known_ids:
-                return f"split action references unknown id {a.get('id')!r}"
-            into = a.get("into", [])
+            if "id" not in a or "into" not in a:
+                return f"action[{i}] split requires id and into[]"
+            if a["id"] not in known_ids:
+                return f"action[{i}] split references unknown id {a['id']!r}"
+            into = a["into"]
             if not isinstance(into, list) or len(into) != 2:
-                return f"split action's into must be a list of exactly 2 ids; got {into!r}"
-            known_ids.discard(a.get("id"))
+                return f"action[{i}] split requires into[] of exactly 2 ids; got {into!r}"
+            known_ids.discard(a["id"])
             known_ids.update(into)
         elif op == "delete":
-            if a.get("id") not in known_ids:
-                return f"delete action references unknown id {a.get('id')!r}"
-            known_ids.discard(a.get("id"))
+            if "id" not in a:
+                return f"action[{i}] delete requires id"
+            if a["id"] not in known_ids:
+                return f"action[{i}] delete references unknown id {a['id']!r}"
+            known_ids.discard(a["id"])
         elif op == "reparent":
-            if a.get("id") not in known_ids:
-                return f"reparent action references unknown id {a.get('id')!r}"
+            if "id" not in a or "new_parent" not in a:
+                return f"action[{i}] reparent requires id and new_parent"
+            if a["id"] not in known_ids:
+                return f"action[{i}] reparent references unknown id {a['id']!r}"
             # new_parent existence is checked by Rule 2 (no-orphans) on the resulting tree
         elif op == "add-source-opportunity":
-            if a.get("target") not in known_ids:
-                return f"add-source-opportunity action references unknown target {a.get('target')!r}"
+            if "id" not in a or "target" not in a:
+                return f"action[{i}] add-source-opportunity requires id and target"
+            if a["target"] not in known_ids:
+                return f"action[{i}] add-source-opportunity references unknown target {a['target']!r}"
         # Unknown op: Rule 5 will catch it later; not a consistency error.
     return None
 
@@ -231,7 +268,12 @@ def _check_change_set_consistency(input_tree: dict, change_set: dict) -> str | N
 
 
 def _apply_change_set(input_tree: dict, change_set: dict) -> dict:
-    """Apply actions to input_tree. Returns a new dict. Pure function."""
+    """Apply actions to input_tree. Returns a new dict. Pure function.
+
+    Precondition: _check_change_set_consistency has already run clean against
+    the same change_set, so every action's required fields are present and
+    every referenced id exists at the point it's referenced.
+    """
     tree = copy.deepcopy(input_tree)
     for a in change_set.get("actions", []):
         op = a.get("op")
@@ -254,7 +296,7 @@ def _apply_change_set(input_tree: dict, change_set: dict) -> dict:
             ids = a["ids"]
             into = a["into"]
             # union evidence_basis
-            union_evidence: list[str] = []
+            union_evidence: List[str] = []
             for n in tree["nodes"]:
                 if n["id"] in ids:
                     for ev in n.get("evidence_basis", []):
@@ -306,8 +348,8 @@ def _apply_change_set(input_tree: dict, change_set: dict) -> dict:
 # ---------- the six rules -----------------------------------------------------
 
 
-def _rule_5_valid_action_vocabulary(change_set: dict) -> list[dict]:
-    violations = []
+def _rule_5_valid_action_vocabulary(change_set: dict) -> List[Dict[str, Any]]:
+    violations: List[Dict[str, Any]] = []
     for i, a in enumerate(change_set.get("actions", [])):
         op = a.get("op")
         if op not in VALID_OPS:
@@ -322,24 +364,42 @@ def _rule_5_valid_action_vocabulary(change_set: dict) -> list[dict]:
     return violations
 
 
-def _rule_1_change_set_determinism(applied: dict, output: dict) -> list[dict]:
+def _rule_1_change_set_determinism(applied: dict, output: dict) -> List[Dict[str, Any]]:
     if _trees_equal(applied, output):
         return []
+    applied_ids = {n["id"] for n in applied.get("nodes", [])}
+    output_ids = {n["id"] for n in output.get("nodes", [])}
+    extra_in_output = sorted(output_ids - applied_ids)
+    extra_in_applied = sorted(applied_ids - output_ids)
+    outcome_diff = applied.get("outcome") != output.get("outcome")
+    diff_parts = []
+    if extra_in_output:
+        diff_parts.append(f"nodes in output not produced by the change set: {extra_in_output}")
+    if extra_in_applied:
+        diff_parts.append(f"nodes produced by the change set but missing from output: {extra_in_applied}")
+    if outcome_diff:
+        diff_parts.append(f"outcome differs: applied={applied.get('outcome')!r}, output={output.get('outcome')!r}")
+    if not diff_parts:
+        diff_parts.append("node-content fields differ (parent, name, or evidence_basis); compare applied tree to output tree")
     return [{
         "rule": "change-set-determinism",
         "node_id": "<tree>",
         "remediation": (
             "applying the change set to the input did not produce the claimed output. "
+            + "; ".join(diff_parts) + ". "
             "Either revise the change set to explain how the output is reached, or "
             "correct the output to reflect what the change set actually produces."
         ),
     }]
 
 
-def _rule_2_no_orphans(output: dict) -> list[dict]:
-    valid_parents = {output["outcome"]["id"]}
+def _rule_2_no_orphans(output: dict) -> List[Dict[str, Any]]:
+    valid_parents: Set[str] = set()
+    outcome_id = output.get("outcome", {}).get("id")
+    if outcome_id:
+        valid_parents.add(outcome_id)
     valid_parents.update(n["id"] for n in output.get("nodes", []))
-    violations = []
+    violations: List[Dict[str, Any]] = []
     for n in output.get("nodes", []):
         if n.get("parent") not in valid_parents:
             violations.append({
@@ -353,9 +413,9 @@ def _rule_2_no_orphans(output: dict) -> list[dict]:
     return violations
 
 
-def _rule_3_no_double_references(output: dict) -> list[dict]:
-    seen: dict[str, str] = {}
-    violations = []
+def _rule_3_no_double_references(output: dict) -> List[Dict[str, Any]]:
+    seen: Dict[str, str] = {}
+    violations: List[Dict[str, Any]] = []
     for n in output.get("nodes", []):
         if n.get("type") != "Opportunity":
             continue
@@ -377,8 +437,8 @@ def _rule_3_no_double_references(output: dict) -> list[dict]:
     return violations
 
 
-def _rule_4_no_data_loss(input_tree: dict, output: dict, change_set: dict) -> list[dict]:
-    violations = []
+def _rule_4_no_data_loss(input_tree: dict, output: dict, change_set: dict) -> List[Dict[str, Any]]:
+    violations: List[Dict[str, Any]] = []
     # 4a — IS-NNN references: any IS-NNN that appeared in input must appear in output.
     input_is_refs = _collect_is_refs(input_tree)
     output_is_refs = _collect_is_refs(output)
@@ -424,13 +484,13 @@ def _rule_4_no_data_loss(input_tree: dict, output: dict, change_set: dict) -> li
 
 def _rule_6_compound_operation_visibility(
     input_tree: dict, output: dict, change_set: dict
-) -> list[dict]:
+) -> List[Dict[str, Any]]:
     """If an IS-NNN moved between Opportunities, the change set must contain a merge or split
     involving both the source and target Opportunities."""
     input_map = _is_ref_owners(input_tree)
     output_map = _is_ref_owners(output)
-    violations = []
-    merge_split_pairs: set[tuple[str, str]] = set()
+    violations: List[Dict[str, Any]] = []
+    merge_split_pairs: Set[Tuple[str, str]] = set()
     for a in change_set.get("actions", []):
         if a.get("op") == "merge":
             ids = a.get("ids", [])
@@ -488,8 +548,8 @@ def _trees_equal(a: dict, b: dict) -> bool:
     return True
 
 
-def _collect_is_refs(tree: dict) -> set[str]:
-    refs: set[str] = set()
+def _collect_is_refs(tree: dict) -> Set[str]:
+    refs: Set[str] = set()
     for n in tree.get("nodes", []):
         for ev in n.get("evidence_basis", []) or []:
             if ev.startswith(IS_PREFIX):
@@ -497,9 +557,9 @@ def _collect_is_refs(tree: dict) -> set[str]:
     return refs
 
 
-def _is_ref_owners(tree: dict) -> dict[str, str]:
+def _is_ref_owners(tree: dict) -> Dict[str, str]:
     """Returns {is_ref_id: opportunity_id} — first occurrence wins."""
-    owners: dict[str, str] = {}
+    owners: Dict[str, str] = {}
     for n in tree.get("nodes", []):
         if n.get("type") != "Opportunity":
             continue
@@ -546,6 +606,15 @@ def main() -> int:
             _emit_error("schema-violation", f"{label}: {err}")
             return 2
 
+    # The output tree must have an outcome — the input may be an empty seed
+    # tree (no outcome yet) when used by /generate-ost on a fresh strategy, but
+    # the claimed output of any change set is a valid OST and must declare its
+    # outcome. The schema makes outcome optional to support the empty-seed case;
+    # the script enforces "outcome-on-output" as a node-type-style check.
+    if not output_tree.get("outcome", {}).get("id"):
+        _emit_error("schema-violation", "output: tree must declare an outcome with an id")
+        return 2
+
     # Per-node-type validation (input and output).
     for tree, label in ((input_tree, "input"), (output_tree, "output")):
         err = _validate_node_types(tree)
@@ -571,7 +640,10 @@ def main() -> int:
 
     # Run rules. Order: Rule 4 (data loss — more specific diagnosis) before Rule 1
     # (generic determinism) so a "node dropped without delete" reports as Rule 4.
-    violations: list[dict] = []
+    # This ordering is a load-bearing invariant: reordering it produces correct
+    # exit codes but worse remediation messages (Rule 1's generic "trees differ"
+    # would mask Rule 4's specific "node dropped without delete").
+    violations: List[Dict[str, Any]] = []
     violations.extend(_rule_4_no_data_loss(input_tree, output_tree, change_set))
     violations.extend(_rule_6_compound_operation_visibility(input_tree, output_tree, change_set))
     violations.extend(_rule_2_no_orphans(output_tree))

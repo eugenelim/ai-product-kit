@@ -6,7 +6,7 @@
   "definitions": {
     "tree": {
       "type": "object",
-      "required": ["outcome", "nodes"],
+      "required": ["nodes"],
       "additionalProperties": false,
       "properties": {
         "outcome": {

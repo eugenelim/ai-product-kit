@@ -202,6 +202,112 @@ class ValidateOstTests(unittest.TestCase):
         self.assertEqual(r.stdout, "")
         self.assertEqual(r.stderr, "")
 
+    # ------------ added per REVIEW iter-1 quality-engineer findings -----------
+
+    # 21 — happy path for merge (T1)
+    def test_valid_merge_passes(self):
+        r = _run(FIX / "valid" / "merge")
+        self.assertEqual(r.returncode, 0, msg=f"stderr={r.stderr!r}")
+
+    # 22 — happy path for split with two new ids (T1)
+    def test_valid_split_passes(self):
+        r = _run(FIX / "valid" / "split")
+        self.assertEqual(r.returncode, 0, msg=f"stderr={r.stderr!r}")
+
+    # 23 — happy path for reframe (T1)
+    def test_valid_reframe_passes(self):
+        r = _run(FIX / "valid" / "reframe")
+        self.assertEqual(r.returncode, 0, msg=f"stderr={r.stderr!r}")
+
+    # 24 — happy path for reparent (T1)
+    def test_valid_reparent_passes(self):
+        r = _run(FIX / "valid" / "reparent")
+        self.assertEqual(r.returncode, 0, msg=f"stderr={r.stderr!r}")
+
+    # 25 — split where one of the new ids reuses the source id (T2)
+    def test_valid_split_reusing_source_id_passes(self):
+        r = _run(FIX / "valid" / "split-reusing-source")
+        self.assertEqual(r.returncode, 0, msg=f"stderr={r.stderr!r}")
+
+    # 26 — Rule 1 fires in the other direction (applied has extra nodes) (T3)
+    def test_change_set_determinism_applied_superset_fails_rule_1(self):
+        r = _run(FIX / "invalid" / "change-set-determinism-applied-superset")
+        self.assertEqual(r.returncode, 1)
+        v = _parse_violations(r.stderr)
+        rules = {x["rule"] for x in v}
+        self.assertIn("change-set-determinism", rules)
+        # Rule 1 remediation should name the directional diff (O1)
+        rule1 = next(x for x in v if x["rule"] == "change-set-determinism")
+        self.assertIn("missing from output", rule1["remediation"])
+
+    # 27 — add-outcome on a non-empty tree exits 2 (C2)
+    def test_add_outcome_on_existing_tree_exits_2(self):
+        tmp_dir = FIX / "_tmp_dbl_outcome"
+        tmp_dir.mkdir(exist_ok=True)
+        tree = {"outcome": {"id": "OUT-001", "name": "First"}, "nodes": []}
+        (tmp_dir / "input.json").write_text(json.dumps(tree))
+        (tmp_dir / "output.json").write_text(json.dumps(tree))
+        (tmp_dir / "change-set.json").write_text(json.dumps({
+            "actions": [{"op": "add-outcome", "id": "OUT-002", "name": "Second"}],
+        }))
+        try:
+            r = _run(tmp_dir)
+            self.assertEqual(r.returncode, 2)
+            payload = json.loads(r.stderr)
+            self.assertEqual(payload["reason"], "change-set-inconsistent")
+        finally:
+            for f in tmp_dir.iterdir():
+                f.unlink()
+            tmp_dir.rmdir()
+
+    # 28 — merge with a single-element ids list exits 2 (F3)
+    def test_merge_with_single_element_ids_exits_2(self):
+        tmp_dir = FIX / "_tmp_single_merge"
+        tmp_dir.mkdir(exist_ok=True)
+        tree = {
+            "outcome": {"id": "OUT-001", "name": "O"},
+            "nodes": [{"id": "OPP-001", "type": "Opportunity", "name": "A",
+                       "parent": "OUT-001", "evidence_basis": []}],
+        }
+        (tmp_dir / "input.json").write_text(json.dumps(tree))
+        (tmp_dir / "output.json").write_text(json.dumps(tree))
+        (tmp_dir / "change-set.json").write_text(json.dumps({
+            "actions": [{"op": "merge", "ids": ["OPP-001"], "into": "OPP-001"}],
+        }))
+        try:
+            r = _run(tmp_dir)
+            self.assertEqual(r.returncode, 2)
+            payload = json.loads(r.stderr)
+            self.assertEqual(payload["reason"], "change-set-inconsistent")
+        finally:
+            for f in tmp_dir.iterdir():
+                f.unlink()
+            tmp_dir.rmdir()
+
+    # 29 — malformed merge action (no ids field) exits 2 without crashing (R1)
+    def test_malformed_merge_no_ids_exits_2(self):
+        tmp_dir = FIX / "_tmp_malformed_merge"
+        tmp_dir.mkdir(exist_ok=True)
+        tree = {
+            "outcome": {"id": "OUT-001", "name": "O"},
+            "nodes": [{"id": "OPP-001", "type": "Opportunity", "name": "A",
+                       "parent": "OUT-001", "evidence_basis": []}],
+        }
+        (tmp_dir / "input.json").write_text(json.dumps(tree))
+        (tmp_dir / "output.json").write_text(json.dumps(tree))
+        (tmp_dir / "change-set.json").write_text(json.dumps({
+            "actions": [{"op": "merge"}],
+        }))
+        try:
+            r = _run(tmp_dir)
+            self.assertEqual(r.returncode, 2)
+            payload = json.loads(r.stderr)
+            self.assertEqual(payload["reason"], "change-set-inconsistent")
+        finally:
+            for f in tmp_dir.iterdir():
+                f.unlink()
+            tmp_dir.rmdir()
+
 
 if __name__ == "__main__":
     unittest.main()

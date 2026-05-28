@@ -1,0 +1,5 @@
+{
+  "actions": [
+    {"op": "reframe", "id": "OPP-001", "name": "New, sharper name"}
+  ]
+}

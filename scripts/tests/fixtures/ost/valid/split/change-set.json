@@ -1,0 +1,9 @@
+{
+  "_note": "split OPP-001 + reparent each Solution to one of the two children + add-source-opportunity to preserve IS-001 (under OPP-001A). For test simplicity, IS-001 is dropped via no add-source-opportunity — but then Rule 4 would fire on IS-001. Better: only test the split's reparenting; the IS reattachment is shown in a richer fixture. Here, the source is renamed so IS-001 is implicitly lost — which means this fixture would fail Rule 4. So drop evidence in the input.",
+  "actions": [
+    {"op": "split", "id": "OPP-001", "into": ["OPP-001A", "OPP-001B"]},
+    {"op": "reparent", "id": "SOL-001", "new_parent": "OPP-001A"},
+    {"op": "reparent", "id": "SOL-002", "new_parent": "OPP-001B"},
+    {"op": "add-source-opportunity", "id": "IS-001", "target": "OPP-001A"}
+  ]
+}

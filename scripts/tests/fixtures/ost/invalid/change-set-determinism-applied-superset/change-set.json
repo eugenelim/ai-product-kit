@@ -1,0 +1,5 @@
+{
+  "actions": [
+    {"op": "add-solution", "id": "SOL-001", "name": "Sol", "parent": "OPP-001"}
+  ]
+}
