@@ -80,10 +80,11 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | `/audit-discovery-coherence` | SC | YOU | Audit Report | Flag OSTs without parent intent | planned (P2.11) |
 | `interview-coder` | AG | CLAUDE (fan-out) | Insight set | One transcript | planned (P2.3) |
 | `opportunity-merger` | AG | CLAUDE (fan-out) | Merge decision | One OST node on `/update-ost` | planned (P2.10) |
-| `discovery-coach` | AG | CLAUDE (dispatch) | Coaching | Continuous Discovery coaching | planned (P2.13) |
-| `interview-snapshot` | SK | CLAUDE | Speakers + quotes | Speaker detection + time alignment | planned (P2.2) |
-| `opportunity-clustering` | SK | CLAUDE | Cluster set | Theme raw opportunities | planned (P2.5) |
-| `ost-validator` | SK | CLAUDE | Validation verdict | Validate-then-repair loop (prose procedure shipped; runnable script + reference files planned P2.8) | shipped (prose) |
+| `discovery-coach` | AG | CLAUDE (dispatch) | Coaching | Continuous Discovery coaching agent — runs against an OST when chosen Opportunity is stuck (no Solutions, or Solutions without Assumption Tests); returns 3–5 open questions + candidate Solutions/Assumption Tests as proposals; 5-turn escalation cap; never persists; tools `[Read]` only; model `sonnet` | shipped (P2.13, 2026-05-28) |
+| `interview-snapshot` | SK | CLAUDE | Snapshot proposal | Transforms raw transcript into eight-field Interview Snapshot proposal per `context/frameworks/interview-snapshot.md`; adds speaker detection, time-aligned quote extraction, paraphrase enforcement, no-recording fallback; never persists | shipped (P2.2, 2026-05-28) |
+| `opportunity-clustering` | SK | CLAUDE | Cluster set proposal | Themes raw opportunity candidates by one of three rules (shared customer behavior / workflow step / workaround pattern); unclustered bucket for candidates without a shared anchor; never auto-promotes | shipped (P2.5, 2026-05-28) |
+| `ost-validator` | SK | CLAUDE | Validation verdict | Validate-then-repair loop on OST change sets — prose doctrine + runnable `scripts/validate_ost.py` enforcing the six rules; references at `.claude/skills/ost-validator/references/{ost-schema.json,action-vocabulary.md,examples/}` | shipped (P2.8 + D4, 2026-05-28) |
+| `scripts/validate_ost.py` | SCRIPT | CLAUDE (shell-out) | Validation report (JSON or human) | Runnable OST validator — applies change set to input, compares to claimed output, enforces six rules + per-action cascade semantics; exit 0 pass / 1 rule violation / 2 input error; 29 contract tests under `scripts/tests/test_validate_ost.py` | shipped (P2.8, 2026-05-28) |
 | Continuous Discovery | REF | (pulled) | — | `context/frameworks/continuous-discovery.md` | shipped (2026-05-28) |
 | OST schema | REF | (pulled) | — | `context/frameworks/opportunity-solution-tree.md` | shipped (2026-05-28) |
 | Interview snapshot schema | REF | (pulled) | — | `context/frameworks/interview-snapshot.md` | shipped (2026-05-28) |

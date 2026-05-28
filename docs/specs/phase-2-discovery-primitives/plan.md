@@ -1,7 +1,7 @@
 # Plan: phase-2-discovery-primitives
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Approved
+- **Status:** Done
 - **Plan review:** approved (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** Implementation strategy for shipping P2.2 + P2.5 + P2.8 (with D4 references) + P2.13 in a single coupled work-loop. The four components are independent enough to build in parallel after the schema is locked, but they share lint, verify, review, and capture gates.

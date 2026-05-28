@@ -50,7 +50,7 @@ candidates:
     name: <plain-language description>
     parent: OPP-NNN  # or SOL-NNN for AssumptionTest candidates
     rationale: <one sentence naming the customer-source anchor — which snapshot / quote / observed behavior motivates this candidate>
-    threshold: <predeclared falsification threshold — only for AssumptionTest candidates; cite framework framework-falsification.md>
+    threshold: <predeclared falsification threshold — only for AssumptionTest candidates; cite context/frameworks/falsification.md>
 human_owned_decisions:
   - Decide which candidate(s) to add to the OST
   - Decide which Assumption Test to run first
@@ -104,7 +104,7 @@ Then propose 2-4 candidate Assumption Tests, each a child of one named Solution,
 - **Never auto-pick a Solution or Assumption Test.** Every candidate is a proposal. The human's choice is downstream and human-owned per `docs/HUMAN-AI-OWNERSHIP.md`.
 - **Never override the human's `chosen_opportunity:`.** The chosen Opportunity is a human-owned commitment. The agent's job is to help the team pursue it, not to second-guess it. If the chosen Opportunity itself looks unsourced or off-strategy, surface that observation; do not re-pick.
 - **Never produce candidates without a customer-source anchor.** Every candidate Solution must trace to a named snapshot (`IS-NNN` id) or observed behavior. Every candidate Assumption Test must trace to a named Solution and carry a predeclared threshold. Without these anchors, the candidate is conjecture — and conjecture clusters into theatre per `context/frameworks/validation-theatre.md`.
-- **5-turn escalation rule.** If a coaching sequence runs five full turns (the agent generated questions five times, each in response to the team's follow-up, without the team producing candidate Solutions or Assumption Tests they were willing to add to the OST), abort the sequence and surface to the human. Do not keep looping. The framework calls this out implicitly via `context/frameworks/continuous-discovery.md`'s product-trio rule — sustained coaching without progress means the missing input is more interviews or more customer contact, not more questions.
+- **5-turn escalation rule.** If a coaching sequence runs five full turns without the team producing candidate Solutions or Assumption Tests they were willing to add to the OST, abort the sequence and surface to the human. Do not keep looping. **What counts as one turn:** one round-trip — agent emits the §"Your output" block (questions + candidates), human responds with additional context, the agent emits another output block. A follow-up clarification message that contains no new candidates *and no new questions* does not count toward the cap (it is part of the same turn). The orchestrator is responsible for tracking turn count across invocations — the agent itself has no persistent memory between turns. The framework calls this out implicitly via `context/frameworks/continuous-discovery.md`'s product-trio rule — sustained coaching without progress means the missing input is more interviews or more customer contact, not more questions.
 
 ## Failure modes
 

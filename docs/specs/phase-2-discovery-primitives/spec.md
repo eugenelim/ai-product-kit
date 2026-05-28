@@ -1,6 +1,6 @@
 # Spec: phase-2-discovery-primitives
 
-- **Status:** Approved
+- **Status:** Shipped (2026-05-28)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** Coupled batch of four kit components — one script, two skills, one agent. Mirrors the `foundation-4-frameworks-batch` and `phase-4-post-ship-commands` precedents of shipping a coupled batch under one work-loop when artifacts share a phase home and an upstream framework surface.

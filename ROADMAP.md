@@ -100,7 +100,7 @@ Items appended after Foundation 0 was marked complete. Same Foundation-0 charact
 
 Items appended for substantive hardening that exceeded the reconcile-and-harden pass's scope (the pass committed not to build new primitives or substantively rewrite existing ones beyond textual reconciliation). Each row is a sub-task on an existing ROADMAP item OR a new mini-spec.
 
-- [ ] **D4** `ost-validator` references — author `references/ost-schema.json`, `references/action-vocabulary.md`, and `references/examples/`. **Sub-task of:** P2.8 (script-ost-validator).
+- [x] **D4** `ost-validator` references — author `references/ost-schema.json`, `references/action-vocabulary.md`, and `references/examples/`. **Sub-task of:** P2.8 (script-ost-validator). **Shipped:** 2026-05-28 (bundled into the P2.8 work-loop).
 - [ ] **D5** `adversarial-reviewer` contract expansion — cover specs/plans/core docs (not just product-phase artifacts); add mandatory `location:` field to output schema. **Sub-task of:** P6.3 (audit-all aggregator); or own mini-spec.
 - [ ] **D6** `competitor-research` hardening additions beyond the in-pass fixes — feedback-loop integration, sub-agent failure recovery, paid-data-source contract. **Appends to:** Phase 7 strategy items.
 - [x] **D7** `handover-2.5-assumption-map` — add a formal Assumption Map handover contract between Discovery (chosen opportunity) and Validation (experiment design). **Source:** HANDOVERS.md reviewer C1. **Shipped:** 2026-05-22 (via `docs/specs/template-authoring-convention/` — Handover 2.5 added to `docs/HANDOVERS.md`).
@@ -193,18 +193,18 @@ The `context/frameworks/*.md` reference files are pulled on demand by skills and
 The highest-volume PM activity. Build these before Phase 1 strategy commands because Discovery work happens weekly while Strategy work happens quarterly.
 
 - [ ] **P2.1** `/interview-snapshot` — Raw transcript → structured snapshot. **Slug:** `cmd-interview-snapshot`. **Depends on:** F4.3.
-- [ ] **P2.2** `interview-snapshot` skill — Speaker detection + time-aligned quotes (used by the command). **Slug:** `skill-interview-snapshot`.
+- [x] **P2.2** `interview-snapshot` skill — Speaker detection + time-aligned quotes (used by the command). **Slug:** `skill-interview-snapshot`. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-primitives/`).
 - [ ] **P2.3** `interview-coder` agent — Fan-out worker, one transcript at a time. **Slug:** `agent-interview-coder`. **Depends on:** P2.2.
 - [ ] **P2.4** `/extract-opportunities` — Snapshots → opportunity candidates. **Slug:** `cmd-extract-opportunities`. **Depends on:** P2.1.
-- [ ] **P2.5** `opportunity-clustering` skill — Theme raw opportunities into clusters. **Slug:** `skill-opportunity-clustering`.
+- [x] **P2.5** `opportunity-clustering` skill — Theme raw opportunities into clusters. **Slug:** `skill-opportunity-clustering`. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-primitives/`).
 - [ ] **P2.6** `/cluster-opportunities` — Group raw opportunities. **Slug:** `cmd-cluster-opportunities`. **Depends on:** P2.5.
 - [ ] **P2.7** `/generate-ost` — First-pass OST from snapshots + the strategic intent. **Slug:** `cmd-generate-ost`. **Depends on:** F4.2, P2.4.
-- [ ] **P2.8** `ost-validator` script — Promote the existing skill's procedure to a runnable `scripts/validate_ost.py`. **Slug:** `script-ost-validator`. **Depends on:** F1.2.
+- [x] **P2.8** `ost-validator` script — Promote the existing skill's procedure to a runnable `scripts/validate_ost.py`. **Slug:** `script-ost-validator`. **Depends on:** F1.2. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-primitives/`; closes D4 in the same loop — `references/ost-schema.json`, `references/action-vocabulary.md`, `references/examples/`).
 - [ ] **P2.9** `/update-ost` — Integrate new interview content; emits change set + tree; calls the validator. **Slug:** `cmd-update-ost`. **Depends on:** P2.7, P2.8.
 - [ ] **P2.10** `opportunity-merger` agent — Fan-out worker on `/update-ost` per OST node. **Slug:** `agent-opportunity-merger`. **Depends on:** P2.9.
 - [ ] **P2.11** `/audit-discovery-coherence` — Flag OSTs without parent intent. **Slug:** `cmd-audit-discovery-coherence`. **Depends on:** F1.1.
 - [ ] **P2.12** `/opportunity-narrative` — Write up the chosen opportunity for the validation handover. **Slug:** `cmd-opportunity-narrative`.
-- [ ] **P2.13** `discovery-coach` agent — Auto-invoke when stuck on an opportunity. **Slug:** `agent-discovery-coach`.
+- [x] **P2.13** `discovery-coach` agent — Auto-invoke when stuck on an opportunity. **Slug:** `agent-discovery-coach`. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-primitives/`; manual invocation today, auto-invoke wiring deferred to a future ROADMAP item).
 - [ ] **P2.14** `/discovery-update` — Weekly stakeholder digest. **Slug:** `cmd-discovery-update`.
 
 ---

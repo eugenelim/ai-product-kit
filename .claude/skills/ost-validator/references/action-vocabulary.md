@@ -74,7 +74,11 @@ Moves a node to a different parent.
 - **Required fields.** `id` (must exist in the input or have been added), `new_parent` (must exist in the input or have been added by an earlier action).
 - **Behavior.** Updates `nodes[id].parent = new_parent`. Preserves the node's id, name, type, children, and `evidence_basis`.
 - **Valid example.** `{"op": "reparent", "id": "SOL-001", "new_parent": "OPP-003"}`.
-- **Common misuse.** Reparenting to a `new_parent` that exists nowhere in the tree (after the change set is applied). This is Rule 2 (no-orphans), not change-set-inconsistent — the orphan is a structural smell the rule catches at validation time.
+- **Common misuse.** Two distinct cases:
+  - `new_parent` that exists **nowhere** in the input AND is not added by any earlier action in the same change set → exit-2 (`change-set-inconsistent`), per the preamble convention for all id-referencing verbs. The validator cannot apply the action at all.
+  - `new_parent` that exists in the tree at apply-time but is itself an orphan (its own parent is missing) → exit-1 (Rule 2 `no-orphans`). The action applies successfully; the resulting tree is structurally invalid.
+
+  The two are mutually exclusive: the validator runs the consistency check first (exit-2 path), then the apply, then the rule checks (exit-1 path). If the `new_parent` is added by an earlier action in the same change set, that's the legal pattern — the apply respects action order.
 
 ## `add-source-opportunity`
 
