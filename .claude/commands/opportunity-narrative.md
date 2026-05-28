@@ -58,9 +58,9 @@ Pre-fill mechanical frontmatter:
 
 Read the chosen Opportunity's `evidence_basis:` list. For each `IS-<NNN>` reference, load `<repo-root>/discovery/snapshots/<slug>.md` where the file's `id:` matches. Collect the eight snapshot fields (Goal / Workflow / Pain Points / Workarounds / Tools / Direct Quote / Date / Interviewer) for each.
 
-Surface to the human as read-only context before the walk: _"This narrative will draw on N snapshots (`IS-001`, `IS-014`, ...). I'll cite at least one Direct Quote in §'The pain' — review the loaded snapshots and confirm before we begin the walk."_
+Surface to the human as read-only context before the walk. Present the snapshot count, the list of `IS-<NNN>` ids, and the **first Direct Quote from each snapshot verbatim** (in the framework's exact `"<verbatim>" — <Speaker>, <MM:SS>` format). Then ask: _"Have you reviewed these N snapshots and confirmed their content accurately represents the interviews? I'll cite at least one of these quotes in §'The pain' during the walk."_
 
-Ask for explicit acknowledgement that the snapshots' content is faithful (this is the first `human_owned_decisions:` checkpoint).
+Wait for an explicit `yes` (or equivalent confirmation) before proceeding to Step 4. Do NOT begin the section walk on implicit acknowledgement — a "let's go" without referenced snapshot content means the human hasn't actually read them. This is the first `human_owned_decisions:` checkpoint and the kit's anti-fabrication guard for the narrative.
 
 ### Step 4 — walk the five H2 sections one at a time
 

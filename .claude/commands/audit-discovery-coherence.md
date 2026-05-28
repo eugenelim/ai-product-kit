@@ -47,11 +47,15 @@ When multiple rules fire, the **highest-severity verdict** is reported. Preceden
 
 Resolve `<repo-root>` as the nearest ancestor of the current working directory containing `tools/lint-frontmatter.py`.
 
+**Validate `[scope]`.** Confirm `[scope]` matches `^(all|[a-z0-9-]+)$`. If non-matching, exit code 2 with: `"scope '<scope>' is not valid — use 'all', an intent slug, or an OST slug (kebab-case, ^[a-z0-9-]+$)."` Do NOT silently sanitize.
+
 If `[scope]` is `all` (or omitted): walk the whole `<repo-root>/strategy/intents/` and `<repo-root>/discovery/trees/` trees.
 If `[scope]` matches `<intent-slug>`: walk only OSTs whose `parent_intent: <intent-slug>` matches.
 If `[scope]` matches `<ost-slug>`: walk only that one OST plus its parent intent.
 
-If the resolved scope contains zero OSTs, set verdict `insufficient-data` and proceed to Step 5 (skip the rule checks; emit a remediation report).
+**Insufficient-data branching.** Also inspect `<repo-root>/strategy/intents/`: count files whose `status:` is not `killed`/`abandoned`. Record `intents_exist: true|false` (true when count ≥ 1). This flag is consumed in Step 6 to select the correct `insufficient-data` NEXT branch — without it, the command cannot distinguish "no intents at all" from "intents exist but no OSTs yet."
+
+If the resolved scope contains zero OSTs, set verdict `insufficient-data` and proceed to Step 5 (skip the rule checks; emit a remediation report; Step 6 will use `intents_exist` to pick the NEXT branch).
 
 ### Step 2 — attempt script shell-out (forward-compatibility)
 
@@ -75,7 +79,7 @@ For each rule, collect the list of violations (artifact path + violation-type + 
 
 **Rule 3.** For each OST whose `chosen_opportunity:` block is non-empty, parse `chosen_opportunity.id`. Walk the OST body's H2 "Opportunity space" sub-tree (or the JSON projection at `<slug>.json` if present) for matching Opportunity node ids. If no match: violation.
 
-**Rule 4.** For each Opportunity node in every OST (both H2 sub-sections and the JSON projection's `nodes[]`), read `evidence_basis:`. If empty list: violation (unsourced Opportunity). For each `IS-<NNN>` entry: resolve `<repo-root>/discovery/snapshots/<slug>.md` where the file's `id:` matches; if no match: violation (dangling reference).
+**Rule 4.** For each Opportunity node in every OST (both H2 sub-sections and the JSON projection's `nodes[]`), read `evidence_basis:`. If empty list: violation (unsourced Opportunity). For each `IS-<NNN>` entry: resolve `<repo-root>/discovery/snapshots/<slug>.md` where the file's `id:` matches; if no match: violation (dangling reference). **Snapshot id uniqueness invariant:** every `IS-<NNN>` must resolve to exactly one snapshot file. If multiple files claim the same `id: IS-<NNN>`, treat it as a `broken` violation (ambiguous reference) and emit a remediation message naming the colliding file paths plus a recommendation to renumber one or delete the duplicate.
 
 **Rule 5.** For each OST, parse `outcome.metric:` and `outcome.name:`. Read the parent intent's full body. Grep for either string (case-insensitive, partial match acceptable). If neither appears in the parent intent: warning.
 
@@ -116,7 +120,7 @@ Last line of stdout, formatted exactly:
 | `drift` (Rule 5 only — warning) | No NEXT — the warning is informational; outcome alignment is paraphrase-tolerant. The human reviews and decides whether to revise the outcome name or the intent's coherent_actions. |
 | `clean` (with an OST whose `chosen_opportunity:` is set but no narrative exists at `discovery/opportunities/narratives/<...>.md`) | `NEXT: /opportunity-narrative <slug> --from <ost-slug>` |
 | `clean` (nothing actionable) | No NEXT |
-| `insufficient-data` | `NEXT: /generate-ost <slug>` if intents exist; `NEXT: /interview-snapshot <slug>` if not (start the pipeline) |
+| `insufficient-data` | Use the `intents_exist` flag set in Step 1. When `intents_exist: true`: `NEXT: /generate-ost <slug> --from <intent-slug>` (pick the first active intent). When `intents_exist: false`: `NEXT: /interview-snapshot <slug>` (start the pipeline from the top — interviews → snapshots → opportunities → clusters → OST). |
 
 ### Step 7 — when `--write` is set, persist the report
 

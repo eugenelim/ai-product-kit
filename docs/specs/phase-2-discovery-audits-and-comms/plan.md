@@ -1,7 +1,7 @@
 # Plan: phase-2-discovery-audits-and-comms
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Approved
+- **Status:** Done
 - **Plan review:** approved (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** Implementation strategy for shipping P2.11, P2.12, P2.14 in a single coupled work-loop. Each component is a markdown file under `.claude/commands/`. No code dependencies between authoring tasks.
