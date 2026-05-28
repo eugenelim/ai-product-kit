@@ -60,9 +60,11 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | `strategy-skeptic` | AG | both | CLAUDE (dispatch) | Review | Rumelt's failure modes | planned (P7.3) |
 | `strategy-coherence` | SK | both | CLAUDE | Coherence rule library | Pairwise audit rules | shipped |
 | `wardley-evolution` | SK | enterprise | CLAUDE | Evolution placement | Place components on the axis | planned (P7.8) |
-| Rumelt failure modes | REF | both | (pulled) | — | `context/frameworks/rumelt.md` | planned (F4.7) |
-| Wardley primer | REF | enterprise | (pulled) | — | `context/frameworks/wardley.md` | planned (F4.8) |
-| Strategic coherence | REF | both | (pulled) | — | `context/frameworks/strategic-coherence.md` | planned (F4.10) |
+| Rumelt failure modes | REF | both | (pulled) | — | `context/frameworks/rumelt.md` | shipped (2026-05-28) |
+| Wardley primer | REF | enterprise | (pulled) | — | `context/frameworks/wardley.md` | shipped (2026-05-28) |
+| Strategic coherence | REF | both | (pulled) | — | `context/frameworks/strategic-coherence.md` | shipped (2026-05-28) |
+| Jobs to Be Done | REF | both | (pulled) | — | `context/frameworks/jtbd.md` | shipped (2026-05-28) |
+| Competitive analysis | REF | greenfield | (pulled) | — | `context/frameworks/competitive-analysis.md` | shipped (2026-05-28) |
 
 ## Phase 2 — Discovery
 
@@ -82,8 +84,9 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | `interview-snapshot` | SK | CLAUDE | Speakers + quotes | Speaker detection + time alignment | planned (P2.2) |
 | `opportunity-clustering` | SK | CLAUDE | Cluster set | Theme raw opportunities | planned (P2.5) |
 | `ost-validator` | SK | CLAUDE | Validation verdict | Validate-then-repair loop (prose procedure shipped; runnable script + reference files planned P2.8) | shipped (prose) |
-| Continuous Discovery | REF | (pulled) | — | `context/frameworks/continuous-discovery.md` | planned (F4.1) |
-| OST schema | REF | (pulled) | — | `context/frameworks/opportunity-solution-tree.md` | planned (F4.2) |
+| Continuous Discovery | REF | (pulled) | — | `context/frameworks/continuous-discovery.md` | shipped (2026-05-28) |
+| OST schema | REF | (pulled) | — | `context/frameworks/opportunity-solution-tree.md` | shipped (2026-05-28) |
+| Interview snapshot schema | REF | (pulled) | — | `context/frameworks/interview-snapshot.md` | shipped (2026-05-28) |
 
 ## Phase 3 — Validation
 
@@ -102,9 +105,9 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | `assumption-skeptic` | AG | CLAUDE (dispatch) | Review | "Would you pull the work?" check | planned (P3.2) |
 | `experiment-designer` | AG | CLAUDE (dispatch) | Test proposal | Cheapest valid test | planned (P3.5) |
 | `experiment-template` | SK | CLAUDE | Scaffold | Experiment folder structure | planned (P3.3) |
-| Assumption taxonomy | REF | (pulled) | — | `context/frameworks/assumption-tests.md` | planned (F4.4) |
-| Falsification | REF | (pulled) | — | `context/frameworks/falsification.md` | planned (F4.5) |
-| Validation theatre | REF | (pulled) | — | `context/frameworks/validation-theatre.md` | planned (F4.6) |
+| Assumption taxonomy | REF | (pulled) | — | `context/frameworks/assumption-tests.md` | shipped (2026-05-28) |
+| Falsification | REF | (pulled) | — | `context/frameworks/falsification.md` | shipped (2026-05-28) |
+| Validation theatre | REF | (pulled) | — | `context/frameworks/validation-theatre.md` | shipped (2026-05-28) |
 
 ## Phase 4 — Delivery (Vision → Initiative → Spec → Handoff Packet)
 
@@ -169,6 +172,7 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 | `cohort-analyst` | AG | CLAUDE (fan-out) | Cohort report | One cohort at a time | planned (P5.5) |
 | `landing-skeptic` | AG | CLAUDE (dispatch) | Review | "What would have to be true to revert?" | planned (P5.7) |
 | `landings-manager` | SCH | CRON (Wed 7am) | Debt scan | Mid-week landings-debt scan | planned (P5.10) |
+| Landings, not Launches | REF | (pulled) | — | `context/frameworks/landings-not-launches.md` | shipped (2026-05-28) |
 
 ## Cross-cutting
 

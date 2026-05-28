@@ -6,7 +6,7 @@ Not loaded automatically. Claude pulls these only when relevant. Keeps the conte
 >
 > **Fallback when a planned framework is needed but absent:** use `context/frameworks/ontology.md` as the always-available substrate, note the gap explicitly in your output (e.g., "would have pulled `falsification.md` but it does not yet exist — proceeding with the ontology's `Assumption` and `Experiment` types as the closest available"), and surface the missing file as a ROADMAP-priority signal to the user. Do not invent the contents of a planned framework file.
 >
-> **Special case — `competitive-analysis.md`:** the shipped `/competitive-research` command and `competitor-research` agent both reference this framework, but the file does not yet exist (ROADMAP F4.13). Until it ships, both fall back to the inline analysis structure declared in the agent's own contract.
+> **Note — `competitive-analysis.md` shipped 2026-05-28** (F4.13). The earlier fallback to the agent's inline contract is no longer in effect; consumers pull the framework doc directly.
 
 Catalog. Each entry says **when** to pull.
 
@@ -54,32 +54,32 @@ The PM-craft schemas the kit operates on. Pull when working with the correspondi
 - **`ontology.md`** *(shipped)* — the canonical product/business ontology: eight domains plus a kit-composite Domain I, 84 documented typed objects (76 atomic + 8 composite), traceability rules, lifecycle states. Pull for any work that produces a typed artifact (which is nearly everything). The `ontology-classifier` skill loads this.
 
 ### Strategy phase *(all planned)*
-- `rumelt.md` *(planned — F4.7)* — diagnosis / guiding policy / coherent actions; failure modes
-- `wardley.md` *(planned — F4.8)* — value chain, evolution axis, climatic patterns (enterprise mode)
-- `strategic-coherence.md` *(planned — F4.10)* — three axes (resources / capabilities / posture); incoherence patterns
+- `rumelt.md` *(shipped)* — diagnosis / guiding policy / coherent actions; failure modes
+- `wardley.md` *(shipped)* — value chain, evolution axis, climatic patterns (enterprise mode)
+- `strategic-coherence.md` *(shipped)* — three axes (resources / capabilities / posture); incoherence patterns
 - `perri-strategy-stack.md` *(planned — not yet in ROADMAP)* — vision / intent / initiatives / options
 
 ### Discovery phase *(all planned)*
-- `continuous-discovery.md` *(planned — F4.1)* — the weekly habit: 3 interviews, 1 experiment, 1 falsification
-- `opportunity-solution-tree.md` *(planned — F4.2)* — node types, source opportunities, structure
-- `interview-snapshot.md` *(planned — F4.3)* — snapshot contents, transcript extraction
-- `jtbd.md` *(planned — F4.9)* — Christensen / Ulwick formulations
+- `continuous-discovery.md` *(shipped)* — the weekly habit: 3 interviews, 1 experiment, 1 falsification
+- `opportunity-solution-tree.md` *(shipped)* — node types, source opportunities, structure
+- `interview-snapshot.md` *(shipped)* — snapshot contents, transcript extraction
+- `jtbd.md` *(shipped)* — Christensen / Ulwick formulations
 
 ### Validation phase *(all planned)*
-- `assumption-tests.md` *(planned — F4.4)* — five-lens taxonomy: desirability / viability / feasibility / usability / ethical
-- `falsification.md` *(planned — F4.5)* — what "survived" actually means; predeclared threshold pattern
-- `validation-theatre.md` *(planned — F4.6)* — failure modes; the "would you pull the work?" test
+- `assumption-tests.md` *(shipped)* — five-lens taxonomy: desirability / viability / feasibility / usability / ethical
+- `falsification.md` *(shipped)* — what "survived" actually means; predeclared threshold pattern
+- `validation-theatre.md` *(shipped)* — failure modes; the "would you pull the work?" test
 - `bland-testing-business-ideas.md` *(planned — not yet in ROADMAP)* — assumption-mapping + experiment-selection reference
 
 ### Delivery phase *(all planned)*
-- `competitive-analysis.md` *(planned — F4.13)* — what a thorough analysis contains
+- `competitive-analysis.md` *(shipped)* — what a thorough analysis contains
 - `roadmap-as-bets.md` *(planned — not yet in ROADMAP)* — "roadmaps as plans for uncertainty"
-- `ears.md` *(planned — F4.12)* — EARS pattern for spec sentences
+- `ears.md` *(shipped)* — EARS pattern for spec sentences
 - `cagan-dual-track.md` *(planned — not yet in ROADMAP)* — discovery + delivery as parallel tracks
 - `context-map.md` *(planned — not yet in ROADMAP)* — bounded contexts, ownership, shared shapes
 
 ### Landings phase *(all planned)*
-- `landings-not-launches.md` *(planned — F4.11)* — adoption curve is part of the work
+- `landings-not-launches.md` *(shipped)* — adoption curve is part of the work
 - `outcome-vs-prediction.md` *(planned — not yet in ROADMAP)* — measuring against predeclared thresholds
 
 ## `glossary/`
