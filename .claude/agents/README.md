@@ -10,6 +10,7 @@ For the canonical narrative referenced from `AGENTS.md`, see the [Specialist sub
 - **[`competitor-research`](competitor-research.md)** — fan-out worker that researches one named competitor end-to-end (positioning, features, pricing, recent moves). Writes findings to `market/competitors/<slug>.md`. Greenfield mode only; consumed by `/competitive-research`.
 - **[`quality-engineer`](quality-engineer.md)** — testability, observability, reliability, maintainability lens for specs and handoff packets. Asks whether engineering could operationalize the artifact without re-deriving the test plan, observability requirements, SLA, failure-mode coverage, or rollback. Runs after `/audit-completeness` and `adversarial-reviewer`; complements both, replaces neither.
 - **[`traceability-walker`](traceability-walker.md)** — fan-out worker dispatched by `/audit-traceability` on large scopes. Runs `scripts/audit-traceability.py` against one upstream subtree at a time and returns a structured per-subtree findings block the orchestrator can aggregate. Never reimplements rules — always shells out to F1.4.
+- **[`discovery-coach`](discovery-coach.md)** — sonnet-model coaching agent that runs against an OST when the chosen Opportunity is stuck (no Solutions, or Solutions without Assumption Tests). Returns 3–5 open questions plus candidate Solutions or Assumption Tests as proposals; never persists, never auto-picks, never overrides the human's `chosen_opportunity:`. Five-turn escalation cap. Tools: `[Read]` only. Dispatched manually today; planned auto-invoke when a real PM hits the stuck condition in practice.
 
 ## Planned — reviewers
 
@@ -22,7 +23,6 @@ Listed for completeness; not currently shippable. Build queue in [`ROADMAP.md`](
 Phase-specific challengers, invoked when a phase's signature artifact is being drafted or reviewed.
 
 - `strategy-skeptic` *(planned — [ROADMAP P7.3](../../ROADMAP.md#phase-7--phase-1-strategy-commands-the-missing-ones))* — challenges strategy drafts with Rumelt's failure modes (list-of-goals, no diagnosis, incoherent actions).
-- `discovery-coach` *(planned — [ROADMAP P2.13](../../ROADMAP.md#phase-2--discovery-commands))* — Continuous Discovery coaching; auto-invoke when stuck on an opportunity.
 - `assumption-skeptic` *(planned — [ROADMAP P3.2](../../ROADMAP.md#phase-3--validation-commands))* — "would you actually pull the work?" theatre detector for validation artifacts.
 - `roadmap-skeptic` *(planned — [ROADMAP P4.16](../../ROADMAP.md#phase-4--delivery-and-engineering-handoff))* — bets-vs-commitments lens on the roadmap.
 - `landing-skeptic` *(planned — [ROADMAP P5.7](../../ROADMAP.md#phase-5--landings))* — "what would have to be true for us to revert?" lens for landing reports.

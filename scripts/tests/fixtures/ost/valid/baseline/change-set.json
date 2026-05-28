@@ -1,0 +1,5 @@
+{
+  "actions": [
+    {"op": "add-solution", "id": "SOL-001", "name": "Saved-query snippets pinned to the sidebar", "parent": "OPP-001"}
+  ]
+}

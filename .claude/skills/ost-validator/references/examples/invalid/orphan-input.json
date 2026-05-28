@@ -1,0 +1,6 @@
+{
+  "outcome": {"id": "OUT-001", "name": "Weekly active analysts"},
+  "nodes": [
+    {"id": "OPP-001", "type": "Opportunity", "name": "Analysts redo join logic", "parent": "OUT-001", "evidence_basis": ["IS-001"]}
+  ]
+}

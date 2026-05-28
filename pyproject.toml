@@ -1,0 +1,4 @@
+[project]
+name = "ai-product-kit"
+description = "PM operating system — strategy → discovery → validation → delivery → landings."
+requires-python = ">=3.9"

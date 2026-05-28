@@ -1,0 +1,5 @@
+{
+  "actions": [
+    {"op": "merge", "ids": ["OPP-001", "OPP-002"], "into": "OPP-001"}
+  ]
+}

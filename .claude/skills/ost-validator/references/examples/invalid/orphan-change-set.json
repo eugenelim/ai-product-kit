@@ -1,0 +1,6 @@
+{
+  "_note": "Violates Rule 2 (no-orphans): SOL-001 is parented to OPP-999 which does not exist in the tree.",
+  "actions": [
+    {"op": "add-solution", "id": "SOL-001", "name": "Snippet panel", "parent": "OPP-999"}
+  ]
+}

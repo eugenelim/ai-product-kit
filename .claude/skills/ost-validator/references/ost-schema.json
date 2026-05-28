@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ai-product-kit.local/ost-schema.json",
+  "title": "Opportunity Solution Tree — tree + change-set",
+  "description": "Single source of truth for the JSON shapes consumed by scripts/validate_ost.py. IMPORTANT — split of responsibilities: this schema enforces TOP-LEVEL SHAPE ONLY (required keys, types at the tree and change-set roots, per-action common-field shapes). The schema does NOT enumerate valid action verbs — Rule 5 (valid-action-vocabulary) is enforced at exit code 1 (rule violation) by validate_ost.py, not at exit 2 (schema violation). The schema also does NOT enforce per-node-type required fields (e.g., Opportunity requires evidence_basis; AssumptionTest requires threshold) — those live in code via _validate_node_types(...) inside validate_ost.py. Rationale: implementing draft-07 oneOf / if-then-else over the per-node-type shapes would roughly triple the stdlib-only schema-validator implementation; splitting concerns keeps the schema and the script each readable. A downstream consumer reusing this schema without the script gets top-level shape validation only — vocabulary and per-type checks are the script's job. See docs/specs/phase-2-discovery-primitives/spec.md §\"Open questions\".",
+  "definitions": {
+    "tree": {
+      "type": "object",
+      "required": ["nodes"],
+      "additionalProperties": false,
+      "properties": {
+        "outcome": {
+          "type": "object",
+          "required": ["id", "name"],
+          "additionalProperties": true,
+          "properties": {
+            "id":     {"type": "string"},
+            "name":   {"type": "string"},
+            "metric": {"type": "string"}
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "type", "name", "parent"],
+            "additionalProperties": true,
+            "properties": {
+              "id":             {"type": "string"},
+              "type":           {"type": "string", "enum": ["Opportunity", "Solution", "AssumptionTest"]},
+              "name":           {"type": "string"},
+              "parent":         {"type": "string"},
+              "evidence_basis": {"type": "array",  "items": {"type": "string"}},
+              "threshold":      {"type": "string"}
+            }
+          }
+        },
+        "chosen_opportunity": {
+          "type": "object",
+          "required": ["id"],
+          "additionalProperties": true,
+          "properties": {
+            "id":        {"type": "string"},
+            "rationale": {"type": "string"}
+          }
+        }
+      }
+    },
+    "change-set": {
+      "type": "object",
+      "required": ["actions"],
+      "additionalProperties": true,
+      "properties": {
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["op"],
+            "additionalProperties": true,
+            "properties": {
+              "op":         {"type": "string"},
+              "id":         {"type": "string"},
+              "ids":        {"type": "array", "items": {"type": "string"}},
+              "name":       {"type": "string"},
+              "parent":     {"type": "string"},
+              "new_parent": {"type": "string"},
+              "into": {
+                "oneOf": [
+                  {"type": "string"},
+                  {"type": "array", "items": {"type": "string"}}
+                ]
+              },
+              "target":     {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

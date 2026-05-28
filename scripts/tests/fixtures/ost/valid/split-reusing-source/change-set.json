@@ -1,0 +1,6 @@
+{
+  "actions": [
+    {"op": "split", "id": "OPP-001", "into": ["OPP-001", "OPP-003"]},
+    {"op": "add-source-opportunity", "id": "IS-001", "target": "OPP-001"}
+  ]
+}

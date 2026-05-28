@@ -1,0 +1,6 @@
+{
+  "actions": [
+    {"op": "add-source-opportunity", "id": "IS-001", "target": "OPP-001"},
+    {"op": "add-source-opportunity", "id": "IS-001", "target": "OPP-002"}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "outcome": {
+    "id": "OUT-001",
+    "name": "Weekly active analysts producing a saved query",
+    "metric": "WAU_with_save"
+  },
+  "nodes": [
+    {
+      "id": "OPP-001",
+      "type": "Opportunity",
+      "name": "Analysts redo the same join logic across notebooks",
+      "parent": "OUT-001",
+      "evidence_basis": ["IS-001", "IS-014"]
+    }
+  ]
+}
