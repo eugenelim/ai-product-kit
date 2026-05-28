@@ -44,7 +44,7 @@ For each proposed change, walk the human through one or more actions from the 9-
 
 - **"Add new snapshot evidence to an existing Opportunity"** → one or more `add-source-opportunity` actions.
 - **"Add a Solution under Opportunity X"** → one `add-solution` action.
-- **"Add an Assumption Test under Solution Y"** → not in the current 9-verb set as a distinct verb; emit `add-solution` with `type: AssumptionTest` (the validator's node-type validation accepts this); cite the framework's `## The four node types`.
+- **"Add an Assumption Test under Solution Y"** → **known gap.** The current 9-verb vocabulary (per `<repo-root>/.claude/skills/ost-validator/references/action-vocabulary.md`) does not include an `add-assumption-test` verb, and `add-solution` produces a Solution node (per `_apply_change_set` in `scripts/validate_ost.py`), not an AssumptionTest. Until the vocabulary is extended (RFC required), this command **cannot** mechanically add an AssumptionTest via the validator-gated change-set path. Workaround for this batch: surface the gap to the human, ask them to add the AssumptionTest manually to the markdown (post-validator), and emit an `open_questions:` entry on the OST referencing this RFC need. Cite `context/frameworks/opportunity-solution-tree.md` §"The four node types" for what an AssumptionTest is and `context/frameworks/falsification.md` for the predeclared-threshold rule. The human's manual edit will not be JSON-projected and may diverge — `/update-ost`'s Step 1 divergence check will catch it next session.
 - **"Merge OPP-A and OPP-B"** → one `merge` action with `ids: [A, B]` and `into: A` (or B). Per the spec, this triggers `opportunity-merger` fan-out.
 - **"Split OPP-A into two finer Opportunities"** → one `split` action with `id: A` and `into: [new-1, new-2]`. Also triggers fan-out.
 - **"Move SOL-1 to OPP-B"** → one `reparent` action.
@@ -61,7 +61,7 @@ Walk each change one at a time. Build up the change-set JSON action list as the 
 After the proposed changes are collected, evaluate whether to fan out:
 
 - **Any `merge` or `split` action present?** Yes → fan out.
-- **Total touched-node count ≥ 3?** Yes → fan out.
+- **Total touched-node count ≥ 3?** Yes → fan out. (Counting every node that any action's `id`, `ids[]`, `target`, `new_parent`, or `into` field references — per the `opportunity-merger` agent's invocation contract.)
 
 If fanning out, dispatch the `opportunity-merger` agent per affected node. Each dispatch receives:
 

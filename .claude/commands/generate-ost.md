@@ -63,7 +63,7 @@ Walk per `templates/ost.md` — outcome first, then opportunity space, then chos
 
 1. Ask: _"Cluster `<cluster-name>` (rule: `<rule>`) — promote as Opportunity? If yes, restate the Opportunity in the customer's voice (one line)."_
 2. The new Opportunity gets a fresh id `OPP-<NNN>` (scan within this in-progress tree for max + 1).
-3. The cluster's member candidates' `evidence_basis:` references roll up — every member candidate's `IS-<NNN>` becomes a source for this Opportunity.
+3. The cluster's member candidates' `evidence_basis:` references roll up — **every `IS-<NNN>` from every member candidate becomes a source for this Opportunity** (no filtering by confidence; if the human wants to drop low-confidence evidence, do so explicitly during this step).
 4. Solutions and Assumption Tests are NOT named at this step — they come later via `/update-ost`.
 
 After all accepted clusters are promoted, ask: _"Any clusters from the unclustered bucket that warrant a standalone Opportunity in the tree? List one at a time."_
@@ -118,7 +118,7 @@ Clean up the empty-seed temp file regardless of validator outcome.
 **Validator interpretation:**
 
 - **Exit 0 (pass):** proceed to Step 6.
-- **Exit 1 (rule violation):** parse the validator's JSON failure report from stderr. Present the violations to the human. **The repair loop is unconditional** — offer up to 5 repair rounds. Each round: ask the human to revise the walked H2 content based on the validator's remediation; rebuild the projection + change set; re-invoke the validator. If 5 rounds elapse without convergence, exit code 3 with the cumulative validator output; the markdown OST is NOT persisted to disk (rollback all temp files).
+- **Exit 1 (rule violation):** parse the validator's JSON failure report from stderr. Present the violations to the human. **The repair loop is unconditional** — offer up to 5 repair rounds. **The `--force` flag has no effect on the repair loop** (it governs only whether existing on-disk files may be overwritten). Each round: ask the human to revise the walked H2 content based on the validator's remediation; rebuild the projection + change set; re-invoke the validator. If 5 rounds elapse without convergence, exit code 3 with the cumulative validator output; the markdown OST is NOT persisted to disk (rollback all temp files).
 - **Exit 2 (input error):** the validator surfaces `reason: <malformed-json | schema-violation | change-set-inconsistent | ...>`. This is a bug in the projection or change-set construction. Exit code 3 with the validator's report; the command refuses to retry (the bug is on the command's side, not the human's).
 
 ### Step 6 — persist markdown + JSON

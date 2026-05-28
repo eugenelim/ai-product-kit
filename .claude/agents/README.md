@@ -11,6 +11,8 @@ For the canonical narrative referenced from `AGENTS.md`, see the [Specialist sub
 - **[`quality-engineer`](quality-engineer.md)** — testability, observability, reliability, maintainability lens for specs and handoff packets. Asks whether engineering could operationalize the artifact without re-deriving the test plan, observability requirements, SLA, failure-mode coverage, or rollback. Runs after `/audit-completeness` and `adversarial-reviewer`; complements both, replaces neither.
 - **[`traceability-walker`](traceability-walker.md)** — fan-out worker dispatched by `/audit-traceability` on large scopes. Runs `scripts/audit-traceability.py` against one upstream subtree at a time and returns a structured per-subtree findings block the orchestrator can aggregate. Never reimplements rules — always shells out to F1.4.
 - **[`discovery-coach`](discovery-coach.md)** — sonnet-model coaching agent that runs against an OST when the chosen Opportunity is stuck (no Solutions, or Solutions without Assumption Tests). Returns 3–5 open questions plus candidate Solutions or Assumption Tests as proposals; never persists, never auto-picks, never overrides the human's `chosen_opportunity:`. Five-turn escalation cap. Tools: `[Read]` only. Dispatched manually today; planned auto-invoke when a real PM hits the stuck condition in practice.
+- **[`interview-coder`](interview-coder.md)** — haiku-model fan-out worker that codes one customer-interview transcript into one Interview Snapshot artifact end-to-end (loads the `interview-snapshot` skill, walks the eight fields, writes `discovery/snapshots/<slug>.md`, lints). Tools: `[Read, Write]`. Rolls back partial files on lint failure. Never NEXT-chains. Dispatched in parallel by the orchestrator when a batch of transcripts needs coding.
+- **[`opportunity-merger`](opportunity-merger.md)** — haiku-model fan-out worker dispatched by `/update-ost` per affected node on any `merge` / `split` action OR change sets touching ≥ 3 nodes total. Returns per-node verdict (`accept | revise | reject`) with rationale and optional alternative-action proposal. Tools: `[Read]` only (judgment only; never persists; never invokes the validator itself).
 
 ## Planned — reviewers
 
@@ -31,8 +33,6 @@ Phase-specific challengers, invoked when a phase's signature artifact is being d
 
 Parallel-dispatch agents that handle one unit of work at a time.
 
-- `interview-coder` *(planned — [ROADMAP P2.3](../../ROADMAP.md#phase-2--discovery-commands))* — one transcript at a time.
-- `opportunity-merger` *(planned — [ROADMAP P2.10](../../ROADMAP.md#phase-2--discovery-commands))* — one OST node on `/update-ost`.
 - `experiment-designer` *(planned — [ROADMAP P3.5](../../ROADMAP.md#phase-3--validation-commands))* — proposes the cheapest valid test.
 - `cohort-analyst` *(planned — [ROADMAP P5.5](../../ROADMAP.md#phase-5--landings))* — one cohort at a time.
 - `writing-critic` *(planned — [ROADMAP P8.8](../../ROADMAP.md#phase-8--communication-and-research))* — voice-aware review dispatched by `/critique`.

@@ -1,6 +1,6 @@
 # Spec: phase-2-discovery-pipeline
 
-- **Status:** Approved
+- **Status:** Shipped (2026-05-28)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** Coupled batch of seven kit components — five slash commands + two specialist agents. Mirrors the `phase-4-template-fill-commands` (seven commands under one work-loop) and `phase-2-discovery-primitives` (Batch A — four primitives under one work-loop) precedents.

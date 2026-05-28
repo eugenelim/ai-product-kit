@@ -1,7 +1,7 @@
 # Plan: phase-2-discovery-pipeline
 
 - **Spec:** [`spec.md`](./spec.md)
-- **Status:** Approved
+- **Status:** Done
 - **Plan review:** approved (set by `tools/check-done.py --phase plan`)
 
 > **Plan contract.** Implementation strategy for shipping P2.1, P2.3, P2.4, P2.6, P2.7, P2.9, P2.10 in a single coupled work-loop. The seven components are each independent markdown files; authoring is parallel-friendly. Runtime coupling (the pipeline chain) is captured in the spec.

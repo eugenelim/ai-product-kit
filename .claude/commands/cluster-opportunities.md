@@ -32,7 +32,7 @@ Otherwise list candidate batches under `<repo-root>/discovery/opportunities/*.md
 
 **Empty-batch case (the F4 skeleton's Step 1 empty-list contract):** if the candidate-batch list is empty, exit code 2 with: `"no candidate batch found under discovery/opportunities/ — run /extract-opportunities first."` Emit `NEXT: /extract-opportunities` as the remediation hint on the last line of stderr.
 
-**Few-candidates case:** read the chosen batch's candidate count. If < 3, exit code 2 with: `"batch <slug> has only N candidates — clustering fewer than 3 is not meaningful synthesis (per the opportunity-clustering skill's 'When this skill is wrong' condition). Interview more or wait for more snapshots."`
+**Few-candidates case:** read the chosen batch's candidate count. If < 6 (matching the `## When to run` trigger above), exit code 2 with: `"batch <slug> has only N candidates — clustering fewer than 6 is rarely meaningful synthesis (per the opportunity-clustering skill's 'When this skill is wrong' condition AND the `## When to run` ≥ 6 trigger). Interview more, wait for more snapshots, or re-run with --force to override."` The `--force` flag overrides this guard in addition to its file-overwrite role.
 
 ### Step 2 — instantiate the proposal file
 

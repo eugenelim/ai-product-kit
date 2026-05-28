@@ -100,5 +100,5 @@ You never write to disk. You never modify the OST or the change set. You never c
 
 - `context/frameworks/opportunity-solution-tree.md` — the canonical tree-shape rules your verdicts apply.
 - `.claude/skills/ost-validator/SKILL.md` and `.claude/skills/ost-validator/references/action-vocabulary.md` — the six rules and the 9-verb semantics.
-- `.claude/commands/update-ost.md` (planned — this batch) — the orchestrator that dispatches you.
+- `.claude/commands/update-ost.md` — the orchestrator that dispatches you.
 - `scripts/validate_ost.py` — the validator the orchestrator runs after your verdicts are collected.

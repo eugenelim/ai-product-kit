@@ -70,16 +70,16 @@ Parent-convention specs that lock the shape of a fan-out before its workers run.
 
 | Artifact | Block | Inv | Produces (output) | Purpose | Status |
 |---|---|---|---|---|---|
-| `/interview-snapshot` | SC | YOU | Insight, Pain Point, Use Case | Transcript → snapshot | planned (P2.1) |
-| `/extract-opportunities` | SC | YOU | Opportunity | Snapshots → candidates | planned (P2.4) |
-| `/cluster-opportunities` | SC | YOU | Theme | Theme raw opportunities | planned (P2.6) |
-| `/generate-ost` | SC | YOU | OST, Outcome, Opportunity | First-pass tree | planned (P2.7) |
-| `/update-ost` | SC | YOU | OST change set | Integrate new interviews; emits change set + tree | planned (P2.9) |
+| `/interview-snapshot` | SC | YOU | Interview Snapshot (Insight \| Adapted) | Walks raw transcript → `discovery/snapshots/<slug>.md` via the `interview-snapshot` skill; eight fields one at a time; ambiguity flags surfaced; lint-gated | shipped (P2.1, 2026-05-28) |
+| `/extract-opportunities` | SC | YOU | Opportunity Candidate Batch (Opportunity \| Adapted) | Snapshots → candidate Opportunities at `discovery/opportunities/<slug>.md`; refuses empty `evidence_basis`; surfaces ambiguity flags | shipped (P2.4, 2026-05-28) |
+| `/cluster-opportunities` | SC | YOU | Opportunity Clusters (Opportunity \| Adapted) | Candidates → clusters via the `opportunity-clustering` skill; per-cluster accept/revise/reject; ≥ 6 candidates required (override with `--force`) | shipped (P2.6, 2026-05-28) |
+| `/generate-ost` | SC | YOU | OST (markdown + JSON projection) | First-pass tree from intent + clusters; dual-write; shells out to `validate_ost.py` with unconditional 5-round repair loop | shipped (P2.7, 2026-05-28) |
+| `/update-ost` | SC | YOU | OST change-set trail (`<slug>-change-set-<ts>-<hex>.json`) | Mutates existing OST via the 9-verb vocabulary; optional `--update-evidence-only` restricts to `{add-source-opportunity}`; dispatches `opportunity-merger` for any merge/split or ≥ 3 nodes; validator-gated | shipped (P2.9, 2026-05-28) |
 | `/opportunity-narrative` | SC | YOU | Opportunity narrative | Write up chosen opp for validation | planned (P2.12) |
 | `/discovery-update` | SC | YOU (weekly) | Stakeholder Update | Weekly digest | planned (P2.14) |
 | `/audit-discovery-coherence` | SC | YOU | Audit Report | Flag OSTs without parent intent | planned (P2.11) |
-| `interview-coder` | AG | CLAUDE (fan-out) | Insight set | One transcript | planned (P2.3) |
-| `opportunity-merger` | AG | CLAUDE (fan-out) | Merge decision | One OST node on `/update-ost` | planned (P2.10) |
+| `interview-coder` | AG | CLAUDE (fan-out) | Interview Snapshot | Fan-out worker, one transcript at a time; haiku; tools `[Read, Write]`; rolls back partial files on lint failure | shipped (P2.3, 2026-05-28) |
+| `opportunity-merger` | AG | CLAUDE (fan-out) | Merge verdict | Fan-out worker, per-node verdict (accept/revise/reject) on proposed merge/split/reparent/reframe; haiku; tools `[Read]`; never persists | shipped (P2.10, 2026-05-28) |
 | `discovery-coach` | AG | CLAUDE (dispatch) | Coaching | Continuous Discovery coaching agent — runs against an OST when chosen Opportunity is stuck (no Solutions, or Solutions without Assumption Tests); returns 3–5 open questions + candidate Solutions/Assumption Tests as proposals; 5-turn escalation cap; never persists; tools `[Read]` only; model `sonnet` | shipped (P2.13, 2026-05-28) |
 | `interview-snapshot` | SK | CLAUDE | Snapshot proposal | Transforms raw transcript into eight-field Interview Snapshot proposal per `context/frameworks/interview-snapshot.md`; adds speaker detection, time-aligned quote extraction, paraphrase enforcement, no-recording fallback; never persists | shipped (P2.2, 2026-05-28) |
 | `opportunity-clustering` | SK | CLAUDE | Cluster set proposal | Themes raw opportunity candidates by one of three rules (shared customer behavior / workflow step / workaround pattern); unclustered bucket for candidates without a shared anchor; never auto-promotes | shipped (P2.5, 2026-05-28) |
