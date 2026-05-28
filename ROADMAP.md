@@ -202,10 +202,10 @@ The highest-volume PM activity. Build these before Phase 1 strategy commands bec
 - [x] **P2.8** `ost-validator` script — Promote the existing skill's procedure to a runnable `scripts/validate_ost.py`. **Slug:** `script-ost-validator`. **Depends on:** F1.2. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-primitives/`; closes D4 in the same loop — `references/ost-schema.json`, `references/action-vocabulary.md`, `references/examples/`).
 - [x] **P2.9** `/update-ost` — Integrate new interview content; emits change set + tree; calls the validator. **Slug:** `cmd-update-ost`. **Depends on:** P2.7, P2.8. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-pipeline/`).
 - [x] **P2.10** `opportunity-merger` agent — Fan-out worker on `/update-ost` per OST node. **Slug:** `agent-opportunity-merger`. **Depends on:** P2.9. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-pipeline/`).
-- [ ] **P2.11** `/audit-discovery-coherence` — Flag OSTs without parent intent. **Slug:** `cmd-audit-discovery-coherence`. **Depends on:** F1.1.
-- [ ] **P2.12** `/opportunity-narrative` — Write up the chosen opportunity for the validation handover. **Slug:** `cmd-opportunity-narrative`.
+- [x] **P2.11** `/audit-discovery-coherence` — Flag OSTs without parent intent. **Slug:** `cmd-audit-discovery-coherence`. **Depends on:** F1.1. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-audits-and-comms/`).
+- [x] **P2.12** `/opportunity-narrative` — Write up the chosen opportunity for the validation handover. **Slug:** `cmd-opportunity-narrative`. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-audits-and-comms/`).
 - [x] **P2.13** `discovery-coach` agent — Auto-invoke when stuck on an opportunity. **Slug:** `agent-discovery-coach`. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-primitives/`; manual invocation today, auto-invoke wiring deferred to a future ROADMAP item).
-- [ ] **P2.14** `/discovery-update` — Weekly stakeholder digest. **Slug:** `cmd-discovery-update`.
+- [x] **P2.14** `/discovery-update` — Weekly stakeholder digest. **Slug:** `cmd-discovery-update`. **Shipped:** 2026-05-28 (via `docs/specs/phase-2-discovery-audits-and-comms/`).
 
 ---
 
