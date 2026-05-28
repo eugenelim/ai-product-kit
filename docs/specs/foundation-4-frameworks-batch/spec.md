@@ -1,6 +1,6 @@
 # Spec: foundation-4-frameworks-batch
 
-- **Status:** Drafting
+- **Status:** Shipped (2026-05-28)
 - **Plan:** [`plan.md`](./plan.md)
 - **State:** [`state.json`](./state.json) (gitignored — session scratch)
 - **Component type:** framework-ref (12 deliverables under one spec — mirrors the F3 `template-authoring-convention` and F4.12 `ears-lint` precedents of shipping a coupled batch under one work-loop when artifacts share contract surface)

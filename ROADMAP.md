@@ -172,19 +172,19 @@ Once the type system has enforcement, per-type frontmatter templates make correc
 
 The `context/frameworks/*.md` reference files are pulled on demand by skills and commands. Several are referenced but don't yet exist; build them so the on-demand context loading doesn't go to broken links.
 
-- [ ] **F4.1** `continuous-discovery.md` — Torres's weekly habit loop. **Slug:** `framework-continuous-discovery`.
-- [ ] **F4.2** `opportunity-solution-tree.md` — OST node types, source opportunities, structure. **Slug:** `framework-ost`.
-- [ ] **F4.3** `interview-snapshot.md` — Snapshot schema and transcript extraction rules. **Slug:** `framework-interview-snapshot`.
-- [ ] **F4.4** `assumption-tests.md` — Five-lens taxonomy (desirability / viability / feasibility / usability / ethical). **Slug:** `framework-assumption-tests`.
-- [ ] **F4.5** `falsification.md` — What "survived" means; predeclared threshold pattern. **Slug:** `framework-falsification`.
-- [ ] **F4.6** `validation-theatre.md` — Failure modes; "would you pull the work?" test. **Slug:** `framework-validation-theatre`.
-- [ ] **F4.7** `rumelt.md` — Diagnosis / guiding policy / coherent actions; failure modes. **Slug:** `framework-rumelt`.
-- [ ] **F4.8** `wardley.md` — Value chain, evolution axis, climatic patterns. **Slug:** `framework-wardley`.
-- [ ] **F4.9** `jtbd.md` — Christensen / Ulwick formulations. **Slug:** `framework-jtbd`.
-- [ ] **F4.10** `strategic-coherence.md` — Three axes (resources / capabilities / market posture); incoherence patterns. **Slug:** `framework-strategic-coherence`.
-- [ ] **F4.11** `landings-not-launches.md` — Adoption curve is part of the work. **Slug:** `framework-landings-not-launches`.
+- [x] **F4.1** `continuous-discovery.md` — Torres's weekly habit loop. **Slug:** `framework-continuous-discovery`. **Shipped:** 2026-05-28.
+- [x] **F4.2** `opportunity-solution-tree.md` — OST node types, source opportunities, structure. **Slug:** `framework-ost`. **Shipped:** 2026-05-28.
+- [x] **F4.3** `interview-snapshot.md` — Snapshot schema and transcript extraction rules. **Slug:** `framework-interview-snapshot`. **Shipped:** 2026-05-28.
+- [x] **F4.4** `assumption-tests.md` — Five-lens taxonomy (desirability / viability / feasibility / usability / ethical). **Slug:** `framework-assumption-tests`. **Shipped:** 2026-05-28.
+- [x] **F4.5** `falsification.md` — What "survived" means; predeclared threshold pattern. **Slug:** `framework-falsification`. **Shipped:** 2026-05-28.
+- [x] **F4.6** `validation-theatre.md` — Failure modes; "would you pull the work?" test. **Slug:** `framework-validation-theatre`. **Shipped:** 2026-05-28.
+- [x] **F4.7** `rumelt.md` — Diagnosis / guiding policy / coherent actions; failure modes. **Slug:** `framework-rumelt`. **Shipped:** 2026-05-28.
+- [x] **F4.8** `wardley.md` — Value chain, evolution axis, climatic patterns. **Slug:** `framework-wardley`. **Shipped:** 2026-05-28.
+- [x] **F4.9** `jtbd.md` — Christensen / Ulwick formulations. **Slug:** `framework-jtbd`. **Shipped:** 2026-05-28.
+- [x] **F4.10** `strategic-coherence.md` — Three axes (resources / capabilities / market posture); incoherence patterns. **Slug:** `framework-strategic-coherence`. **Shipped:** 2026-05-28.
+- [x] **F4.11** `landings-not-launches.md` — Adoption curve is part of the work. **Slug:** `framework-landings-not-launches`. **Shipped:** 2026-05-28.
 - [x] **F4.12** `ears.md` — EARS pattern for spec sentences. **Slug:** `framework-ears`. **Shipped:** 2026-05-23.
-- [ ] **F4.13** `competitive-analysis.md` — What a thorough analysis contains. **Slug:** `framework-competitive-analysis`.
+- [x] **F4.13** `competitive-analysis.md` — What a thorough analysis contains. **Slug:** `framework-competitive-analysis`. **Shipped:** 2026-05-28.
 
 ---
 
