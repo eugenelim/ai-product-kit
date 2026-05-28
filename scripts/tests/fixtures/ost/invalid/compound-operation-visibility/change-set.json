@@ -1,0 +1,6 @@
+{
+  "_note": "IS-001 silently moved from OPP-001 to OPP-002 without merge/split. Rule 6 fires.",
+  "actions": [
+    {"op": "add-source-opportunity", "id": "IS-001", "target": "OPP-002"}
+  ]
+}

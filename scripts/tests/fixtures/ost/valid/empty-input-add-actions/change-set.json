@@ -1,0 +1,7 @@
+{
+  "actions": [
+    {"op": "add-outcome", "id": "OUT-001", "name": "New Outcome"},
+    {"op": "add-opportunity", "id": "OPP-001", "name": "First Opportunity", "parent": "OUT-001"},
+    {"op": "add-source-opportunity", "id": "IS-001", "target": "OPP-001"}
+  ]
+}

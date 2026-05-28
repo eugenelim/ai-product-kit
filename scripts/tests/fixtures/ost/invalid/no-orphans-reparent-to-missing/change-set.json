@@ -1,0 +1,5 @@
+{
+  "actions": [
+    {"op": "reparent", "id": "SOL-001", "new_parent": "OPP-999"}
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "nodes": [
+    {"id": "OPP-001", "type": "Opportunity", "name": "Opp", "parent": "OUT-001", "evidence_basis": ["IS-001"]}
+  ]
+}
