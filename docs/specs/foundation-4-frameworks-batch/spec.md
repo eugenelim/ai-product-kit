@@ -68,7 +68,7 @@ Each `context/frameworks/<slug>.md` file has this body outline, in order, no YAM
 The H2 section list below names the *minimum* required content. Each framework may add 1 H2 beyond the minimum if its source material requires it; adding more than 1 must surface in the Plan's Changelog. Authoring agents must paraphrase, not copy; short attributed quotes (≤ 25 words) are acceptable.
 
 **F4.1 — `continuous-discovery.md`** (target ~120 lines)
-- `## The weekly habit` — the cadence (3 customer interviews + 1 experiment + 1 falsified assumption per week as Torres's target; the kit may relax to ≥1 per discipline per week, but the asymmetric target is the canonical anchor).
+- `## The weekly habit` — Torres names **weekly customer contact** as the discipline (her published canonical anchor is "weekly", not a specific count). The kit's practical target is ≥3 customer interviews + ≥1 experiment + ≥1 falsified-or-survived assumption per week — three is the kit's practical minimum for trio coverage (PM, designer, tech lead), explicitly framed as kit-practical, not as Torres's published number. _Spec amendment 2026-05-28 (REVIEW iter-2): the original spec attributed "3 per week" to Torres; iter-1 review corrected the doc and this spec entry was updated to match factual accuracy._
 - `## The product trio` — the cross-functional pair (PM + designer + tech lead) that does discovery together, not as a relay.
 - `## Outcome vs output orientation` — the discipline of working backwards from a single outcome metric rather than forwards from a feature list.
 - `## Common failure modes` — drift to discovery theatre (we interview but don't act), the "Slack/Discord-only" research substitute, the "I'll discover next quarter" trap.

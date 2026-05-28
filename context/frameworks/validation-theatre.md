@@ -9,7 +9,7 @@ Validation theatre takes four recognizable shapes. They are not mutually exclusi
 - **The predetermined-outcome theatre.** "We already decided to ship; the test is just to make ourselves feel better." The decision was made in a meeting last week; the test is ritual cover. The threshold can be hit or missed; the work proceeds either way. This is Cagan's "feature factory" pattern at the test-design layer.
 - **The floor-it threshold theatre.** "We set the bar low enough that everything passes." A 5% conversion target on a landing page is below baseline; a "≥1 enthusiastic user out of 5" usability target is not falsifiable. The threshold exists; the falsification is impossible.
 - **The no-consequences theatre.** "We ran the test but won't actually pull the work if it fails." The threshold is real; the will to act on a fail is absent. This is the failure mode the "would you pull the work?" test exposes.
-- **The undersized-power theatre.** "The test is too small or too short to discriminate, but we're calling it done anyway." A 5-user usability test against a feature with 10,000 users; a 48-hour A/B test on a metric that takes weeks to materialize. The methodology can't separate signal from noise, so the result is whatever the team wants it to be.
+- **The undersized-power theatre.** "The test is too small or too short to discriminate, but we're calling it done anyway." A 5-user usability test against a feature with 10,000 users; a 48-hour A/B test on a retention metric that requires 14–28 days of post-event observation to stabilize. The methodology can't separate signal from noise, so the result is whatever the team wants it to be.
 - **The wrong-population theatre.** The test runs with the right methodology and the right sample size, but with the wrong population — existing power users instead of the target segment, internal stakeholders instead of customers, or one cohort treated as representative of all. The test can "pass" while the assumption about the target population remains untested. Population validity is a separate dimension from statistical power; both can fail independently.
 
 ## The "would you pull the work?" test
@@ -28,11 +28,11 @@ The question's force is in the timing: asked **before** the test, it surfaces th
 
 The kit has four mechanical guards plus one human discipline:
 
-- **Predeclared thresholds.** The `hook-assumption-threshold-lock` hook (F2.2, shipped at `scripts/check-assumption-threshold.py`) refuses to write `validation/experiments/**/results.md` unless a threshold was filed first. Catches the floor-it and absent-threshold modes.
+- **Predeclared thresholds.** The `hook-assumption-threshold-lock` PreToolUse hook (F2.2, shipped — registered in `.claude/settings.json`; implementation at `scripts/check-assumption-threshold.py`; contract at `.claude/hooks/assumption-threshold-lock.md`) refuses to write `validation/experiments/**/results.md` unless a threshold was filed first. Catches the floor-it and absent-threshold modes.
 - **Falsification framing.** `context/frameworks/falsification.md` is the rule library; the kit's vocabulary distinguishes `survived` from `validated` and reserves `killed` as a first-class status. Catches the soft-confirm mode.
 - **Explicit `status: killed` in Learning Memos.** F3.5 template requires a status field with `survived | killed | pending` values. A team whose kill-rate is zero across many tests is running theatre by aggregate signal even if each individual test looks rigorous.
 - **The "would you pull the work?" test.** Dispatched by `assumption-skeptic` (planned — ROADMAP P3.2) against each proposed test before it runs.
-- **The Discovery → Validation handover contract** in `docs/HANDOVERS.md`. An Opportunity cannot cross into Validation as `chosen: true` until its riskiest assumption is named **and** the test design includes a predeclared threshold. The handover is the discipline-gate.
+- **The Discovery → Validation handover contract** in `docs/HANDOVERS.md` §"Handover 2". An Opportunity cannot cross into Validation as the `chosen_opportunity:` until its riskiest assumption is named **and** the test design includes a predeclared threshold. The handover is the discipline-gate.
 
 ## How the kit uses this framework
 

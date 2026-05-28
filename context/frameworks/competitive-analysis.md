@@ -27,17 +27,6 @@ Use **at least two** lenses. One lens is rarely enough — single-lens analysis 
 
 A competitor's **positioning** is the public claim; the lenses tell you whether the claim holds up structurally (Porter), durably (Wardley), and against the right customer-job (JTBD).
 
-## What this kit asks for
-
-The kit's consumers of this framework:
-
-- **`/competitive-research`** (shipped, greenfield mode only — the `mode-guard` hook (F2.4) blocks it in enterprise mode) — the command that produces per-competitor analyses.
-- **`competitor-research` agent** (shipped) — fan-out worker, one competitor at a time. Writes findings to `market/competitors/<slug>.md`.
-- **`/market-scan`** (planned — ROADMAP P7.11) — aggregates the per-competitor analyses into a cross-competitor synthesis with positioning and pricing comparison tables.
-- **`market/comparison-tables/`** — the home for the cross-competitor synthesis outputs.
-
-This framework defines both the **per-competitor expectations** (the scan; ≥2 lenses applied per competitor; positioning explicit) and the **cross-competitor expectations** (the synthesis; the decision-useful conclusion). Until this framework shipped, the consumers fell back to the inline contract in `.claude/agents/competitor-research.md`; with the framework shipped, the contract is canonical.
-
 ## Common failure modes
 
 - **Table-stakes feature comparison without positioning.** A feature matrix is data, not analysis. Two competitors with the same features can occupy different positions (premium vs commodity; enterprise vs consumer); the matrix obscures the positioning the lenses surface.
@@ -48,10 +37,12 @@ This framework defines both the **per-competitor expectations** (the scan; ≥2 
 
 ## How the kit uses this framework
 
-- **`/competitive-research`** (shipped) — the command's contract names this framework as the rule library.
-- **`competitor-research` agent** (shipped) — fan-out per competitor; produces `market/competitors/<slug>.md`.
-- **`/market-scan`** (planned — ROADMAP P7.11) — aggregates per-competitor analyses.
-- **`mode-guard` hook** (F2.4, shipped) — enforces greenfield-mode-only access.
+This framework defines both the **per-competitor expectations** (the scan; ≥2 lenses applied per competitor; positioning explicit) and the **cross-competitor expectations** (the synthesis; the decision-useful conclusion). Until this framework shipped, consumers fell back to the inline contract in `.claude/agents/competitor-research.md`; with the framework shipped, that contract is canonical.
+
+- **`/competitive-research`** (shipped, greenfield mode only — the `mode-guard` hook (F2.4) blocks it in enterprise mode) — the command that produces per-competitor analyses; its contract names this framework as the rule library.
+- **`competitor-research` agent** (shipped) — fan-out worker, one competitor at a time. Writes findings to `market/competitors/<slug>.md`.
+- **`/market-scan`** (planned — ROADMAP P7.11) — aggregates per-competitor analyses into a cross-competitor synthesis with positioning and pricing comparison tables. **Interim posture (until P7.11 ships):** the cross-competitor synthesis is produced manually by the PM using the per-competitor files at `market/competitors/<slug>.md`; `market/comparison-tables/` is the home for those manual syntheses.
+- **`mode-guard` hook** (F2.4, shipped) — enforces greenfield-mode-only access to the named commands.
 - **The greenfield-mode strategy commands generally** consume the cross-competitor synthesis.
 
 Frame: this framework defines what thoroughness means; the consumers above produce the deliverables that meet (or fail) the definition.

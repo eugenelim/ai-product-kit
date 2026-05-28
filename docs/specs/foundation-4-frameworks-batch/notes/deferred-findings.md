@@ -21,6 +21,49 @@ User requested the deferred findings be addressed in a follow-up pass after the 
 
 All kit-wide gates re-verified after the fixes: `python3 tools/lint-frontmatter.py --all` clean; `bash tools/pre-pr.sh` clean.
 
+## Resolved in REVIEW iter-3 (2026-05-28, fan-out reviewer pass)
+
+User requested a work-loop REVIEW pass with parallel reviewer fan-out across all 12 framework files. 12 `adversarial-reviewer` agents dispatched in parallel; 11 returned `needs-fixes`, 1 (`wardley.md`) returned `pass`. Aggregated 14 critical-or-needs-fix findings; 13 fixed in-loop; 1 spec drift (Torres-cadence attribution) resolved by amending the spec to match the doc's factual correction from iter-1.
+
+### Critical (7 — all fixed in-loop)
+
+- **opportunity-solution-tree.md**: `chosen: true` (wrong field name) → `chosen_opportunity:` with `id:` + `rationale:` sub-fields, matching `docs/HANDOVERS.md` §"Handover 2" verbatim. Fixed in 2 locations (intro blockquote + "How the kit uses" section).
+- **interview-snapshot.md**: intro blockquote was missing the `Interviewer` field from the schema enumeration; added.
+- **assumption-tests.md**: References section claimed "Bland's subsequent public work adds the Ethical lens" — unverifiable attribution. Removed; replaced with explicit "the kit adds Ethical as a co-equal fifth lens" pointer to the body section that already labels it as kit synthesis.
+- **validation-theatre.md**: hook described as "shipped at `scripts/check-assumption-threshold.py`" (the script is the implementation, not the hook itself) — corrected to name the PreToolUse registration in `.claude/settings.json` + implementation script + contract doc all three. Same fix applied to `assumption-tests.md` and `falsification.md` where the same mischaracterization appeared.
+- **competitive-analysis.md**: shape-contract violation — had both `## What this kit asks for` and `## How the kit uses this framework` covering the same consuming-surface ground. Collapsed into the single required `## How the kit uses this framework` section per the shape contract precedent (`ears.md`).
+- **strategic-coherence.md**: `## The audit lens` section asserted that the three axes decompose Rumelt's three criteria but did not show the mapping. Added explicit mapping: resource coherence ↔ resource-feasible, capability coherence ↔ mutually reinforcing, market posture coherence ↔ coordinated.
+- **landings-not-launches.md**: `## "Launches are starts, not ends"` section named the symptom (failed outcomes surface only at planning) but not the structural cause. Added the three forces (team reassignment immediately after launch; adoption not in anybody's OKRs; planning cycles forming concurrently with current work landing) and named the kit's mechanical guard (`/audit-landings-debt` + `landings-manager` scheduled agent).
+
+### Needs-fix (6 — all fixed in-loop)
+
+- **continuous-discovery.md spec drift**: iter-2 reviewer flagged that the spec said "3 interviews per week as Torres's target" but the doc had been corrected in iter-1 to honor factual accuracy (Torres publishes "weekly", not "3"). Spec updated 2026-05-28 to match the doc's factually-correct framing (with an amendment-history note in the spec entry).
+- **jtbd.md opportunity-score formula**: previously stated as "importance minus satisfaction"; corrected to Ulwick's canonical formula `importance + max(importance − satisfaction, 0)` which deliberately weights importance — the formula is in Ulwick (2005) ch. 6 and Ulwick & Bettencourt (2008) covers the survey mechanics.
+- **interview-snapshot.md no-recording case**: previous version assumed a recording always existed (timestamp format `<MM:SS>`); added explicit no-recording fallback (`[no recording]` instead of timestamp; do not fabricate).
+- **assumption-tests.md hook path consistency**: line 35 of the test-card schema previously gave the script path without the hook-contract path; line 52 had both. Reconciled — both occurrences now name the settings registration, the script, and the contract doc consistently.
+- **falsification.md missing forward cross-link**: the predeclared-threshold section did not cite `context/frameworks/assumption-tests.md` (where the test-card schema with the Threshold field lives). Added the forward pointer.
+- **validation-theatre.md vague "weeks to materialize"**: replaced with the concrete "a retention metric that requires 14–28 days of post-event observation to stabilize."
+
+### Drift-resolution: `chosen: true` → `chosen_opportunity:` consistency
+
+The wrong field name `chosen: true` had propagated to `validation-theatre.md`'s "How the kit guards against theatre" section (the Discovery → Validation handover note). Fixed there too — now uses `chosen_opportunity:` consistently across all docs that reference Handover 2.
+
+### Nits and substantive expansions — deferred to follow-up
+
+- continuous-discovery: solo-PM-as-trio failure mode (already named in body of `## The product trio`; nit-level addition to failure-mode list)
+- opportunity-solution-tree: line-budget expansion + Assumption Test canonical example (NF-2 from review)
+- assumption-tests: line-budget expansion + cross-link to falsification moving-threshold (nit; the inline note in the Threshold field now references it)
+- falsification: line-budget expansion (target ~120, currently 48)
+- rumelt: Wal-Mart kernel concrete walk-through (NF-1 from review) + coherent-actions section depth (NF-2)
+- strategic-coherence: section-depth expansion for `## Incoherence patterns` and `## Common failure modes` worked examples
+- jtbd: Christensen job-statement form template (already partially addressed by the three diagnostic questions)
+- landings-not-launches: line-budget expansion of `## What a landing report contains` (mostly addressed by the threshold-fallback addition above)
+- competitive-analysis: line-budget expansion of `## What thorough analysis contains` and `## Three lenses` after the dedup
+- wardley: "first-order heuristic" qualifier on the strategic implications (VL nit) + drop `scripts/mode-guard.py` from parenthetical references (NF nit)
+- All VL findings (atmospheric prose, vague language) and ME findings (missed edge cases that were not load-bearing)
+
+**Rationale for deferring the line-budget expansions:** the spec explicitly marks per-framework targets as advisory, not gated; the reviewer is the gate; the reviewer-flagged thinness is real but every required section is substantively present. Expanding further turns reference into tutorial. Track for a future hardening pass when a real adopter consumes the docs against a real product situation and reports a content gap.
+
 ## Deferred
 
 - **N-1 (thinness across 5 frameworks).** Five of twelve docs (`continuous-discovery.md`, `wardley.md`, `assumption-tests.md`, `jtbd.md`, `interview-snapshot.md`) came in at 46–58 lines, below the spec's advisory per-framework targets (110–150 lines). The reviewer named specific sections that read as compressed.

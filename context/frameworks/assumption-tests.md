@@ -32,7 +32,7 @@ Every assumption test carries five fields, declared **before** the test runs:
 1. **Hypothesis** — one falsifiable statement. Not "users will like it"; rather "≥40% of first-time users will create a saved view within their first 10-minute session."
 2. **Test** — the cheapest method that could falsify the hypothesis. Cheap-and-fast beats elaborate-and-slow.
 3. **Metric** — what we measure. Must be the same metric named in the hypothesis.
-4. **Threshold** — the bar that decides survive-or-kill, **declared before the test runs**. The kit's `hook-assumption-threshold-lock` (F2.2, shipped at `scripts/check-assumption-threshold.py`) refuses to write `validation/experiments/**/results.md` unless a threshold was filed first. This is load-bearing.
+4. **Threshold** — the bar that decides survive-or-kill, **declared before the test runs**. The kit's `hook-assumption-threshold-lock` (F2.2, shipped — hook registered in `.claude/settings.json`; implementation at `scripts/check-assumption-threshold.py`; contract at `.claude/hooks/assumption-threshold-lock.md`) refuses to write `validation/experiments/**/results.md` unless a threshold was filed first. This is load-bearing. *Note: the hook enforces that a threshold exists, not that the threshold is honest — see the "moving threshold" failure mode in `context/frameworks/falsification.md`.*
 5. **Outcome** — what actually happened, recorded **after**. Includes the raw number and the verdict (survived | killed) against the predeclared threshold.
 
 The card is the artifact; the discipline is the predeclared-threshold rule. See `context/frameworks/falsification.md` for the epistemological grounding.
@@ -57,7 +57,7 @@ Frame: this framework is the rule library the Validation phase consumes; the con
 
 ## References
 
-- Bland, D. J. & Osterwalder, A. (2019). *Testing Business Ideas: A Field Guide for Rapid Experimentation*. Wiley. The canonical source for the five-lens taxonomy (Desirability / Viability / Feasibility / Usability) and the test-card schema. Bland's subsequent public work adds the Ethical lens; the kit treats all five as canonical.
+- Bland, D. J. & Osterwalder, A. (2019). *Testing Business Ideas: A Field Guide for Rapid Experimentation*. Wiley. The canonical source for the four-lens taxonomy (Desirability / Viability / Feasibility / Usability) and the test-card schema. The kit adds Ethical as a co-equal fifth lens; see `## The five lenses` §Ethical for the kit's rationale.
 - `context/frameworks/falsification.md` — the epistemological grounding for the predeclared-threshold discipline.
 - `context/frameworks/validation-theatre.md` — the "would you pull the work?" anti-theatre check that gates every test.
 - `templates/assumption-map.md` — the kit's Assumption Map template.

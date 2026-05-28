@@ -10,7 +10,7 @@ The kit's Learning Memo template (F3.5, shipped at `templates/learning-memo.md`)
 
 ## The predeclared-threshold pattern
 
-**What counts as falsified must be declared before the test runs.** Without a predeclared threshold, every result can be post-hoc rationalized into a survival ("the conversion rate was lower than we hoped but the segment was unrepresentative"; "the latency missed the SLA but the test load was unrealistic"). The kit's `hook-assumption-threshold-lock` (F2.2, shipped at `scripts/check-assumption-threshold.py`) is the mechanical guard: it refuses to write `validation/experiments/**/results.md` unless a falsification threshold was filed before the experiment ran.
+**What counts as falsified must be declared before the test runs.** Without a predeclared threshold, every result can be post-hoc rationalized into a survival ("the conversion rate was lower than we hoped but the segment was unrepresentative"; "the latency missed the SLA but the test load was unrealistic"). The threshold itself lives in the test-card schema defined in `context/frameworks/assumption-tests.md` (the Threshold field). The kit's `hook-assumption-threshold-lock` (F2.2, shipped — registered in `.claude/settings.json`; implementation at `scripts/check-assumption-threshold.py`; contract at `.claude/hooks/assumption-threshold-lock.md`) is the mechanical guard: it refuses to write `validation/experiments/**/results.md` unless a falsification threshold was filed before the experiment ran.
 
 The threshold declaration must name the **statistical shape** of the metric explicitly — point estimate (e.g., "conversion rate ≥ 12%"), interval (e.g., "p-value ≤ 0.05 on a two-tailed test"), or categorical (e.g., "≥4 of 5 users complete the task unaided"). The shape must match the test's actual output; declaring a point-estimate threshold and then reporting a p-value (or vice versa) lets the team interpret the result either way after the fact. This is the prescriptive fix for the confidence-interval-confusion failure mode named below.
 
@@ -26,14 +26,14 @@ The asymmetry shows up in the kit's downstream vocabulary too: `discovery-coach`
 
 ## Common failure modes
 
-- **The "moving threshold"** — the threshold gets relaxed after a borderline result so the assumption survives. Defeats the entire mechanism; the hook can't catch this because the rationalization happens in commit messages and Slack threads, not in the threshold file. The mitigation is review-pass discipline: any threshold edit after the result lands triggers a `notes/threshold-revision.md` requirement.
+- **The "moving threshold"** — the threshold gets relaxed after a borderline result so the assumption survives. Defeats the entire mechanism; the hook can't catch this because the rationalization happens in commit messages and Slack threads, not in the threshold file. The mitigation is review-pass discipline (convention, not mechanically enforced): a threshold edit that lands after the experiment's result is recorded must carry a documented rationale in the threshold file itself before any reviewer accepts it.
 - **The "soft confirm"** — a survived assumption is treated as validated and goes unchallenged thereafter. Subsequent decisions cite "we validated this" when the actual record reads `status: survived` on one test. The mitigation is vocabulary discipline: `survived` and `validated` are not synonyms.
 - **The "absent threshold"** — the test produces a number but there's no pre-declared meaning of it, so any number is reported as "evidence." The F2.2 hook blocks this at write-time.
 - **The "confidence-interval confusion"** — the experiment produces a p-value but the threshold was declared in absolute terms (or vice versa). Mismatched metric types let the team interpret the result either way. Mitigation: threshold and metric must declare the same statistical shape (point estimate vs interval vs categorical) in the experiment template.
 
 ## How the kit uses this framework
 
-- **`hook-assumption-threshold-lock`** (F2.2, shipped at `scripts/check-assumption-threshold.py`) — the mechanical enforcer; the kit's most important PreToolUse hook.
+- **`hook-assumption-threshold-lock`** (F2.2, shipped — registered in `.claude/settings.json`; implementation at `scripts/check-assumption-threshold.py`; contract at `.claude/hooks/assumption-threshold-lock.md`) — the mechanical enforcer; the kit's most important PreToolUse hook.
 - **Learning Memo template** (F3.5, shipped at `templates/learning-memo.md`) with its `status: survived | killed | pending` field.
 - **Experiment template** (F3.4, shipped) with its predeclared Threshold field.
 - **Commands** (all planned — ROADMAP): `/run-assumption-test` (P3.7) captures results and computes survive-or-kill against the predeclared threshold; `/falsify-or-confirm` (P3.8) writes the Learning Memo and flips status; `/kill-or-survive` (P3.9) formal opportunity disposition; `/learning-memo` (P3.10) synthesizes learning separately from the proceed decision.

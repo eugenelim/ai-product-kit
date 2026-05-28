@@ -1,6 +1,6 @@
 # Opportunity Solution Tree
 
-> A visual artifact for connecting a desired Outcome to the Opportunities, Solutions, and Assumption Tests that pursue it. Defined by Teresa Torres in *Continuous Discovery Habits* (2021), ch. 6–7. The OST is the kit's Discovery-phase handover artifact: every OST has one Outcome at its root and (when ready to hand off to Validation) one Opportunity flagged `chosen: true`. The validator skill at `.claude/skills/ost-validator/SKILL.md` enforces the tree's structural rules; the template at `templates/ost.md` provides the empty shape.
+> A visual artifact for connecting a desired Outcome to the Opportunities, Solutions, and Assumption Tests that pursue it. Defined by Teresa Torres in *Continuous Discovery Habits* (2021), ch. 6–7. The OST is the kit's Discovery-phase handover artifact: every OST has one Outcome at its root and (when ready to hand off to Validation) one Opportunity named in the OST's `chosen_opportunity:` field (with `id:` and `rationale:` sub-fields), per `docs/HANDOVERS.md` §"Handover 2". The validator skill at `.claude/skills/ost-validator/SKILL.md` enforces the tree's structural rules; the template at `templates/ost.md` provides the empty shape.
 
 ## The four node types
 
@@ -29,6 +29,7 @@ The OST is a directed acyclic graph with strict layering. The validator at `.cla
 - **Opportunities are additive children.** As you learn, the tree branches **widen**, not narrow. The wrong instinct ("we have too many opportunities — let's prune") usually means: the tree is doing its job; pick one Opportunity to pursue, leave the others as inventory.
 - **Solutions are children of one Opportunity each.** A Solution sitting under two Opportunities is a smell — either the two Opportunities are actually one (rebracket), or the Solution is really two Solutions (split).
 - **An Assumption Test is a child of one Solution.** Tests at intermediate layers indicate you're trying to validate an Opportunity directly; that's a category error — Opportunities are evidence-grounded, not test-grounded.
+- **Opportunities may decompose into sub-Opportunities.** The four-level skeleton (Outcome → Opportunity → Solution → Assumption Test) is the *minimum* depth; useful trees often have Opportunity → sub-Opportunity → … chains before reaching Solutions. Decomposition is the mechanism that produces the varying-depth trees called out in `## Common failure modes` (a flat tree has no sub-Opportunities; that's the smell).
 
 ## Common failure modes
 
@@ -45,7 +46,7 @@ The OST is a directed acyclic graph with strict layering. The validator at `.cla
 - `/generate-ost` (planned — ROADMAP P2.7) and `/update-ost` (planned — ROADMAP P2.9) — generate the first-pass tree from snapshots and integrate new interview content, respectively.
 - `/audit-discovery-coherence` (planned — ROADMAP P2.11) — flags OSTs without parent intents.
 - `discovery-coach` agent (planned — ROADMAP P2.13) — auto-invokes when the team is stuck on an Opportunity.
-- The Discovery → Validation handover contract in `docs/HANDOVERS.md` §"Handover 2": the OST with `chosen: true` on one Opportunity is the artifact that crosses the phase boundary.
+- The Discovery → Validation handover contract in `docs/HANDOVERS.md` §"Handover 2": the OST with a `chosen_opportunity:` (carrying `id:` and `rationale:`) is the artifact that crosses the phase boundary.
 
 ## References
 

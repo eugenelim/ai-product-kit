@@ -14,7 +14,13 @@ A fourth implicit axis surfaces in practice: **shared-audience coherence**. Bets
 
 ## The audit lens — Rumelt's coherent-actions leg, operationalized
 
-Rumelt's third kernel-leg (see `context/frameworks/rumelt.md`) says coherent actions are coordinated, mutually reinforcing, and resource-feasible. The kit's audit decomposes those three criteria into the three axes above and runs pairwise checks across the active portfolio:
+Rumelt's third kernel-leg (see `context/frameworks/rumelt.md`) says coherent actions are coordinated, mutually reinforcing, and resource-feasible. The kit's audit decomposes those three criteria into the three axes above:
+
+- **Resource coherence** operationalizes Rumelt's *resource-feasible* criterion — the bets must fit inside the team's actual resource envelope, not the wishful one.
+- **Capability coherence** operationalizes the *mutually reinforcing* criterion — two bets that demand contradictory capabilities cannot strengthen each other.
+- **Market posture coherence** operationalizes the *coordinated* criterion — actions that read as contradictory postures to the market are not externally coordinated even when internally aligned.
+
+The audit runs pairwise checks across the active portfolio:
 
 - The shipped command is `/audit-portfolio-coherence` (F1.6).
 - The script is `scripts/audit-portfolio-coherence.py` (confirmed to exist at spec-time).

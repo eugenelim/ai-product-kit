@@ -6,7 +6,7 @@
 
 The traditional product calendar treats launch as the terminal event: build → test → launch → celebrate → move on. Reality treats launch as the inflection where adoption work begins. A product that ships but is not adopted has produced output without outcome — and Cagan's "feature factory" failure mode (`context/frameworks/validation-theatre.md`) lives in the gap.
 
-The kit's Phase 5 makes adoption work an explicit phase with its own handover artifact (the Landing Report). Phase 4 (Delivery) ends at code-in-prod; Phase 5 (Landings) begins there and ends at outcome-realized-or-rejected. Skipping Phase 5 is the most common failure mode in product practice — and the most expensive, because if Phase 5 is skipped, failed outcomes typically only appear during the next planning cycle when prior work's impact is reviewed — after new commitments have already been made.
+The kit's Phase 5 makes adoption work an explicit phase with its own handover artifact (the Landing Report). Phase 4 (Delivery) ends at code-in-prod; Phase 5 (Landings) begins there and ends at outcome-realized-or-rejected. Skipping Phase 5 is the most common failure mode in product practice — and the most expensive — because three structural forces conspire to make the gap invisible: (1) teams reassign to the next initiative as soon as code lands, so nobody owns the post-ship outcome; (2) adoption is rarely anybody's OKR, while shipping output usually is; (3) the next planning cycle's commitments are forming concurrently with the current work's landing, so failed outcomes typically only surface during planning *after* new commitments have already been made. The kit's `/audit-landings-debt` (planned — ROADMAP P5.9) and the `landings-manager` scheduled agent (planned — P5.10) are designed to surface debt against this gap mechanically.
 
 The phrase "Landings, not Launches" names the discipline: launches are events; landings are work.
 
@@ -26,10 +26,10 @@ A team that ships into a 100% rollout with no measurement plan has skipped every
 The kit's Landing Report (F3.10 template at `templates/landing-report.md` + `/landing-report` command planned — ROADMAP P5.1) has three load-bearing sections:
 
 - **Adoption** — who actually started using it, segmented by cohort / segment / surface. Not aggregate DAU; segmented adoption with the missing-cohort question explicit.
-- **Outcome** — did the predeclared parent-Vision metric move, measured against the predeclared threshold? Verdict is `adopt | fix | kill`.
+- **Outcome** — did the predeclared parent-Vision metric move, measured against the predeclared threshold? Verdict is `adopt | fix | kill` per the Landing Report template (`templates/landing-report.md`).
 - **Counter-metric** — what regressed. Every win has a cost; the counter-metric is what you don't want to see degrade. If the team can't name a counter-metric, the report is incomplete — the team didn't know what cost they were willing to pay.
 
-All three measured against thresholds declared **in the parent Vision before code shipped**, not numbers reverse-engineered from the result. This is the predeclared-threshold discipline applied at the post-ship boundary.
+All three measured against thresholds declared **in the parent Vision before code shipped**, not numbers reverse-engineered from the result. This is the predeclared-threshold discipline applied at the post-ship boundary. **If the parent Vision was authored without thresholds** (a real and common case): the team declares the threshold retrospectively with explicit human sign-off recorded in the Landing Report's `human_owned_decisions:` field before filing the report. Filing a Landing Report with no threshold at all is not permitted — the verdict `fix` is the default for a Vision-with-no-threshold case until the retrospective threshold is signed off.
 
 ## Common failure modes
 

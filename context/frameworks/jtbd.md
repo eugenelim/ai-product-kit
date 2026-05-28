@@ -38,7 +38,7 @@ The four quadrants of the importance × satisfaction grid each carry a different
 - **Low importance, low satisfaction** — **noise**. The customer does not care that it is unsolved.
 - **Low importance, high satisfaction** — **over-served**. Competitors are over-investing; this is the segment ripe for low-end disruption (a cheaper, simpler product that drops the over-served outcome).
 
-A typical Ulwick survey enumerates 50–150 outcome statements for a single job and asks each respondent to score every statement on a 1–5 importance and 1–5 satisfaction scale. Aggregated, the gap (importance minus satisfaction) becomes the **opportunity score** — the larger the gap, the more underserved the outcome, the higher the investment priority. The math is mechanical once the outcome statements are in shape; the hard work is writing the statements correctly.
+A typical Ulwick survey enumerates 50–150 outcome statements for a single job and asks each respondent to score every statement on a 1–5 importance and 1–5 satisfaction scale. Aggregated, the **opportunity score** is `importance + max(importance − satisfaction, 0)` — the formula deliberately weights importance, so a high-importance / high-satisfaction outcome still ranks above a low-importance / low-satisfaction one even though both have the same raw gap. Ulwick (*What Customers Want*, 2005, ch. 6) is the canonical source for the formula; Ulwick & Bettencourt (2008, *MIT Sloan Management Review*) covers the survey mechanics in practitioner-friendly form. The hard work is writing the outcome statements correctly; the scoring math is mechanical once the statements are in shape.
 
 ## When to use which
 
