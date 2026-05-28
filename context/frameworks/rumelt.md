@@ -10,7 +10,11 @@ Rumelt's central insight (ch. 5): a strategy is not a goal, a vision, or a set o
 - **Guiding Policy.** An overall approach to navigate the diagnosed challenge — a directional posture, not a target. "Become the lowest-cost option for the SMB segment by collapsing our distribution layer onto self-serve channels" is a guiding policy. It rules in some actions and rules out others; it does not name the specific moves.
 - **Coherent Action.** A set of mutually reinforcing moves that the guiding policy authorizes. This is the leg most often skipped or hand-waved. Coherent actions are coordinated (they share a thread), mutually reinforcing (each makes the others stronger or cheaper), and resource-feasible (the team can actually execute them all).
 
-Rumelt's canonical example is the IBM-PC strategy or the Wal-Mart small-town strategy: in each, the diagnosis names a specific constraint, the guiding policy provides a directional answer, and the coherent actions reinforce each other.
+Rumelt's canonical examples are the IBM-PC strategy and the Wal-Mart small-town strategy. Walking through Wal-Mart makes the three legs concrete:
+
+- **Diagnosis.** Wal-Mart could not profitably open large-format stores in major metro markets dominated by Kmart, Sears, and Woolworth — the competitive density and real-estate costs made metro entry uneconomic at the prices Wal-Mart needed to charge. The constraint was not "we are small" but "the prices our model requires are incompatible with metro cost structures while incumbents hold metro share."
+- **Guiding Policy.** Saturate small-town and rural markets below the radar of the major incumbents — markets too small to attract metro-scale competitors but large enough to support one well-stocked discount store per town. This posture ruled out metro entry and ruled in geographic clustering.
+- **Coherent Actions.** (a) Build distribution hubs within one-day truck range of clustered stores; (b) cluster stores geographically so advertising, logistics, and management overhead spread across multiple locations; (c) avoid metro markets where incumbents could retaliate at scale; (d) negotiate volume pricing from suppliers based on the cluster's combined demand, not per-store demand. Each action is feasible given the team's actual capabilities, mutually reinforcing (the distribution hubs only work because of store clustering; supplier leverage only works because of distribution scale), and externally coordinated — the market saw a focused small-town strategy, not contradictory signals.
 
 ## What good strategy is not — the four hallmarks of bad strategy
 
@@ -23,7 +27,11 @@ From Rumelt (ch. 2), the four shapes of bad strategy.
 
 ## The coherent-actions leg
 
-The kernel's third leg is the one this kit operationalizes most heavily. Coherent actions are checked along three axes (the companion framework `context/frameworks/strategic-coherence.md` covers this in detail): **resource coherence** (do the actions share a budget that won't starve any one of them?), **capability coherence** (do the actions need the same capabilities the team has?), **market posture coherence** (do the actions present a consistent posture — premium vs price-leader, depth vs breadth, enterprise vs consumer?).
+The kernel's third leg is the one this kit operationalizes most heavily, because it is the leg most often skipped. An action set that fails any one of three axes stops being a strategy and becomes a list of priorities competing with itself. The companion framework `context/frameworks/strategic-coherence.md` is the audit lens; this section names the concept and the failure shape of each axis.
+
+- **Resource coherence.** The actions must share a budget that does not starve any one of them. When this fails, the strategy quietly cancels itself — example: two big bets fighting for the same engineering team this quarter, where shipping either one means the other slips, and leadership has not chosen. The actions look additive on the doc and subtractive in the calendar.
+- **Capability coherence.** The actions must lean on the same capabilities the team actually has, and must not demand contradictory primary capabilities. When this fails, the team is asked to be excellent at incompatible things — example: speed-to-market and regulatory accuracy both claiming primary capability in the same quarter, where the staffing model and review cadence each requires would cancel the other.
+- **Market posture coherence.** The actions must present a consistent posture to the external world. When this fails, customers, partners, and competitors receive contradictory signals — example: an enterprise pitch and a freemium pitch in the same quarter, where each undermines the pricing power and channel economics of the other.
 
 The kit's `/audit-portfolio-coherence` command (F1.6, shipped) walks pairs of Strategic Intents and Initiatives and flags axis violations. The script is `scripts/audit-portfolio-coherence.py`; the skill is `.claude/skills/strategy-coherence/SKILL.md`.
 

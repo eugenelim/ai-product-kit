@@ -10,7 +10,17 @@ A competitive analysis that earns its keep produces three distinct outputs. A sc
 - **A cross-competitor synthesis.** Where do the competitors converge (parity), where do they diverge (differentiators), and where do they collectively leave gaps? The synthesis is where decision-utility comes from; the per-competitor scan in isolation is inventory, not insight.
 - **A decision-useful conclusion.** What this changes about our strategy — what to defend, what to copy, what to ignore, what to bet on. If the analysis ends without naming a decision, it didn't earn the cost of the work.
 
+A "decision-useful conclusion" is not a summary paragraph. It must name **at least one concrete decision** the team will take (or explicitly decide not to take) as a result, and **who owns it**. Concrete decisions look like: a positioning shift to defend (and who'll defend it), a feature to copy (and who'll spec it), a competitor to ignore on purpose (and who's accountable for that call), a bet to make against an emerging gap (and who owns the bet), a market segment to enter or explicitly avoid (and the named decision-owner). A conclusion that ends "we should keep watching this space" is not a decision; it's a deferral disguised as one.
+
 A scan of 12 competitors with no synthesis and no conclusion is a worse outcome than a scan of 3 with both.
+
+**Competitor-scope selection — three deep beats twelve shallow.** Before the scan starts, classify candidate competitors into three buckets using the JTBD lens (`context/frameworks/jtbd.md`) as the scoping tool:
+
+- *Direct competitors* — hired for the **same job** by the **same customer segment**. These are the in-scope set; analyze deeply with at least two lenses each.
+- *Indirect competitors* — hired for an **adjacent job**, or for the same job by an **adjacent segment**. Worth a one-paragraph note each (what job, what segment, why we're not analyzing deeply this round); revisit if positioning shifts.
+- *Explicitly out-of-scope* — aspirational comparisons (the brand we'd like to be mistaken for) and brand-overlap comparisons with **no actual product overlap**. Name them so reviewers know they were considered and ruled out; do not scan them.
+
+The JTBD lens makes this scoping tractable: feature overlap is a misleading proxy; job overlap is the real signal. If two products are hired for different jobs, they're barely competitors regardless of feature-list similarity.
 
 ## Three lenses — Porter, Wardley, JTBD
 
@@ -23,7 +33,9 @@ Use **at least two** lenses. One lens is rarely enough — single-lens analysis 
   - *Threat of substitutes* — what alternative ways exist to do the same job (the JTBD lens overlaps here)?
   - *Industry rivalry* — how competitive is the existing market on price, feature parity, marketing intensity?
 - **Wardley's evolution axis.** Where does each competitor sit on each component of the value chain (Genesis → Custom → Product → Commodity)? A competitor whose differentiator is at Commodity is on borrowed time; one whose differentiator is at Genesis is hard to copy. Cross-link to `context/frameworks/wardley.md`. Useful when the team is asking "where is the durable advantage?"
+  - *Concrete example.* A competitor whose differentiator sits at **Commodity** (a database layer, a payment processor, a generic LLM-as-a-service wrapper) is on borrowed time — their moat is being eroded by every new managed service shipped by the platform vendors below them; their "differentiator" line in the deck has a half-life measured in quarters. A competitor whose differentiator sits at **Genesis** (a novel ML approach for which no public taxonomy yet exists, or a new interaction paradigm without an industry name) is hard to copy but also hard to scale — the operative question for that competitor is whether they can drag the genesis-stage capability through Custom and into Product before the genesis-stage information advantage erodes. The Wardley lens tells you *where on the timeline* to take a competitor seriously.
 - **JTBD.** What job is each competitor being hired for? Two competitors with overlapping features can be hired for different jobs and not actually compete. Cross-link to `context/frameworks/jtbd.md`. Useful when the team is asking "are we even competing with this company, or are we adjacent?"
+  - *Concrete example.* Notion and Confluence ship overlapping features — pages, tables, comments, nested hierarchies, link-based navigation. The feature-matrix view suggests near-perfect competition. The JTBD view says otherwise: Notion is hired by individuals and small teams for **personal knowledge-OS** work (lightweight, fast, opinion-driven defaults); Confluence is hired by enterprise IT for **compliance-grade documentation** (permissioned, auditable, integrated with the enterprise SSO/governance stack). The feature overlap is real; the **jobs don't overlap**. The two products are barely competitors despite the matrix saying they are — and a team that treats them as direct competitors will optimize for the wrong customer.
 
 A competitor's **positioning** is the public claim; the lenses tell you whether the claim holds up structurally (Porter), durably (Wardley), and against the right customer-job (JTBD).
 

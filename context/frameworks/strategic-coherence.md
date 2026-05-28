@@ -30,18 +30,39 @@ Pairwise is load-bearing: the audit does not check whether each bet is *individu
 
 ## Incoherence patterns
 
-The audit emits findings in named pattern shapes:
+The audit emits findings in named pattern shapes. Each pattern has a definition (what the conflict *is*) and a worked example (so a consumer can recognize the shape in their own portfolio):
 
-- **Resource conflict.** Two strategic bets both require the senior platform team this quarter; one must yield. The audit flags the pair and the resource (the named team or budget).
-- **Capability conflict.** The bet on "speed-to-market" and the bet on "regulatory-grade accuracy" both claim primary capability priority; neither will get it. The audit asks the team to name which dominates.
-- **Market-posture conflict.** Bet A says we're a high-touch enterprise product; Bet B says we're self-serve and freemium; sales motion drift is inevitable. The audit asks the team to resolve the posture conflict before either bet ships customer-facing surface.
-- **Implicit-shared-audience conflict.** Bets that look independent but consume the same scarce attention surface. The audit surfaces this when two bets target the same persona segment with launch windows in the same quarter.
+- **Resource conflict.**
+  - *Definition:* two bets compete for the same finite pool of people, time, or capital within the same window, such that funding both implies starving one. The audit flags the pair and names the contested resource (team, budget line, or calendar slot).
+  - *Worked example:* Bet A — re-platform onto Postgres in Q3 — and Bet B — ship the new billing engine in Q3 — both require the four senior platform engineers; one must yield or the quarter slips on both.
+
+- **Capability conflict.**
+  - *Definition:* two bets each claim a different primary differentiating capability, without naming which dominates, so the organization cannot concentrate the focus and tradeoffs needed to make either one excellent.
+  - *Worked example:* Bet A claims "fastest time-to-market in the segment" as the differentiator; Bet B claims "regulatory-grade audit completeness" as the differentiator. Without naming which capability is dominant, neither bet gets the org's focus and both ship mediocre on their respective claims.
+
+- **Market-posture conflict.**
+  - *Definition:* two bets present contradictory postures to the market — pricing surface, sales motion, brand voice, or target segment — such that the external read of the company drifts incoherent regardless of internal alignment.
+  - *Worked example:* Bet A: high-touch enterprise sales with $50k+ ACV pricing; Bet B: self-serve freemium with viral growth via product-led signups. The sales motion, pricing surface, and brand voice will drift incoherent within two quarters.
+
+- **Implicit-shared-audience conflict.**
+  - *Definition:* two bets look independent on the org chart but share the same scarce attention surface — the same customer segment, the same product area, or the same learning-and-adoption bandwidth — within the same window.
+  - *Worked example:* Bet A: launch a power-user feature for senior analysts in Q4; Bet B: launch a new onboarding for junior analysts in Q4. The bets look independent but compete for engineering attention on the same product surface and for the same customers' learning bandwidth.
 
 ## Common failure modes
 
-- **Single-axis review.** The team checks resources (the most visible axis) and stops there. Capability and posture conflicts go un-flagged until they manifest in delivery friction or sales-motion drift.
-- **"They're independent" rationalization.** Two bets are framed as parallel because that's organizationally convenient — different teams, different roadmaps, different OKRs. The shared scarce capability or audience is invisible to the framing but real to the constraint.
-- **"All our bets are coherent because they share an outcome."** Sharing an outcome metric (e.g., ARR growth) doesn't mean the actions don't conflict on resources, capabilities, or posture. The shared outcome is a destination; coherence is about the paths.
+Each failure mode has a definition (what the team did wrong) and a worked example or signal (how it shows up in practice):
+
+- **Single-axis review.**
+  - *Definition:* the audit only checks the most visible axis — usually resources, because resources are line items in the budget — and treats the other two as out of scope.
+  - *Signal:* the audit only checks resources because resources are visible in the budget — capability and posture conflicts surface only when the team starts shipping, by which point the conflict has compounded into delivery friction or sales-motion drift.
+
+- **"They're independent" rationalization.**
+  - *Definition:* two bets are declared parallel because they live in different teams' roadmaps with different OKRs, and the org-chart separation is mistaken for a real absence of contention.
+  - *Signal:* two bets are framed as parallel because they sit in different teams' roadmaps with different OKRs — but they share the same scarce platform capacity, or the same customer's attention, or the same go-to-market motion.
+
+- **Shared-outcome trap.**
+  - *Definition:* the team concludes that two bets must be coherent because both serve the same outcome metric — but a shared destination says nothing about whether the paths conflict on resources, capabilities, or posture.
+  - *Signal:* both bets aim at the same outcome metric (e.g., ARR growth), so the team concludes the actions must be coherent. They might be — but a shared destination does not imply non-conflicting paths.
 
 ## How the kit uses this framework
 

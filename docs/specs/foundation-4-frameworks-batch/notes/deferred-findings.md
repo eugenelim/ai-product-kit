@@ -2,6 +2,36 @@
 
 Findings surfaced by the post-EXECUTE adversarial reviewer (REVIEW iter-1, 2026-05-28) that were deferred rather than fixed in-loop. Each row carries a one-line rationale and a "when to address" trigger.
 
+## Resolved in REVIEW iter-4 (2026-05-28, user-requested deferred-finding fix pass)
+
+User asked the deferred-findings be addressed. 6 parallel sub-agent expansions for the substantive line-budget deferrals + 3 main-thread small-nit fixes. All gates remained green throughout (T-<slug>-1..8 per-file + lint-frontmatter + pre-pr).
+
+### Substantive expansions (6 — via parallel sub-agent fan-out)
+
+- **`falsification.md`** (48 → 52 lines, long-line style; ~2x prose) — `## What "survived" means` now includes the p=0.04/0.05 worked example showing soft-confirm laundering; `## Why the kit is asymmetric` adds the 99%-success / 1%-vulnerable-cohort product analogy explaining structural vs arithmetic asymmetry; `## Common failure modes — moving threshold` mitigation expanded with clean-vs-dirty revision definitions and the named human-gate sign-off in `human_owned_decisions:`.
+- **`rumelt.md`** (53 → 61 lines) — `## The kernel` now walks the **Wal-Mart small-town kernel** end-to-end (Diagnosis: metro cost/density made entry uneconomic; Guiding Policy: saturate small-town markets below incumbent radar; four Coherent Actions with mutual-reinforcement spelled out); `## The coherent-actions leg` expanded to ~14 lines with a per-axis failure named for each (resource: bets fighting for the same eng team; capability: speed vs accuracy without dominance; posture: enterprise vs freemium same quarter).
+- **`validation-theatre.md`** (56 → 61 lines, but ~2x character density per the agent's report) — each of the five failure modes now carries a definition + a recognition signal ("you're in this mode if..." tell) + a common example. The **no-consequences theatre** is explicitly flagged as the most prevalent mode in product practice, with the directive "when in doubt, check this first."
+- **`strategic-coherence.md`** (65 → 86 lines) — `## Incoherence patterns` now has definition + worked example per pattern (Postgres re-platform vs billing engine for resource; speed-to-market vs regulatory accuracy for capability; $50k ACV enterprise vs self-serve freemium for posture; Q4 power-user vs Q4 onboarding feature for implicit-shared-audience); `## Common failure modes` parallel structure with worked example/signal per mode.
+- **`competitive-analysis.md`** (61 → 73 lines, ~2x prose volume per agent report) — `## What thorough analysis contains` now requires a concrete decision + owner ("not 'we should keep watching this space'"); adds a competitor-scope-selection sub-block (direct / indirect / out-of-scope using JTBD as scoping tool); `## Three lenses` adds a Wardley example (Commodity-vs-Genesis competitor differentiator) and a JTBD example (Notion vs Confluence — feature overlap, job non-overlap).
+- **`opportunity-solution-tree.md`** (57 → 57 lines, file rewritten with denser prose) — `## The four node types` adds the missing Assumption Test canonical example ("do analysts adopt the saved-query snippet feature in their first session? Threshold: ≥40% within 7 days") and ties the chain Outcome→Opportunity→Solution→Assumption Test end-to-end with one running example; `## Source opportunities` tightened per iter-1 reviewer (validator flags zero-`evidence_basis:`, one minimum, richer chains more defensible).
+
+### Small-nit fixes (main thread)
+
+- **`continuous-discovery.md`** — added **solo-PM-as-trio** failure mode bullet (the calendar-friction relay pattern where a single PM does the interviews and forwards notes to designer + tech lead; named as the most common failure of the trio discipline in practice).
+- **`wardley.md`** — strategic implications of evolution stages now qualified as "**first-order heuristics**" (Wardley's own doctrine is that gameplay is map-shape-dependent, so these are starting points not rules); `scripts/mode-guard.py` dropped from the mode-guard parenthetical reference (it was an internal implementation detail that would go stale if the path moves — only the contract path `.claude/hooks/mode-guard.md` remains).
+
+### Mechanical gate state after iter-4
+
+All 12 frameworks pass T-<slug>-1..8. Kit-wide: `python3 tools/lint-frontmatter.py --all` clean; `bash tools/pre-pr.sh` clean. Spec's per-framework advisory targets still under-met on raw line count for several docs (because the agents used long-line markdown style that compresses content into fewer lines), but the substantive content gaps the iter-3 reviewer flagged are all closed.
+
+### Remaining true deferrals — none load-bearing
+
+- VL nits (atmospheric prose, minor phrasing): deferred indefinitely as taste-level edits.
+- ME findings the iter-3 reviewer flagged as nit-level without recommended fix: deferred.
+- Line-budget raw-count shortfall in `wardley.md` and `landings-not-launches.md`: their substantive coverage is complete; raw line count is the only gap. Deferred.
+
+
+
 ## Resolved in REVIEW iter-2 (2026-05-28)
 
 User requested the deferred findings be addressed in a follow-up pass after the initial SHIP commit. Iter-2 resolved 8 of the 7 originally-deferred items (1 was bundled with another). The remaining items below are the new deferrals.

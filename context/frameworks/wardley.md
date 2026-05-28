@@ -19,7 +19,7 @@ Every component on a map sits at one of four evolution stages on the x-axis:
 - **Product (including rental)** — the component is standardized and packaged. Available as a product or as a rental/SaaS offering. Multiple vendors; meaningful differentiation between them.
 - **Commodity (including utility)** — well-understood, undifferentiated, often metered. Component X is functionally equivalent across vendors; price and reliability dominate. Utility-scale components (electricity, AWS S3) sit at the right end.
 
-Components move rightward over time, dragged by competition. The strategic implication: where each component sits on the axis determines what you should *do* with it. Genesis components warrant exploration and patience; custom components warrant standardization investment; product components warrant differentiation or partnership; commodity components warrant outsourcing or utility consumption. Treating a commodity as a differentiator (building your own database when a managed one exists) is a category error the map exposes.
+Components move rightward over time, dragged by competition. The strategic implication: where each component sits on the axis determines what you should *do* with it. **As first-order heuristics** (Wardley's own doctrine is that gameplay is map-shape- and context-dependent, so these are starting points, not rules): Genesis components warrant exploration and patience; custom components warrant standardization investment; product components warrant differentiation or partnership; commodity components warrant outsourcing or utility consumption. Treating a commodity as a differentiator (building your own database when a managed one exists) is a category error the map exposes.
 
 ## Climatic patterns
 
@@ -52,7 +52,7 @@ The separation matters because the two failure modes are different and both comm
 - **`wardley-evolution` skill** (planned — ROADMAP P7.8) — places components on the evolution axis using Wardley's characteristics tables.
 - **`/value-chain-evolution`** (planned — ROADMAP P7.10) — diffs the value chain across quarters; consumes the climatic pattern "everything evolves" as its core assumption.
 - **`context/frameworks/competitive-analysis.md`** uses the evolution-axis lens as one of three lenses in a thorough competitive analysis.
-- **`mode-guard` hook** (F2.4, shipped at `scripts/mode-guard.py`; documented at `.claude/hooks/mode-guard.md`) — enforces enterprise-mode-only access to the Wardley commands.
+- **`mode-guard` hook** (F2.4, shipped; documented at `.claude/hooks/mode-guard.md`) — enforces enterprise-mode-only access to the Wardley commands.
 
 ## References
 

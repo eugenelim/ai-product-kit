@@ -36,6 +36,7 @@ The same outcome-vs-output discipline shows up again at the post-ship boundary i
 - **Slack/Discord-only research substitute** — proxy research (community channels, support tickets, sales calls relayed second-hand) replaces direct customer contact. Proxy data is biased toward complainers and toward whoever the team already talks to; the missing voices stay missing.
 - **The "I'll discover next quarter" trap** — treating discovery as project-bound rather than habit-bound. Discovery that goes dormant between quarters loses the relationship continuity that makes interviews productive in the first place. Customers who agree to a one-off interview are different (and less useful) than customers who agree to a recurring conversation.
 - **Cadence-as-theatre** — treating the weekly cadence as the discovery work itself rather than a habit that produces data. The team hits 3-1-1 every week but the OST never changes and no opportunity is ever killed. The cadence is real; the discovery is fake.
+- **Solo-PM-as-trio** — a single PM runs all the interviews, takes notes, builds the OST, and forwards the conclusions to the designer and tech lead for review. The trio's name is preserved; the trio's actual function (three live lenses in the room asking their own follow-ups) is not. This is the most common failure of the product-trio discipline in practice — the calendar friction of three-person interviews makes the relay tempting and the missed-friction cost only surfaces in delivery.
 
 ## How the kit uses this framework
 
